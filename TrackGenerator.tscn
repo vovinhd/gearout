@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://tex/Track.png" type="Texture" id=1]
+[ext_resource path="res://TrackGenerator.gd" type="Script" id=2]
+[ext_resource path="res://track_shader.shader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 3 )
+shader_param/u_offset = 0.0
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 3 )
+shader_param/u_offset = null
+
+[node name="TrackGenerator" type="Node2D"]
+z_index = -30
+script = ExtResource( 2 )
+
+[node name="Track" type="Sprite" parent="."]
+material = SubResource( 1 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 640, 33 )
+
+[node name="Track2" type="Sprite" parent="."]
+material = SubResource( 2 )
+position = Vector2( 0, 319 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 640, 33 )

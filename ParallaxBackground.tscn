@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://tex/Desert_Background_2.png" type="Texture" id=1]
+[ext_resource path="res://tex/Desert_Background_3.png" type="Texture" id=2]
+[ext_resource path="res://tex/clear_sky2.png" type="Texture" id=3]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+scroll_base_scale = Vector2( 0.5, 0.5 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 650, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 0, -160 )
+texture = ExtResource( 3 )
+centered = false
+region_rect = Rect2( 0, 0, 100, 350 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+visible = false
+modulate = Color( 0.486275, 0.486275, 0.486275, 1 )
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 807.174, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( -6.10352e-05, -168 )
+scale = Vector2( 1.73913, 1.69231 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+visible = false
+motion_scale = Vector2( 0.2, 0.2 )
+motion_mirroring = Vector2( 751.105, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxLayer3"]
+modulate = Color( 0.321569, 0.211765, 0.211765, 1 )
+position = Vector2( -1.81899e-12, -160 )
+scale = Vector2( 1.73913, 1.69231 )
+texture = ExtResource( 2 )
+centered = false

@@ -1,0 +1,8 @@
+extends Node
+
+enum PADDLE_STATE {
+	BALL_ACTIVE,
+	BALL_WAITING,
+	BALL_PREPARING,
+	BALL_LOST
+}

@@ -1,0 +1,126 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://bubblegum_uniform_collision.tres" type="TileSet" id=1]
+[ext_resource path="res://Paddle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://HolderTop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://KillBound.gd" type="Script" id=4]
+[ext_resource path="res://PlayerAnimator.gd" type="Script" id=5]
+[ext_resource path="res://HolderBottom.tscn" type="PackedScene" id=6]
+[ext_resource path="res://chain_shader.shader" type="Shader" id=7]
+[ext_resource path="res://tex/Chain.png" type="Texture" id=8]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 320, 23 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8, 160 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 161 )
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 7 )
+shader_param/v_offset = 1.397
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform float v_offset; 
+
+void fragment() {
+	COLOR = texture(TEXTURE, vec2(UV.x, UV.y - v_offset));
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/v_offset = 2.234
+
+[node name="world" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="TileMap" type="TileMap" parent="."]
+visible = false
+z_index = -11
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 14, 0, 1, 14, 0, 2, 14, 0, 3, 14, 0, 4, 14, 0, 5, 14, 0, 6, 14, 0, 7, 14, 0, 8, 14, 0, 9, 14, 0, 10, 14, 0, 11, 14, 0, 12, 14, 0, 13, 14, 0, 14, 14, 0, 15, 14, 0, 16, 14, 0, 17, 14, 0, 18, 14, 0, 19, 14, 0, 20, 14, 0, 21, 14, 0, 22, 14, 0, 23, 14, 0, 24, 14, 0, 25, 14, 0, 26, 14, 0, 27, 14, 0, 28, 14, 0, 29, 14, 0, 30, 14, 0, 31, 14, 0, 32, 14, 0, 33, 14, 0, 34, 14, 0, 35, 14, 0, 36, 14, 0, 37, 14, 0, 38, 14, 0, 39, 14, 0, 65536, 14, 0, 65575, 14, 0, 131072, 14, 0, 131111, 14, 0, 196608, 14, 0, 196647, 14, 0, 262144, 14, 0, 262183, 14, 0, 327680, 14, 0, 327719, 14, 0, 393216, 14, 0, 393255, 14, 0, 458752, 14, 0, 458791, 14, 0, 524288, 14, 0, 524327, 14, 0, 589824, 14, 0, 589863, 14, 0, 655360, 14, 0, 655399, 14, 0, 720896, 14, 0, 720935, 14, 0, 786432, 14, 0, 786471, 14, 0, 851968, 14, 0, 852007, 14, 0, 917504, 14, 0, 917543, 14, 0, 983040, 14, 0, 983079, 14, 0, 1048576, 14, 0, 1048615, 14, 0, 1114112, 14, 0, 1114151, 14, 0, 1179648, 14, 0, 1179687, 14, 0, 1245184, 14, 0, 1245223, 14, 0, 1310720, 14, 0, 1310759, 14, 0, 1376256, 14, 0, 1376257, 14, 0, 1376258, 14, 0, 1376259, 14, 0, 1376260, 14, 0, 1376261, 14, 0, 1376262, 14, 0, 1376263, 14, 0, 1376264, 14, 0, 1376265, 14, 0, 1376266, 14, 0, 1376267, 14, 0, 1376268, 14, 0, 1376269, 14, 0, 1376270, 14, 0, 1376271, 14, 0, 1376272, 14, 0, 1376273, 14, 0, 1376274, 14, 0, 1376275, 14, 0, 1376276, 14, 0, 1376277, 14, 0, 1376278, 14, 0, 1376279, 14, 0, 1376280, 14, 0, 1376281, 14, 0, 1376282, 14, 0, 1376283, 14, 0, 1376284, 14, 0, 1376285, 14, 0, 1376286, 14, 0, 1376287, 14, 0, 1376288, 14, 0, 1376289, 14, 0, 1376290, 14, 0, 1376291, 14, 0, 1376292, 14, 0, 1376293, 14, 0, 1376294, 14, 0, 1376295, 14, 0 )
+
+[node name="Paddle" parent="." instance=ExtResource( 2 )]
+position = Vector2( 70, 49 )
+
+[node name="Ball" parent="." instance=ExtResource( 9 )]
+speed = 100.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 320, 176 )
+current = true
+smoothing_enabled = true
+
+[node name="HolderTop" parent="." instance=ExtResource( 3 )]
+
+[node name="HolderBottom" parent="." instance=ExtResource( 6 )]
+position = Vector2( 57, 339 )
+
+[node name="Bounds" type="Node2D" parent="."]
+
+[node name="Top" type="KinematicBody2D" parent="Bounds"]
+position = Vector2( 320, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Top"]
+shape = SubResource( 2 )
+
+[node name="Bottom" type="KinematicBody2D" parent="Bounds"]
+position = Vector2( 320, 344 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Bottom"]
+shape = SubResource( 2 )
+
+[node name="BallSaver" type="KinematicBody2D" parent="Bounds"]
+position = Vector2( 60, 160 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/BallSaver"]
+position = Vector2( 0, 16 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="WaveBorder" type="KinematicBody2D" parent="Bounds"]
+position = Vector2( 8, 160 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/WaveBorder"]
+position = Vector2( 624, 16 )
+shape = SubResource( 3 )
+
+[node name="KillBound" type="Area2D" parent="Bounds"]
+position = Vector2( 51, 168 )
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/KillBound"]
+modulate = Color( 0.847059, 0.0941176, 0.0941176, 1 )
+position = Vector2( -46, 9 )
+shape = SubResource( 1 )
+
+[node name="Chain" type="Sprite" parent="."]
+material = SubResource( 7 )
+position = Vector2( 67, 12 )
+scale = Vector2( 1, 0.8125 )
+z_index = -1
+texture = ExtResource( 8 )
+centered = false
+hframes = 6
+region_enabled = true
+region_rect = Rect2( 0, 0, 42, 400 )
+
+[node name="Chain2" type="Sprite" parent="."]
+material = SubResource( 6 )
+position = Vector2( 39, 12 )
+scale = Vector2( 1, 0.8125 )
+z_index = -1
+texture = ExtResource( 8 )
+centered = false
+hframes = 6
+region_enabled = true
+region_rect = Rect2( 0, 0, 42, 400 )
+[connection signal="body_entered" from="Bounds/KillBound" to="Bounds/KillBound" method="_on_KillBound_body_entered"]

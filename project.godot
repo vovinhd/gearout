@@ -1,0 +1,58 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "SimpleBlock",
+"language": "GDScript",
+"path": "res://SimpleBlock.gd"
+}, {
+"base": "Node2D",
+"class": "Wave",
+"language": "GDScript",
+"path": "res://Wave.gd"
+} ]
+_global_script_class_icons={
+"SimpleBlock": "",
+"Wave": ""
+}
+
+[application]
+
+config/name="gearout"
+run/main_scene="res://LevelContainer.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+PaddleState="*res://PaddleState.gd"
+
+[display]
+
+window/size/width=640
+window/size/height=352
+window/size/test_width=1280
+window/size/test_height=720
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[input]
+
+Fire={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[rendering]
+
+quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.172549, 0.109804, 0.219608, 1 )
+environment/default_environment="res://default_env.tres"

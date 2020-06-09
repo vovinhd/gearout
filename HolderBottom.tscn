@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://tex/MovingIndicator.png" type="Texture" id=1]
+[ext_resource path="res://tex/LargeGear.png" type="Texture" id=2]
+[ext_resource path="res://tex/SmallGear.png" type="Texture" id=3]
+[ext_resource path="res://tex/Housing.png" type="Texture" id=4]
+[ext_resource path="res://Holder.gd" type="Script" id=5]
+
+[node name="HolderBottom" type="Node2D"]
+position = Vector2( 57, 335 )
+script = ExtResource( 5 )
+direction = -1
+
+[node name="Housing" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+hframes = 2
+frame = 1
+
+[node name="LargeGear" type="Sprite" parent="Housing"]
+position = Vector2( -10, -3 )
+z_index = -1
+texture = ExtResource( 2 )
+hframes = 3
+
+[node name="LargeGear2" type="Sprite" parent="Housing"]
+position = Vector2( 12, -3 )
+z_index = -1
+texture = ExtResource( 2 )
+hframes = 3
+
+[node name="MovingIndicator" type="Sprite" parent="Housing"]
+position = Vector2( 2, 1 )
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="SmallGear" type="Sprite" parent="Housing"]
+position = Vector2( -21, -11 )
+z_index = -2
+texture = ExtResource( 3 )
+hframes = 3
+
+[node name="SmallGear2" type="Sprite" parent="Housing"]
+position = Vector2( 24, -11 )
+z_index = -2
+texture = ExtResource( 3 )
+hframes = 3
+
+[node name="SmallGear3" type="Sprite" parent="Housing"]
+position = Vector2( 24, 9 )
+z_index = -2
+texture = ExtResource( 3 )
+hframes = 3
+
+[node name="SmallGear4" type="Sprite" parent="Housing"]
+position = Vector2( -21, 9 )
+z_index = -2
+texture = ExtResource( 3 )
+hframes = 3
+
+[node name="SmallGear5" type="Sprite" parent="Housing"]
+position = Vector2( 1, 8 )
+z_index = -2
+texture = ExtResource( 3 )
+hframes = 3
