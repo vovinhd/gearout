@@ -17,3 +17,38 @@ scroll_speed = 0.01
 layer = -1
 
 [node name="TrackGenerator" parent="Tracks" instance=ExtResource( 4 )]
+
+[node name="InGameUI" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="InGameUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -199.0
+margin_bottom = 32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InGameUI/MarginContainer"]
+margin_right = 199.0
+margin_bottom = 32.0
+
+[node name="ScoreLabel" type="Label" parent="InGameUI/MarginContainer/HBoxContainer"]
+margin_top = 9.0
+margin_right = 91.0
+margin_bottom = 23.0
+text = "Score: 999999"
+
+[node name="LivesLabel" type="Label" parent="InGameUI/MarginContainer/HBoxContainer"]
+margin_left = 95.0
+margin_top = 9.0
+margin_right = 144.0
+margin_bottom = 23.0
+text = "Lives: 3"
+
+[node name="WaveLabel" type="Label" parent="InGameUI/MarginContainer/HBoxContainer"]
+margin_left = 148.0
+margin_top = 9.0
+margin_right = 199.0
+margin_bottom = 23.0
+text = "Wave: 1"

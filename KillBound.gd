@@ -19,5 +19,6 @@ func _ready():
 
 func _on_KillBound_body_entered(body):
 	print(body.name)
-	emit_signal("ball_destroyed")
+	if body.name == "Ball":
+		emit_signal("ball_destroyed")
 

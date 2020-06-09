@@ -12,7 +12,7 @@ signal can_start_next_wave
 signal scroll_speed(scrollspeed)
 export(Array) var wave_array = [
 	preload("res://Wave02.tscn"),
-#	preload("res://Wave01.tscn"),
+	preload("res://Wave01.tscn"),
 ]
 
 export var wave_index = 0
@@ -27,18 +27,26 @@ onready var track_generator = $Tracks/TrackGenerator
 onready var top_holder = $world/HolderTop
 onready var bottom_holder = $world/HolderBottom
 onready var kill_bound = $world/Bounds/KillBound
+
+onready var lives_label = $InGameUI/MarginContainer/HBoxContainer/LivesLabel
+var lives_format = "Lives: %d"
+onready var wave_label = $InGameUI/MarginContainer/HBoxContainer/WaveLabel
+var waves_format = "Wave: %d"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.connect("scroll_speed", track_generator, "scroll_tracks")
 	self.connect("scroll_speed", self, "scroll_holders")
 	self.connect("can_start_next_wave", get_node("world/Paddle"), "reset")
+	self.connect("wave_completed", get_node("world/Paddle"), "wave_transition")
 	kill_bound.connect("ball_destroyed", self, "_on_ball_destroyed")
+	lives_label.text = lives_format % playerLives
 	load_next_wave()
 
 func load_next_wave():
 	var current_wave = wave_array[wave_index].instance()
 	wave_index = (wave_index + 1) % wave_array.size()
 	print(wave_index, current_wave.name)
+	wave_label.text = waves_format % (wave_index)
 	self.add_child(current_wave)
 	current_wave.position = offset
 	current_wave.connect("wave_completed", self, "_on_wave_completed")
@@ -78,3 +86,5 @@ func _on_ball_destroyed():
 	if(playerLives <= 0): 
 		print("you lose")
 		playerLives = 3
+	lives_label.text = lives_format % playerLives
+

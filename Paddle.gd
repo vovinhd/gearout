@@ -29,7 +29,7 @@ onready var animation_player = $AnimationPlayer
 
 # play state 
 
-const PADDLE_STATE = PaddleState.PADDLE_STATE
+var PADDLE_STATE = PaddleState.PADDLE_STATE
 
 
 var paddle_state = PADDLE_STATE.BALL_LOST
@@ -51,7 +51,7 @@ func _input(_event):
 		match paddle_state: 
 			PADDLE_STATE.BALL_LOST:
 				_prepare_ball()
-			PADDLE_STATE.BALL_PREPARING:
+			PADDLE_STATE.BALL_PREPARING, PADDLE_STATE.WAVE_TRANSITION:
 				pass
 			PADDLE_STATE.BALL_WAITING:
 				_fire_ball()
@@ -76,7 +76,9 @@ func _fire_ball():
 	ball.fire_ball()
 	paddle_state = PADDLE_STATE.BALL_ACTIVE
 
-func _process(_delta) -> void: 
+
+var ball_offset = 0
+func _process(delta) -> void: 
 	var current_mouse : Vector2 = get_global_mouse_position()
 	self.position = Vector2(self.position.x, clamp(current_mouse.y, Y_MIN, Y_MAX))
 	
@@ -88,11 +90,16 @@ func _process(_delta) -> void:
 	for gear in rot_l: 
 		gear.rotation_degrees -= gear_roatation
 
-
-	
+	if paddle_state == PADDLE_STATE.BALL_PREPARING:
+		ball_offset += delta * 0.25
+		ball.global_position = ball.global_position.linear_interpolate($BallFirePosition.global_position, ball_offset)
 	last_position = self.position
 #	pass
 
 func reset():
 	animation_player.play("Reset")
 	paddle_state = PADDLE_STATE.BALL_LOST
+	ball_offset = 0
+
+func wave_transition(): 
+	paddle_state = PADDLE_STATE.WAVE_TRANSITION

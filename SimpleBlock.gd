@@ -7,6 +7,7 @@ signal block_destroyed
 
 # Declare member variables here. Examples:
 export var hitPoints = 1
+export var score = 100
 var block_destroyed = false 
 
 
