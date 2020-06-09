@@ -43,6 +43,8 @@ func _ready():
 	print(ball)
 	ball.connect("ball_lost", self, "reset")
 	self.connect("paddle_moved", ball, "paddle_moved")
+	get_tree().get_root().get_node("LevelContainer").connect("wave_completed", self, "reset")
+
 
 func _input(_event):
 	if (Input.is_action_just_pressed("Fire")):

@@ -15,6 +15,8 @@ const MAX_Y_DIFF = 20
 func _ready():
 
 	get_tree().get_root().get_node("LevelContainer/world/Bounds/KillBound").connect("ball_destroyed", self, "on_kill")
+	get_tree().get_root().get_node("LevelContainer").connect("wave_completed", self, "phase_out")
+
 	paddle = get_tree().get_root().get_node("LevelContainer/world/Paddle")
 	print(paddle)
 	pass # Replace with function body.
@@ -22,7 +24,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if !enabled:
+	if paddle.paddle_state != PADDLE_STATE.BALL_ACTIVE:
 		return
 	var velocity = direction * speed
 	var update = velocity * delta
@@ -74,5 +76,6 @@ func paddle_moved(delta_y, y):
 func fire_ball():
 	enabled = true
 	damage = 1
+	speed = 500
 	direction = Vector2(1, (position.y - paddle_y)/MAX_Y_DIFF)
 	print(direction)
