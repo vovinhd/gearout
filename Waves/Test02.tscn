@@ -1,0 +1,243 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Wave.gd" type="Script" id=1]
+[ext_resource path="res://Blocks/ExplosiveBlock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tex/BlockSmall.png" type="Texture" id=3]
+[ext_resource path="res://Blocks/SmallBlock.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Border:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Border:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "remove_collision"
+} ]
+}
+
+[node name="Wave01" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Border" type="KinematicBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Border"]
+position = Vector2( 0, -24 )
+polygon = PoolVector2Array( 352, 216, 352, 176, 576, 176, 576, 48, 352, 48, 352, 0, 640, 0, 640, 216 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Border/CollisionPolygon2D"]
+antialiased = true
+texture = ExtResource( 3 )
+polygon = PoolVector2Array( 352, 0, 352, 48, 576, 48, 576, 168, 352, 168, 352, 216, 640, 216, 640, 0 )
+uv = PoolVector2Array( 4.52962, 3.48432, 4.87805, 7.6655, 6.03447, 11.2069, 9.05172, 10.3448, 11.6279, 8.13953, 10.8527, 6.20155, 8.91476, 6.97675, 9.91379, 3.87931 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Border"]
+position = Vector2( 0, 144 )
+polygon = PoolVector2Array( 352, 216, 352, 160, 576, 160, 576, 48, 352, 48, 352, 0, 640, 0, 640, 216 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Border/CollisionPolygon2D2"]
+antialiased = true
+texture = ExtResource( 3 )
+polygon = PoolVector2Array( 352, 0, 352, 48, 576, 48, 576, 160, 352, 160, 352, 216, 640, 216, 640, 0 )
+uv = PoolVector2Array( 4.52962, 3.48432, 4.87805, 7.6655, 6.03447, 11.2069, 9.05172, 10.3448, 11.6279, 8.13953, 10.8527, 6.20155, 8.91476, 6.97675, 9.91379, 3.87931 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Out = SubResource( 1 )
+
+[node name="SmallBlock18" parent="." instance=ExtResource( 4 )]
+position = Vector2( 384, 75 )
+
+[node name="SmallBlock17" parent="." instance=ExtResource( 4 )]
+position = Vector2( 368, 91 )
+
+[node name="SmallBlock16" parent="." instance=ExtResource( 4 )]
+position = Vector2( 400, 91 )
+
+[node name="SmallBlock15" parent="." instance=ExtResource( 4 )]
+position = Vector2( 384, 107 )
+
+[node name="SmallBlock14" parent="." instance=ExtResource( 2 )]
+position = Vector2( 384, 91 )
+
+[node name="SmallBlock13" parent="." instance=ExtResource( 4 )]
+position = Vector2( 368, 107 )
+
+[node name="SmallBlock12" parent="." instance=ExtResource( 4 )]
+position = Vector2( 368, 75 )
+
+[node name="SmallBlock11" parent="." instance=ExtResource( 4 )]
+position = Vector2( 400, 107 )
+
+[node name="SmallBlock10" parent="." instance=ExtResource( 4 )]
+position = Vector2( 400, 75 )
+
+[node name="SmallBlock27" parent="." instance=ExtResource( 4 )]
+position = Vector2( 448, 75 )
+
+[node name="SmallBlock26" parent="." instance=ExtResource( 4 )]
+position = Vector2( 432, 91 )
+
+[node name="SmallBlock25" parent="." instance=ExtResource( 4 )]
+position = Vector2( 464, 91 )
+
+[node name="SmallBlock24" parent="." instance=ExtResource( 4 )]
+position = Vector2( 448, 107 )
+
+[node name="SmallBlock23" parent="." instance=ExtResource( 2 )]
+position = Vector2( 448, 91 )
+
+[node name="SmallBlock22" parent="." instance=ExtResource( 4 )]
+position = Vector2( 432, 107 )
+
+[node name="SmallBlock21" parent="." instance=ExtResource( 4 )]
+position = Vector2( 432, 75 )
+
+[node name="SmallBlock20" parent="." instance=ExtResource( 4 )]
+position = Vector2( 464, 107 )
+
+[node name="SmallBlock19" parent="." instance=ExtResource( 4 )]
+position = Vector2( 464, 75 )
+
+[node name="SmallBlock36" parent="." instance=ExtResource( 4 )]
+position = Vector2( 512, 75 )
+
+[node name="SmallBlock35" parent="." instance=ExtResource( 4 )]
+position = Vector2( 496, 91 )
+
+[node name="SmallBlock34" parent="." instance=ExtResource( 4 )]
+position = Vector2( 528, 91 )
+
+[node name="SmallBlock33" parent="." instance=ExtResource( 4 )]
+position = Vector2( 512, 107 )
+
+[node name="SmallBlock32" parent="." instance=ExtResource( 2 )]
+position = Vector2( 512, 91 )
+
+[node name="SmallBlock31" parent="." instance=ExtResource( 4 )]
+position = Vector2( 496, 107 )
+
+[node name="SmallBlock30" parent="." instance=ExtResource( 4 )]
+position = Vector2( 496, 75 )
+
+[node name="SmallBlock29" parent="." instance=ExtResource( 4 )]
+position = Vector2( 528, 107 )
+
+[node name="SmallBlock28" parent="." instance=ExtResource( 4 )]
+position = Vector2( 528, 75 )
+
+[node name="SmallBlock63" parent="." instance=ExtResource( 4 )]
+position = Vector2( 384, 243 )
+
+[node name="SmallBlock62" parent="." instance=ExtResource( 4 )]
+position = Vector2( 368, 259 )
+
+[node name="SmallBlock61" parent="." instance=ExtResource( 4 )]
+position = Vector2( 400, 259 )
+
+[node name="SmallBlock60" parent="." instance=ExtResource( 4 )]
+position = Vector2( 384, 275 )
+
+[node name="SmallBlock59" parent="." instance=ExtResource( 2 )]
+position = Vector2( 384, 259 )
+
+[node name="SmallBlock58" parent="." instance=ExtResource( 4 )]
+position = Vector2( 368, 275 )
+
+[node name="SmallBlock57" parent="." instance=ExtResource( 4 )]
+position = Vector2( 368, 243 )
+
+[node name="SmallBlock56" parent="." instance=ExtResource( 4 )]
+position = Vector2( 400, 275 )
+
+[node name="SmallBlock55" parent="." instance=ExtResource( 4 )]
+position = Vector2( 400, 243 )
+
+[node name="SmallBlock54" parent="." instance=ExtResource( 4 )]
+position = Vector2( 448, 243 )
+
+[node name="SmallBlock53" parent="." instance=ExtResource( 4 )]
+position = Vector2( 432, 259 )
+
+[node name="SmallBlock52" parent="." instance=ExtResource( 4 )]
+position = Vector2( 464, 259 )
+
+[node name="SmallBlock51" parent="." instance=ExtResource( 4 )]
+position = Vector2( 448, 275 )
+
+[node name="SmallBlock50" parent="." instance=ExtResource( 2 )]
+position = Vector2( 448, 259 )
+
+[node name="SmallBlock49" parent="." instance=ExtResource( 4 )]
+position = Vector2( 432, 275 )
+
+[node name="SmallBlock48" parent="." instance=ExtResource( 4 )]
+position = Vector2( 432, 243 )
+
+[node name="SmallBlock47" parent="." instance=ExtResource( 4 )]
+position = Vector2( 464, 275 )
+
+[node name="SmallBlock46" parent="." instance=ExtResource( 4 )]
+position = Vector2( 464, 243 )
+
+[node name="SmallBlock45" parent="." instance=ExtResource( 4 )]
+position = Vector2( 512, 243 )
+
+[node name="SmallBlock44" parent="." instance=ExtResource( 4 )]
+position = Vector2( 496, 259 )
+
+[node name="SmallBlock43" parent="." instance=ExtResource( 4 )]
+position = Vector2( 528, 259 )
+
+[node name="SmallBlock42" parent="." instance=ExtResource( 4 )]
+position = Vector2( 512, 275 )
+
+[node name="SmallBlock41" parent="." instance=ExtResource( 2 )]
+position = Vector2( 512, 259 )
+
+[node name="SmallBlock40" parent="." instance=ExtResource( 4 )]
+position = Vector2( 496, 275 )
+
+[node name="SmallBlock39" parent="." instance=ExtResource( 4 )]
+position = Vector2( 496, 243 )
+
+[node name="SmallBlock38" parent="." instance=ExtResource( 4 )]
+position = Vector2( 528, 275 )
+
+[node name="SmallBlock37" parent="." instance=ExtResource( 4 )]
+position = Vector2( 528, 243 )
