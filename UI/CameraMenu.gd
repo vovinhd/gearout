@@ -5,7 +5,7 @@ extends Camera2D
 # var a = 2
 # var b = "text"
 
-var acc = 0
+var acc = PI/2
 export var MAX_SWAY = 10
 export var SPEED = .1
 
