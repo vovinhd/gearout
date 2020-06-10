@@ -41,5 +41,7 @@ func destroy():
 func apply_radial_damage():
 	print("Boom")
 
-func on_ExplosionArea_body_entered(node): 
+func _on_ExplosionArea_body_entered(body):
 	print("destroy ", body.name)
+	if (body.has_method("destroy")): 
+		body.destroy()
