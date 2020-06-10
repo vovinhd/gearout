@@ -3,7 +3,7 @@ extends KinematicBody2D
 class_name SimpleBlock
 
 signal ball_collided(ball)
-signal block_destroyed
+signal block_destroyed(emitter)
 
 # Declare member variables here. Examples:
 export var hitPoints = 1
@@ -13,6 +13,7 @@ var block_destroyed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.connect("block_destroyed", get_tree().get_root().get_node("LevelContainer"), "add_score")
 	pass # Replace with function body.
 
 func _process(delta):

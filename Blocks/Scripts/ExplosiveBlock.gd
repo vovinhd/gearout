@@ -10,13 +10,14 @@ export var shake_amount = .1
 
 # Declare member variables here. Examples:
 export var hitPoints = 1
-export var score = 100
+export var score = 200
 var block_destroyed = false 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.connect("shake_camera", get_tree().get_root().get_node("LevelContainer/Camera2D"), "add_trauma")
+	self.connect("block_destroyed", get_tree().get_root().get_node("LevelContainer"), "add_score")
 
 	pass # Replace with function body.
 

@@ -39,6 +39,11 @@ func _process(delta):
 				direction = -direction.reflect(normal)
 				if(abs(direction.x) < 0.2):
 					direction = Vector2(sign(direction.x) * 0.2, direction.y)
+			"Paddle":
+				update = normal.slide(update.normalized())
+				move_and_collide(update)
+				direction = Vector2(1, (position.y - paddle_y)/MAX_Y_DIFF)
+
 			_: 
 				update = normal.slide(update.normalized())
 				move_and_collide(update)

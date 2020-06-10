@@ -18,7 +18,7 @@ func _ready():
 
 
 func add_trauma(amount):
-	trauma = min(trauma + amount, 1.0)
+	trauma = min(trauma + amount, .5)
 
 func _process(delta):
 	if target:

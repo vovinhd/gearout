@@ -1,24 +1,20 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+var score = 0
 export var playerLives = 3
 export var wave_transition_speed = .5
 signal wave_completed
 signal can_start_next_wave
 signal scroll_speed(scrollspeed)
-export(Array) var wave_array = [
+export(Array, PackedScene) var wave_array = [
 #	preload("res://Waves/Wave06.tscn"),
 #	preload("res://Waves/Wave05.tscn"),
 #	preload("res://Waves/Wave04.tscn"),
 #	preload("res://Waves/Wave03.tscn"),
 #	preload("res://Waves/Wave02.tscn"),
 #	preload("res://Waves/Wave01.tscn"),
-	preload("res://Waves/Test01.tscn"),
-	preload("res://Waves/Test02.tscn"),
+#	preload("res://Waves/Test01.tscn"),
+#	preload("res://Waves/Test02.tscn"),
 	preload("res://Waves/Test03.tscn"),
 ]
 
@@ -39,6 +35,8 @@ onready var lives_label = $InGameUI/MarginContainer/HBoxContainer/LivesLabel
 var lives_format = "Lives: %d"
 onready var wave_label = $InGameUI/MarginContainer/HBoxContainer/WaveLabel
 var waves_format = "Wave: %d"
+onready var score_label = $InGameUI/MarginContainer/HBoxContainer/ScoreLabel
+var score_format = "Score: %07d"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.connect("scroll_speed", track_generator, "scroll_tracks")
@@ -69,8 +67,6 @@ func _on_wave_completed():
 	stopped = false
 	load_next_wave()
 	var ball = get_node("world/Ball")
-
-	print(ball)
 	if(ball):
 		ball.phase_out()
 
@@ -98,3 +94,7 @@ func _on_ball_destroyed():
 		playerLives = 3
 	lives_label.text = lives_format % playerLives
 
+func add_score(emitter): 
+	print(emitter.name)
+	score += emitter.score;
+	score_label.text = score_format % score
