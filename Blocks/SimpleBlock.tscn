@@ -30,3 +30,4 @@ shape = SubResource( 1 )
 [node name="CornerLR" type="CollisionShape2D" parent="."]
 position = Vector2( 12.3113, 12.2576 )
 shape = SubResource( 1 )
+[connection signal="ball_collided" from="." to="." method="_on_SimpleBlock_ball_collided"]
