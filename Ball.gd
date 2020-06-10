@@ -6,7 +6,7 @@ const PADDLE_STATE = PaddleState.PADDLE_STATE
 onready var animation_player = $AnimationPlayer
 onready var direction = Vector2(1, 0)
 var paddle = null
-var speed = 400.0
+export(float) var speed = 400.0
 var enabled = false
 var damage = 1
 var paddle_y = 0
@@ -38,7 +38,7 @@ func _process(delta):
 				move_and_collide(update)
 				direction = -direction.reflect(normal)
 				if(abs(direction.x) < 0.2):
-					direction = Vector2(direction.x * 2, direction.y)
+					direction = Vector2(sign(direction.x) * 0.2, direction.y)
 			_: 
 				update = normal.slide(update.normalized())
 				move_and_collide(update)
@@ -76,6 +76,5 @@ func paddle_moved(delta_y, y):
 func fire_ball():
 	enabled = true
 	damage = 1
-	speed = 500
 	direction = Vector2(1, (position.y - paddle_y)/MAX_Y_DIFF)
 	print(direction)

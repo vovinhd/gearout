@@ -11,8 +11,9 @@ signal wave_completed
 signal can_start_next_wave
 signal scroll_speed(scrollspeed)
 export(Array) var wave_array = [
-	preload("res://Wave02.tscn"),
-	preload("res://Wave01.tscn"),
+	preload("res://Wave03.tscn"),
+#	preload("res://Wave02.tscn"),
+#	preload("res://Wave01.tscn"),
 ]
 
 export var wave_index = 0
@@ -46,7 +47,10 @@ func load_next_wave():
 	var current_wave = wave_array[wave_index].instance()
 	wave_index = (wave_index + 1) % wave_array.size()
 	print(wave_index, current_wave.name)
-	wave_label.text = waves_format % (wave_index)
+	if wave_index == 0: 
+		wave_label.text = "Final Wave!"
+	else:
+		wave_label.text = waves_format % (wave_index)
 	self.add_child(current_wave)
 	current_wave.position = offset
 	current_wave.connect("wave_completed", self, "_on_wave_completed")

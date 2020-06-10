@@ -34,4 +34,6 @@ func destroy():
 		if(node.get_class() == "CollisionShape2D" || node.get_class() == "CollisionPolygon2D"):
 			node.set_deferred("disabled", true)
 	$Sprite.visible = false
+	if $AnimationPlayer: 
+		$AnimationPlayer.play("Explode")
 	emit_signal("block_destroyed", self)
