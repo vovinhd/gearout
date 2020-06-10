@@ -18,6 +18,8 @@ func _ready():
 func _on_block_destroyed(block):
 	if(self._check_completed()):
 		print("Won wave")
+		if $AnimationPlayer:
+			$AnimationPlayer.play("Out")
 		emit_signal("wave_completed")
 	
 func _check_completed() -> bool: 
@@ -25,3 +27,8 @@ func _check_completed() -> bool:
 		if !block.block_destroyed:
 			return false
 	return true
+
+
+func remove_collision():
+	if $Border: 
+		$Border.queue_free()

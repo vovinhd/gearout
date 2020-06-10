@@ -18,15 +18,16 @@ script = ExtResource( 2 )
 
 [node name="Track" type="Sprite" parent="."]
 material = SubResource( 1 )
+position = Vector2( -824, 0 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 640, 33 )
+region_rect = Rect2( 0, 0, 2048, 33 )
 
 [node name="Track2" type="Sprite" parent="."]
 material = SubResource( 2 )
-position = Vector2( 0, 319 )
+position = Vector2( -824, 320 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 640, 33 )
+region_rect = Rect2( 0, 0, 2048, 33 )

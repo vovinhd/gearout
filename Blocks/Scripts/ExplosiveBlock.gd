@@ -4,6 +4,9 @@ class_name ExplosiveBlock
 
 signal ball_collided(ball)
 signal block_destroyed
+signal shake_camera(amount)
+
+export var shake_amount = .1
 
 # Declare member variables here. Examples:
 export var hitPoints = 1
@@ -13,6 +16,8 @@ var block_destroyed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.connect("shake_camera", get_tree().get_root().get_node("LevelContainer/Camera2D"), "add_trauma")
+
 	pass # Replace with function body.
 
 func _process(delta):
@@ -37,6 +42,7 @@ func destroy():
 	if $AnimationPlayer: 
 		$AnimationPlayer.play("Explode")
 	emit_signal("block_destroyed", self)
+	emit_signal("shake_camera", shake_amount)
 
 func apply_radial_damage():
 	print("Boom")
