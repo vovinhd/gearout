@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://SimpleBlock.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Wave.gd" type="Script" id=3]
+[ext_resource path="res://Wave.gd" type="Script" id=1]
+[ext_resource path="res://Blocks/SimpleBlock.tscn" type="PackedScene" id=2]
 
 [node name="Wave01" type="Node2D"]
-script = ExtResource( 3 )
+script = ExtResource( 1 )
 
 [node name="Brick01" parent="." instance=ExtResource( 2 )]
 position = Vector2( 272, 72 )

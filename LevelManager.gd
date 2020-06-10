@@ -11,9 +11,11 @@ signal wave_completed
 signal can_start_next_wave
 signal scroll_speed(scrollspeed)
 export(Array) var wave_array = [
-	preload("res://Wave03.tscn"),
-#	preload("res://Wave02.tscn"),
-#	preload("res://Wave01.tscn"),
+	preload("res://Waves/Wave05.tscn"),
+#	preload("res://Waves/Wave04.tscn"),
+#	preload("res://Waves/Wave03.tscn"),
+#	preload("res://Waves/Wave02.tscn"),
+#	preload("res://Waves/Wave01.tscn"),
 ]
 
 export var wave_index = 0
