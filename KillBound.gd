@@ -18,8 +18,6 @@ func _ready():
 
 
 func _on_KillBound_body_entered(body):
-	print(body.name)
 	if body.get_meta("type") == "ball":
-		print(body.id)
 		emit_signal("ball_destroyed", body)
 

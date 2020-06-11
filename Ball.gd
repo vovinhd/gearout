@@ -24,7 +24,6 @@ func _ready():
 
 	self.connect("ball_lost", game_instance, "_on_ball_lost")
 	paddle = game_instance.paddle
-	print(paddle)
 	pass # Replace with function body.
 
 
@@ -62,7 +61,7 @@ func _process(delta):
 		#	pass
 
 func on_kill(ball):
-	if ball.id != id:
+	if ball != self:
 		return
 	if paddle.paddle_state != PADDLE_STATE.BALL_ACTIVE:
 		return
@@ -71,7 +70,6 @@ func on_kill(ball):
 	_reset_ball()
 
 func phase_out(): 
-	print("Level complete resetting ball")
 	game_instance.balls.erase(self)
 	emit_signal("ball_lost", self)
 	_reset_ball()
@@ -98,4 +96,3 @@ func fire_ball():
 	enabled = true
 	damage = 1
 	direction = Vector2(1, (position.y - paddle_y)/MAX_Y_DIFF)
-	print(direction)

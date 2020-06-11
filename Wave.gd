@@ -10,6 +10,7 @@ signal wave_completed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	connect("wave_completed", game_instance, "clear_balls")
 	for node in get_children():
 		if("block_destroyed" in node):
 			blocks.push_back(node)

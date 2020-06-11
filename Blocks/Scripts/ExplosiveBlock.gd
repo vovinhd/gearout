@@ -27,12 +27,12 @@ func _process(delta):
 
 func _on_ball_collided(ball):
 	self.hitPoints -= ball.damage
-	print(("Hit {name}, hitPoints: {hp}".format({"name": self.name, "hp": self.hitPoints})))
 	if(self.hitPoints <= 0): 
 		self.destroy()
 	pass # Replace with function body.
 
 func destroy(): 
+	if block_destroyed: return 
 	self.block_destroyed = true
 	for node in get_children():
 		if(node.get_class() == "CollisionShape2D" || node.get_class() == "CollisionPolygon2D"):
@@ -44,9 +44,8 @@ func destroy():
 	emit_signal("shake_camera", shake_amount)
 
 func apply_radial_damage():
-	print("Boom")
-
+	pass
+	
 func _on_ExplosionArea_body_entered(body):
-	print("destroy ", body.name)
 	if (body.has_method("destroy")): 
 		body.destroy()

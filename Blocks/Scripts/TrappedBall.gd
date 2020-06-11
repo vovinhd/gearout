@@ -24,15 +24,15 @@ func _process(delta):
 
 func _on_ball_collided(ball):
 	self.hitPoints -= ball.damage
-	print(("Hit {name}, hitPoints: {hp}".format({"name": self.name, "hp": self.hitPoints})))
 	collision_direction = (ball.global_position - global_position).normalized()
-	print(ball.global_position, global_position, collision_direction)
 	if(self.hitPoints <= 0): 
 		self.destroy()
 	pass # Replace with function body.
 
 func destroy(): 
+	if block_destroyed: return 
 	self.block_destroyed = true
+
 	for node in get_children():
 		if(node.get_class() == "CollisionShape2D" || node.get_class() == "CollisionPolygon2D"):
 			node.set_deferred("disabled", true)

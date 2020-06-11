@@ -17,6 +17,7 @@ export(Array, PackedScene) var wave_array = [
 #	preload("res://Waves/Test02.tscn"),
 #	preload("res://Waves/Test03.tscn"),
 	preload("res://Waves/Test04.tscn"),
+#	preload("res://Waves/Test_Reactor.tscn"),
 
 ]
 
@@ -67,6 +68,7 @@ func load_next_wave():
 
 func _on_wave_completed(): 
 	emit_signal("wave_completed")
+	print("Level complete")
 	old_world_position = world.position
 	t = 0 
 	offset += Vector2(600, 0)
@@ -92,7 +94,6 @@ func scroll_holders(speed):
 
 func _on_balls_destroyed():
 	playerLives -= 1 
-	print(playerLives)
 	if(playerLives <= 0): 
 		print("you lose")
 		playerLives = 3
@@ -102,9 +103,8 @@ func _on_ball_destroyed(_any):
 	return
 
 func add_score(emitter): 
-	print(emitter.name)
-	if "last_multiplier" in emitter: 
-		score += emitter.score * emitter.last_multiplier;
-	else:
-		score += emitter.score;
+	# if "last_multiplier" in emitter: 
+	# 	score += emitter.score * emitter.last_multiplier;
+	# else:
+	score += emitter.score;
 	score_label.text = score_format % score

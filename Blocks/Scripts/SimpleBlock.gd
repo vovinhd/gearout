@@ -23,12 +23,12 @@ func _process(delta):
 func _on_ball_collided(ball):
 	last_multiplier = ball.multiplier
 	self.hitPoints -= ball.damage
-	print(("Hit {name}, hitPoints: {hp}".format({"name": self.name, "hp": self.hitPoints})))
 	if(self.hitPoints <= 0): 
 		self.destroy()
 	pass # Replace with function body.
 
-func destroy(): 
+func destroy(): 	
+	if block_destroyed: return 
 	self.block_destroyed = true
 	for node in get_children():
 		if(node.get_class() == "CollisionShape2D" || node.get_class() == "CollisionPolygon2D"):

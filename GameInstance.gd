@@ -18,11 +18,9 @@ var balls = []
 
 func _on_ball_lost(ball): 
 	for i in range(balls.size()-1): 
-		print(i)
 		if !is_instance_valid(balls[i]):
 			balls.remove(i)
 	if balls.size() == 0: 
-		print("Aaaa")
 		level_container._on_balls_destroyed()
 		paddle.reset(null)
 
