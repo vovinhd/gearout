@@ -56,7 +56,6 @@ tracks/0/keys = {
 
 [node name="Paddle" type="KinematicBody2D"]
 script = ExtResource( 2 )
-ROTATION_SPEED = null
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

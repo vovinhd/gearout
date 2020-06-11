@@ -22,7 +22,7 @@ onready var sg_top_back = $Sprite/SmallGear
 onready var sg_bottom = $Sprite/SmallGear4
 onready var sg_bottom_back = $Sprite/SmallGear2
 
-
+var BALL = preload("res://Ball.tscn")
 onready var ball
 
 onready var animation_player = $AnimationPlayer
@@ -36,14 +36,10 @@ var paddle_state = PADDLE_STATE.BALL_LOST
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	game_instance.paddle = self
+
 	rot_r = [lg_top,sg_bottom,sg_bottom_back]
 	rot_l = [lg_bottom, sg_top_back, sg_top]
-
-	ball  = get_tree().get_root().get_node("LevelContainer/world").find_node("Ball")
-	print(ball)
-	ball.connect("ball_lost", self, "reset")
-	self.connect("paddle_moved", ball, "paddle_moved")
-	get_tree().get_root().get_node("LevelContainer").connect("wave_completed", self, "reset")
 
 
 func _input(_event):
@@ -60,6 +56,11 @@ func _input(_event):
 
 
 func _prepare_ball(): 
+
+	ball = BALL.instance()
+	game_instance.world.add_child(ball)
+	#ball.connect("ball_lost", self, "reset")
+	self.connect("paddle_moved", ball, "paddle_moved")
 
 	ball.global_transform = $BallSpawnPosition.global_transform
 	animation_player.play("PrepareBall")
@@ -96,7 +97,8 @@ func _process(delta) -> void:
 	last_position = self.position
 #	pass
 
-func reset():
+
+func reset(_any = null):
 	animation_player.play("Reset")
 	paddle_state = PADDLE_STATE.BALL_LOST
 	ball_offset = 0

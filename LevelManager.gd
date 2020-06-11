@@ -11,11 +11,11 @@ export(Array, PackedScene) var wave_array = [
 #	preload("res://Waves/Wave05.tscn"),
 #	preload("res://Waves/Wave04.tscn"),
 #	preload("res://Waves/Wave03.tscn"),
-#	preload("res://Waves/Wave02.tscn"),
+	preload("res://Waves/Wave02.tscn"),
 #	preload("res://Waves/Wave01.tscn"),
-	preload("res://Waves/Test01.tscn"),
-	preload("res://Waves/Test02.tscn"),
-	preload("res://Waves/Test03.tscn"),
+#	preload("res://Waves/Test01.tscn"),
+#	preload("res://Waves/Test02.tscn"),
+#	preload("res://Waves/Test03.tscn"),
 ]
 
 export var wave_index = 0
@@ -26,7 +26,7 @@ var old_world_position = Vector2.ZERO
 var t = 0
 var stopped = true
 onready var world = $world
-onready var track_generator = $Tracks/TrackGenerator
+onready var track_generator = $TrackGenerator
 onready var top_holder = $world/HolderTop
 onready var bottom_holder = $world/HolderBottom
 onready var kill_bound = $world/Bounds/KillBound
@@ -37,8 +37,10 @@ onready var wave_label = $InGameUI/MarginContainer/HBoxContainer/WaveLabel
 var waves_format = "Wave: %d"
 onready var score_label = $InGameUI/MarginContainer/HBoxContainer/ScoreLabel
 var score_format = "Score: %07d"
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
+	game_instance.level_container = self
+
 	self.connect("scroll_speed", track_generator, "scroll_tracks")
 	self.connect("scroll_speed", self, "scroll_holders")
 	self.connect("can_start_next_wave", get_node("world/Paddle"), "reset")
@@ -49,6 +51,8 @@ func _ready():
 
 func load_next_wave():
 	var current_wave = wave_array[wave_index].instance()
+	game_instance.current_wave = current_wave
+
 	wave_index = (wave_index + 1) % wave_array.size()
 	print(wave_index, current_wave.name)
 	if wave_index == 0: 
@@ -66,9 +70,7 @@ func _on_wave_completed():
 	offset += Vector2(600, 0)
 	stopped = false
 	load_next_wave()
-	var ball = get_node("world/Ball")
-	if(ball):
-		ball.phase_out()
+	game_instance.clear_balls()
 
 func _process(delta):
 	if stopped:
@@ -86,13 +88,16 @@ func scroll_holders(speed):
 	bottom_holder.animate(speed)
 	pass
 
-func _on_ball_destroyed():
+func _on_balls_destroyed():
 	playerLives -= 1 
 	print(playerLives)
 	if(playerLives <= 0): 
 		print("you lose")
 		playerLives = 3
 	lives_label.text = lives_format % playerLives
+
+func _on_ball_destroyed(_any):
+	return
 
 func add_score(emitter): 
 	print(emitter.name)

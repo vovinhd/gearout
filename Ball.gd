@@ -1,7 +1,9 @@
 extends KinematicBody2D
 
-signal ball_lost
+signal ball_lost(ball)
 const PADDLE_STATE = PaddleState.PADDLE_STATE
+
+var id = -1
 
 onready var animation_player = $AnimationPlayer
 onready var direction = Vector2(1, 0)
@@ -13,11 +15,14 @@ var paddle_y = 0
 const MAX_Y_DIFF = 20
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	set_meta("type", "ball")
+	game_instance.balls.push_back(self)
+	id = game_instance.balls.size() - 1 
 	get_tree().get_root().get_node("LevelContainer/world/Bounds/KillBound").connect("ball_destroyed", self, "on_kill")
 	get_tree().get_root().get_node("LevelContainer").connect("wave_completed", self, "phase_out")
 
-	paddle = get_tree().get_root().get_node("LevelContainer/world/Paddle")
+	self.connect("ball_lost", game_instance, "_on_ball_lost")
+	paddle = game_instance.paddle
 	print(paddle)
 	pass # Replace with function body.
 
@@ -26,7 +31,7 @@ func _ready():
 func _process(delta):
 	if paddle.paddle_state != PADDLE_STATE.BALL_ACTIVE:
 		return
-	var velocity = direction * speed
+	var velocity = direction.normalized() * speed
 	var update = velocity * delta
 	var collision = move_and_collide(update)
 	
@@ -54,18 +59,27 @@ func _process(delta):
 			collision.collider._on_ball_collided(self)
 		#	pass
 
-func on_kill():
-	print("kill ball")
-	emit_signal("ball_lost")
+func on_kill(ball):
+	if ball.id != id:
+		return
+	if paddle.paddle_state != PADDLE_STATE.BALL_ACTIVE:
+		return
+	game_instance.balls.erase(self)
+	emit_signal("ball_lost", self)
 	_reset_ball()
 
 func phase_out(): 
 	print("Level complete resetting ball")
+	game_instance.balls.erase(self)
+	emit_signal("ball_lost", self)
 	_reset_ball()
 
 func _reset_ball(): 
 	animation_player.play("PhaseOut")
 	enabled = false
+
+
+
 
 func phase_in(): 
 	animation_player.play("PhaseIn")

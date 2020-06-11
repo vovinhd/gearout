@@ -14,6 +14,7 @@ var offset = 0
 export(float) var scroll_speed = 1
 
 func _ready():
+	game_instance.world = self
 	mat_f = chain_f.get_material()
 	mat_b = chain_b.get_material()
 	paddle.connect("paddle_moved", self, "animate_chains")
