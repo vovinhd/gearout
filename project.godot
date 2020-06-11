@@ -9,24 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody2D",
-"class": "ExplosiveBlock",
-"language": "GDScript",
-"path": "res://Blocks/Scripts/ExplosiveBlock.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "SimpleBlock",
-"language": "GDScript",
-"path": "res://Blocks/Scripts/SimpleBlock.gd"
-}, {
 "base": "Node2D",
 "class": "Wave",
 "language": "GDScript",
 "path": "res://Wave.gd"
 } ]
 _global_script_class_icons={
-"ExplosiveBlock": "",
-"SimpleBlock": "",
 "Wave": ""
 }
 

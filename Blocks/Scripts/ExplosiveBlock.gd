@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-class_name ExplosiveBlock
-
 signal ball_collided(ball)
 signal block_destroyed
 signal shake_camera(amount)

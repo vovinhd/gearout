@@ -12,6 +12,7 @@ export(float) var speed = 400.0
 var enabled = false
 var damage = 1
 var paddle_y = 0
+var multiplier = 1
 const MAX_Y_DIFF = 20
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,11 +49,12 @@ func _process(delta):
 				update = normal.slide(update.normalized())
 				move_and_collide(update)
 				direction = Vector2(1, (position.y - paddle_y)/MAX_Y_DIFF)
-
+				multiplier = 1
 			_: 
 				update = normal.slide(update.normalized())
 				move_and_collide(update)
 				direction = -direction.reflect(normal)
+				multiplier += 1
 		
 		# tell other collider we hit it
 		if(collision.collider.has_method("_on_ball_collided")):
