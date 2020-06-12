@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ArmorFragments.png-ff1f6c3f59677921dc90fe673e6708dc.stex"
+path="res://.import/BlockArmorHuge.png-1ffad7b6d366ac883294059c61fc2b35.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tex/ArmorFragments.png"
-dest_files=[ "res://.import/ArmorFragments.png-ff1f6c3f59677921dc90fe673e6708dc.stex" ]
+source_file="res://tex/BlockArmorHuge.png"
+dest_files=[ "res://.import/BlockArmorHuge.png-1ffad7b6d366ac883294059c61fc2b35.stex" ]
 
 [params]
 

@@ -67,30 +67,23 @@ func _physics_process(delta):
 				direction = Vector2(1, (position.y - paddle_y)/MAX_Y_DIFF)
 				multiplier = 1
 			_: 
+				multiplier += 1				
+				update = normal.slide(update.normalized())
+				var _direction = move_and_collide(update)
 				match ball_state:
 					BALL_STATE.DEFAULT:
-						update = normal.slide(update.normalized())
-						var _direction = move_and_collide(update)
 						direction = -direction.reflect(normal)
-						multiplier += 1				
 						# tell other collider we hit it
 						if(collision.collider.has_method("_on_ball_collided")):
 							collision.collider._on_ball_collided(self)
 					BALL_STATE.ACID:
-						update = normal.slide(update.normalized())
-						var _direction = move_and_collide(update)
-						multiplier += 1				
 						# tell other collider we hit it
 						if(collision.collider.has_method("_on_ball_collided")):
 							collision.collider._on_ball_collided(self)
 						else:
 							direction = -direction.reflect(normal)
-
 					BALL_STATE.BOMB:
-						update = normal.slide(update.normalized())
-						var _direction = move_and_collide(update)
 						direction = -direction.reflect(normal)
-						multiplier += 1				
 						# tell other collider we hit it
 						if(collision.collider.has_method("_on_ball_collided")):
 							collision.collider._on_ball_collided(self)
