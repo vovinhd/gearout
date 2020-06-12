@@ -6,6 +6,7 @@ export var wave_transition_speed = .5
 signal wave_completed
 signal can_start_next_wave
 signal scroll_speed(scrollspeed)
+signal wave_instanced
 export(Array, PackedScene) var wave_array = [
 #	preload("res://Waves/Wave06.tscn"),
 #	preload("res://Waves/Wave05.tscn"),
@@ -15,10 +16,9 @@ export(Array, PackedScene) var wave_array = [
 #	preload("res://Waves/Wave01.tscn"),
 #	preload("res://Waves/Test01.tscn"),
 #	preload("res://Waves/Test02.tscn"),
-#	preload("res://Waves/Test03.tscn"),
-#	preload("res://Waves/Test04.tscn"),
+	preload("res://Waves/Test03.tscn"),
 	preload("res://Waves/Test_Reactor.tscn"),
-
+	preload("res://Waves/Test04.tscn"),
 ]
 
 export var wave_index = 0
@@ -41,6 +41,8 @@ var waves_format = "Wave: %d"
 onready var score_label = $InGameUI/MarginContainer/HBoxContainer/ScoreLabel
 var score_format = "Score: %07d"
 
+var loader_thread : Thread = null
+
 func _ready():
 	game_instance.level_container = self
 
@@ -53,7 +55,11 @@ func _ready():
 	load_next_wave()
 
 func load_next_wave():
-	var current_wave = wave_array[wave_index].instance()
+	loader_thread = Thread.new()
+	loader_thread.start(self, "thread_load_and_instance",wave_array[wave_index])
+
+func thread_load_and_instance(packed_scene): 
+	var current_wave = packed_scene.instance()
 	game_instance.current_wave = current_wave
 
 	wave_index = (wave_index + 1) % wave_array.size()
@@ -62,9 +68,10 @@ func load_next_wave():
 		wave_label.text = "Final Wave!"
 	else:
 		wave_label.text = waves_format % (wave_index)
-	self.add_child(current_wave)
-	current_wave.position = offset
+	self.call_deferred("add_child", current_wave)
+	current_wave.set_deferred("position", offset)
 	current_wave.connect("wave_completed", self, "_on_wave_completed")
+	emit_signal("wave_instanced")
 
 func _on_wave_completed(): 
 	emit_signal("wave_completed")

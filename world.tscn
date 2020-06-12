@@ -102,7 +102,7 @@ texture = ExtResource( 8 )
 centered = false
 hframes = 6
 region_enabled = true
-region_rect = Rect2( 0, 0, 42, 400 )
+region_rect = Rect2( 0, 0, 42, 413.874 )
 
 [node name="Chain2" type="Sprite" parent="."]
 material = SubResource( 6 )
@@ -113,5 +113,5 @@ texture = ExtResource( 8 )
 centered = false
 hframes = 6
 region_enabled = true
-region_rect = Rect2( 0, 0, 42, 406.297 )
+region_rect = Rect2( 0, 0, 42, 417.872 )
 [connection signal="body_entered" from="Bounds/KillBound" to="Bounds/KillBound" method="_on_KillBound_body_entered"]

@@ -5,7 +5,7 @@ class_name Wave
 # var a = 2
 # var b = "text"
 
-onready var blocks = [] 
+var blocks : Array= Array()
 signal wave_completed
 var cleared = false
 

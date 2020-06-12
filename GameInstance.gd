@@ -12,11 +12,7 @@ var level_container
 var current_wave 
 var world
 var paddle 
-var balls
-
-func _ready():
-	balls = []
-	balls.clear()
+var balls : Array = Array()
 
 func _on_ball_lost(ball): 
 	balls.erase(ball)
@@ -32,8 +28,11 @@ func clear_balls():
 	for ball in balls:
 		if is_instance_valid(ball):
 			balls.erase(ball)
-			print(ball.name)
-			if "phase_out" in ball: ball.phase_out()
+			if ball is Ball:
+				 ball.phase_out()
+			else: 
+				print(ball.name)
+
 
 #	balls = []
 
