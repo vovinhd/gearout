@@ -6,7 +6,7 @@ enum GAME_STATE {
 	RUNNING
 }
 
-signal ball_state_set(ball_state)
+signal ball_state(ball_state)
 
 # references 
 var game_state = GAME_STATE.IN_MENU
@@ -44,12 +44,12 @@ func add_ball(ball):
 	return balls.size() - 1
 
 func set_acid_ball(): 
-	emit_signal("ball_state_set", BALL_STATE.ACID)
+	emit_signal("ball_state", BALL_STATE.ACID)
 
 func set_bomb_ball(): 
-	emit_signal("ball_state_set", BALL_STATE.ACID)
+	emit_signal("ball_state", BALL_STATE.BOMB)
 
 func set_default_ball(): 
-	emit_signal("ball_state_set", BALL_STATE.ACID)
+	emit_signal("ball_state", BALL_STATE.DEFAULT)
 
 	

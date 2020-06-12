@@ -7,6 +7,8 @@ const BALL_STATE = Enums.BALL_STATE
 var ball_state = BALL_STATE.DEFAULT
 var id = -1
 
+var _explosion = preload("res://PowerUps/Explosion.tscn")
+
 onready var animation_player = $AnimationPlayer
 onready var direction = Vector2(1, 0)
 var paddle = null
@@ -24,14 +26,16 @@ func _ready():
 #		print("Error connecting to LevelContainer/world/Bounds/KillBound")
 	if (get_tree().get_root().get_node("LevelContainer").connect("wave_completed", self, "phase_out")): 
 		print("Error connecting to LevelContainer")
-	if (self.connect("ball_lost", game_instance, "_on_ball_lost")): 
+	if (self.connect("ball_lost", game_instance, "_on_ball_lost")
+		|| game_instance.connect("ball_state", self, "recieve_state")): 
 		print("Error connecting to game_instance")
 	paddle = game_instance.paddle
-	game_instance.connect("ball_state", self, "recieve_state")
+	
 	pass # Replace with function body.
 
 func recieve_state(new_ball_state): 
 	ball_state = new_ball_state
+	print("Ball set to ", BALL_STATE.keys()[ball_state])
 	match ball_state: 
 		BALL_STATE.DEFAULT: 
 			animation_player.play("Default")
@@ -63,14 +67,37 @@ func _physics_process(delta):
 				direction = Vector2(1, (position.y - paddle_y)/MAX_Y_DIFF)
 				multiplier = 1
 			_: 
-				update = normal.slide(update.normalized())
-				var _direction = move_and_collide(update)
-				direction = -direction.reflect(normal)
-				multiplier += 1				
-				# tell other collider we hit it
-				if(collision.collider.has_method("_on_ball_collided")):
-					collision.collider._on_ball_collided(self)
+				match ball_state:
+					BALL_STATE.DEFAULT:
+						update = normal.slide(update.normalized())
+						var _direction = move_and_collide(update)
+						direction = -direction.reflect(normal)
+						multiplier += 1				
+						# tell other collider we hit it
+						if(collision.collider.has_method("_on_ball_collided")):
+							collision.collider._on_ball_collided(self)
+					BALL_STATE.ACID:
+						update = normal.slide(update.normalized())
+						var _direction = move_and_collide(update)
+						multiplier += 1				
+						# tell other collider we hit it
+						if(collision.collider.has_method("_on_ball_collided")):
+							collision.collider._on_ball_collided(self)
+						else:
+							direction = -direction.reflect(normal)
 
+					BALL_STATE.BOMB:
+						update = normal.slide(update.normalized())
+						var _direction = move_and_collide(update)
+						direction = -direction.reflect(normal)
+						multiplier += 1				
+						# tell other collider we hit it
+						if(collision.collider.has_method("_on_ball_collided")):
+							collision.collider._on_ball_collided(self)
+							var explosion = _explosion.instance()
+							game_instance.world.call_deferred("add_child", explosion)
+							explosion.set_deferred("global_position", global_position)
+							game_instance.set_default_ball()
 func on_kill(ball):
 	if ball != self:
 		return
