@@ -12,13 +12,13 @@ export(Array, PackedScene) var wave_array = [
 #	preload("res://Waves/Wave05.tscn"),
 #	preload("res://Waves/Wave04.tscn"),
 #	preload("res://Waves/Wave03.tscn"),
-#	preload("res://Waves/Wave02.tscn"),
+	preload("res://Waves/Wave02.tscn"),
 #	preload("res://Waves/Wave01.tscn"),
 #	preload("res://Waves/Test01.tscn"),
 #	preload("res://Waves/Test02.tscn"),
-	preload("res://Waves/Test03.tscn"),
-	preload("res://Waves/Test_Reactor.tscn"),
-	preload("res://Waves/Test04.tscn"),
+#	preload("res://Waves/Test03.tscn"),
+#	preload("res://Waves/Test_Reactor.tscn"),
+#	preload("res://Waves/Test04.tscn"),
 ]
 
 export var wave_index = 0

@@ -6,6 +6,8 @@ enum GAME_STATE {
 	RUNNING
 }
 
+signal ball_state_set(ball_state)
+
 # references 
 var game_state = GAME_STATE.IN_MENU
 var level_container
@@ -13,6 +15,7 @@ var current_wave
 var world
 var paddle 
 var balls : Array = Array()
+const BALL_STATE = Enums.BALL_STATE
 
 func _on_ball_lost(ball): 
 	balls.erase(ball)
@@ -39,3 +42,14 @@ func clear_balls():
 func add_ball(ball): 
 	balls.push_back(ball)
 	return balls.size() - 1
+
+func set_acid_ball(): 
+	emit_signal("ball_state_set", BALL_STATE.ACID)
+
+func set_bomb_ball(): 
+	emit_signal("ball_state_set", BALL_STATE.ACID)
+
+func set_default_ball(): 
+	emit_signal("ball_state_set", BALL_STATE.ACID)
+
+	

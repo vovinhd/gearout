@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ArmorFragments.png-ff1f6c3f59677921dc90fe673e6708dc.stex"
+path="res://.import/Explosion.png-05bea71f9b4416da83b6ec478c696651.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tex/ArmorFragments.png"
-dest_files=[ "res://.import/ArmorFragments.png-ff1f6c3f59677921dc90fe673e6708dc.stex" ]
+source_file="res://tex/Explosion.png"
+dest_files=[ "res://.import/Explosion.png-05bea71f9b4416da83b6ec478c696651.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

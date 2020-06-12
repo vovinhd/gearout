@@ -8,6 +8,7 @@ export var hitPoints = 1
 export var score = 100
 var block_destroyed = false 
 var last_multiplier = 1 
+export(PackedScene) var powerup 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,4 +31,8 @@ func destroy():
 	$Sprite.visible = false
 	if has_node("AnimationPlayer"): 
 		$AnimationPlayer.play("Explode")
+	if powerup:
+		var p = powerup.instance()
+		game_instance.world.call_deferred("add_child", p)
+		p.set_deferred("global_position", global_position)
 	emit_signal("block_destroyed", self)

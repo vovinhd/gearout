@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Ball.gd"
 }, {
+"base": "Node",
+"class": "Enums",
+"language": "GDScript",
+"path": "res://Enums.gd"
+}, {
 "base": "Node2D",
 "class": "Wave",
 "language": "GDScript",
@@ -21,6 +26,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Ball": "",
+"Enums": "",
 "Wave": ""
 }
 
@@ -32,7 +38,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PaddleState="*res://PaddleState.gd"
+PaddleState="*res://Enums.gd"
 game_instance="*res://GameInstance.gd"
 
 [display]

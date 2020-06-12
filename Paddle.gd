@@ -27,10 +27,7 @@ onready var ball
 
 onready var animation_player = $AnimationPlayer
 
-# play state 
-
-var PADDLE_STATE = PaddleState.PADDLE_STATE
-
+const PADDLE_STATE = Enums.PADDLE_STATE
 
 var paddle_state = PADDLE_STATE.BALL_LOST
 

@@ -1,12 +1,14 @@
 extends Node2D
 
+enum POWERUP_TYPE {
+	ACID,
+	BOMB
+}
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var collected = false
 onready var animation_player = $AnimationPlayer
 export var speed = 150
+export var type = POWERUP_TYPE.ACID
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

@@ -1,0 +1,17 @@
+extends Node
+
+class_name Enums
+
+enum PADDLE_STATE {
+	BALL_ACTIVE,
+	BALL_WAITING,
+	BALL_PREPARING,
+	BALL_LOST,
+	WAVE_TRANSITION
+}
+
+enum BALL_STATE {
+	DEFAULT,
+	ACID,
+	BOMB
+}

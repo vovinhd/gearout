@@ -2,8 +2,9 @@ extends KinematicBody2D
 
 class_name Ball
 signal ball_lost(ball)
-const PADDLE_STATE = PaddleState.PADDLE_STATE
-
+const PADDLE_STATE = Enums.PADDLE_STATE
+const BALL_STATE = Enums.BALL_STATE
+var ball_state = BALL_STATE.DEFAULT
 var id = -1
 
 onready var animation_player = $AnimationPlayer
@@ -26,8 +27,18 @@ func _ready():
 	if (self.connect("ball_lost", game_instance, "_on_ball_lost")): 
 		print("Error connecting to game_instance")
 	paddle = game_instance.paddle
+	game_instance.connect("ball_state", self, "recieve_state")
 	pass # Replace with function body.
 
+func recieve_state(new_ball_state): 
+	ball_state = new_ball_state
+	match ball_state: 
+		BALL_STATE.DEFAULT: 
+			animation_player.play("Default")
+		BALL_STATE.ACID: 
+			animation_player.play("Acid")
+		BALL_STATE.BOMB: 
+			animation_player.play("Bomb")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -55,12 +66,10 @@ func _physics_process(delta):
 				update = normal.slide(update.normalized())
 				var _direction = move_and_collide(update)
 				direction = -direction.reflect(normal)
-				multiplier += 1
-		
-		# tell other collider we hit it
-		if(collision.collider.has_method("_on_ball_collided")):
-			collision.collider._on_ball_collided(self)
-		#	pass
+				multiplier += 1				
+				# tell other collider we hit it
+				if(collision.collider.has_method("_on_ball_collided")):
+					collision.collider._on_ball_collided(self)
 
 func on_kill(ball):
 	if ball != self:
