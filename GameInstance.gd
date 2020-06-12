@@ -6,8 +6,6 @@ enum GAME_STATE {
 	RUNNING
 }
 
-signal ball_lost(balls)
-
 # references 
 var game_state = GAME_STATE.IN_MENU
 var level_container
@@ -17,6 +15,7 @@ var paddle
 var balls = []
 
 func _on_ball_lost(ball): 
+	balls.erase(ball)
 	for i in range(balls.size()-1): 
 		if !is_instance_valid(balls[i]):
 			balls.remove(i)

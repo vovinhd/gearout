@@ -14,16 +14,10 @@ var block_destroyed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.connect("shake_camera", get_tree().get_root().get_node("LevelContainer/Camera2D"), "add_trauma")
-	self.connect("block_destroyed", get_tree().get_root().get_node("LevelContainer"), "add_score")
-
-	pass # Replace with function body.
-
-func _process(delta):
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	pass
-
+	if (self.connect("shake_camera", get_tree().get_root().get_node("LevelContainer/Camera2D"), "add_trauma")): 
+		print("Error connecting to shake_camera.")
+	if (self.connect("block_destroyed", get_tree().get_root().get_node("LevelContainer"), "add_score")): 
+		print("Error connecting to block_destroyed.")
 
 func _on_ball_collided(ball):
 	self.hitPoints -= ball.damage

@@ -16,8 +16,8 @@ export(Array, PackedScene) var wave_array = [
 #	preload("res://Waves/Test01.tscn"),
 #	preload("res://Waves/Test02.tscn"),
 #	preload("res://Waves/Test03.tscn"),
-	preload("res://Waves/Test04.tscn"),
-#	preload("res://Waves/Test_Reactor.tscn"),
+#	preload("res://Waves/Test04.tscn"),
+	preload("res://Waves/Test_Reactor.tscn"),
 
 ]
 

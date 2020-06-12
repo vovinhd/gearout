@@ -13,14 +13,8 @@ var BALL = preload("res://Ball.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.connect("block_destroyed", get_tree().get_root().get_node("LevelContainer"), "add_score")
-	pass # Replace with function body.
-
-func _process(delta):
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	pass
-
+	if (self.connect("block_destroyed", get_tree().get_root().get_node("LevelContainer"), "add_score")):
+		print("Error connecting to block_destroyed")
 
 func _on_ball_collided(ball):
 	self.hitPoints -= ball.damage
@@ -37,13 +31,13 @@ func destroy():
 		if(node.get_class() == "CollisionShape2D" || node.get_class() == "CollisionPolygon2D"):
 			node.set_deferred("disabled", true)
 	$Sprite.visible = false
-	if $AnimationPlayer: 
+	if has_node("AnimationPlayer"): 
 		$AnimationPlayer.play("Explode")
 	
 	var ball = BALL.instance()
 	game_instance.world.add_child(ball)
 	ball.global_transform = global_transform
-	ball.direction = collision_direction
+	ball.direction = -collision_direction
 
 	#ball.connect("ball_lost", self, "reset")
 	game_instance.paddle.connect("paddle_moved", ball, "paddle_moved")

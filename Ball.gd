@@ -19,10 +19,12 @@ func _ready():
 	set_meta("type", "ball")
 	game_instance.balls.push_back(self)
 	id = game_instance.balls.size() - 1 
-	get_tree().get_root().get_node("LevelContainer/world/Bounds/KillBound").connect("ball_destroyed", self, "on_kill")
-	get_tree().get_root().get_node("LevelContainer").connect("wave_completed", self, "phase_out")
-
-	self.connect("ball_lost", game_instance, "_on_ball_lost")
+	if (get_tree().get_root().get_node("LevelContainer/world/Bounds/KillBound").connect("ball_destroyed", self, "on_kill")):
+		print("Error connecting to LevelContainer/world/Bounds/KillBound")
+	if (get_tree().get_root().get_node("LevelContainer").connect("wave_completed", self, "phase_out")): 
+		print("Error connecting to LevelContainer")
+	if (self.connect("ball_lost", game_instance, "_on_ball_lost")): 
+		print("Error connecting to game_instance")
 	paddle = game_instance.paddle
 	pass # Replace with function body.
 
@@ -40,18 +42,18 @@ func _process(delta):
 		match (collision.collider.name):
 			"Top", "Bottom":
 				update = normal.slide(update.normalized())
-				move_and_collide(update)
+				var _direction = move_and_collide(update)
 				direction = -direction.reflect(normal)
 				if(abs(direction.x) < 0.2):
 					direction = Vector2(sign(direction.x) * 0.2, direction.y)
 			"Paddle":
 				update = normal.slide(update.normalized())
-				move_and_collide(update)
+				var _direction = move_and_collide(update)
 				direction = Vector2(1, (position.y - paddle_y)/MAX_Y_DIFF)
 				multiplier = 1
 			_: 
 				update = normal.slide(update.normalized())
-				move_and_collide(update)
+				var _direction = move_and_collide(update)
 				direction = -direction.reflect(normal)
 				multiplier += 1
 		
@@ -65,12 +67,10 @@ func on_kill(ball):
 		return
 	if paddle.paddle_state != PADDLE_STATE.BALL_ACTIVE:
 		return
-	game_instance.balls.erase(self)
 	emit_signal("ball_lost", self)
 	_reset_ball()
 
 func phase_out(): 
-	game_instance.balls.erase(self)
 	emit_signal("ball_lost", self)
 	_reset_ball()
 
@@ -84,7 +84,7 @@ func _reset_ball():
 func phase_in(): 
 	animation_player.play("PhaseIn")
 
-func paddle_moved(delta_y, y):
+func paddle_moved(_delta_y, y):
 	paddle_y = y
 	if paddle:
 		if paddle.paddle_state == PADDLE_STATE.BALL_PREPARING:

@@ -71,45 +71,6 @@ position = Vector2( 264, 79 )
 [node name="SmallBlock2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 304, 79 )
 
-[node name="SmallBlock" parent="SmallBlock2" instance=ExtResource( 5 )]
-position = Vector2( 152, -7 )
-
-[node name="SmallBlock2" parent="SmallBlock2" instance=ExtResource( 5 )]
-position = Vector2( 168, 9 )
-
-[node name="SmallBlock3" parent="SmallBlock2" instance=ExtResource( 5 )]
-position = Vector2( 152, 25 )
-
-[node name="SmallBlock4" parent="SmallBlock2" instance=ExtResource( 5 )]
-position = Vector2( 168, 41 )
-
-[node name="SmallBlock5" parent="SmallBlock2" instance=ExtResource( 5 )]
-position = Vector2( 152, 57 )
-
-[node name="SmallBlock6" parent="SmallBlock2" instance=ExtResource( 5 )]
-position = Vector2( 168, 73 )
-
-[node name="SmallBlock7" parent="SmallBlock2" instance=ExtResource( 5 )]
-position = Vector2( 152, 89 )
-
-[node name="SmallBlock8" parent="SmallBlock2" instance=ExtResource( 5 )]
-position = Vector2( 168, 105 )
-
-[node name="SmallBlock16" parent="SmallBlock2" instance=ExtResource( 5 )]
-position = Vector2( 152, 121 )
-
-[node name="SmallBlock15" parent="SmallBlock2" instance=ExtResource( 5 )]
-position = Vector2( 168, 137 )
-
-[node name="SmallBlock14" parent="SmallBlock2" instance=ExtResource( 5 )]
-position = Vector2( 152, 153 )
-
-[node name="SmallBlock13" parent="SmallBlock2" instance=ExtResource( 5 )]
-position = Vector2( 168, 169 )
-
-[node name="SmallBlock12" parent="SmallBlock2" instance=ExtResource( 5 )]
-position = Vector2( 152, 185 )
-
 [node name="SmallBlock3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 344, 79 )
 
@@ -230,11 +191,14 @@ position = Vector2( 368, 240 )
 [node name="SmallBlock44" parent="." instance=ExtResource( 6 )]
 position = Vector2( 384, 256 )
 
-[node name="SmallBlock16" parent="." instance=ExtResource( 4 )]
+[node name="SmallBlock60" parent="." instance=ExtResource( 6 )]
+position = Vector2( 472, 232 )
+
+[node name="SmallBlock61" parent="." instance=ExtResource( 6 )]
 position = Vector2( 472, 168 )
 
-[node name="SmallBlock17" parent="." instance=ExtResource( 4 )]
-position = Vector2( 472, 232 )
+[node name="SmallBlock62" parent="." instance=ExtResource( 6 )]
+position = Vector2( 472, 104 )
 
 [node name="SmallBlock18" parent="." instance=ExtResource( 4 )]
 position = Vector2( 288, 208 )
@@ -242,5 +206,59 @@ position = Vector2( 288, 208 )
 [node name="SmallBlock25" parent="." instance=ExtResource( 4 )]
 position = Vector2( 320, 128 )
 
+[node name="SmallBlock63" parent="." instance=ExtResource( 4 )]
+position = Vector2( 472, 200 )
+
+[node name="SmallBlock64" parent="." instance=ExtResource( 4 )]
+position = Vector2( 472, 136 )
+
+[node name="SmallBlock65" parent="." instance=ExtResource( 4 )]
+position = Vector2( 472, 264 )
+
+[node name="SmallBlock66" parent="." instance=ExtResource( 4 )]
+position = Vector2( 472, 72 )
+
 [node name="SmallBlock29" parent="." instance=ExtResource( 4 )]
 position = Vector2( 392, 144 )
+
+[node name="SmallBlock16" parent="." instance=ExtResource( 5 )]
+position = Vector2( 456, 72 )
+
+[node name="SmallBlock17" parent="." instance=ExtResource( 5 )]
+position = Vector2( 472, 88 )
+
+[node name="SmallBlock49" parent="." instance=ExtResource( 5 )]
+position = Vector2( 456, 104 )
+
+[node name="SmallBlock48" parent="." instance=ExtResource( 5 )]
+position = Vector2( 472, 120 )
+
+[node name="SmallBlock53" parent="." instance=ExtResource( 5 )]
+position = Vector2( 456, 136 )
+
+[node name="SmallBlock52" parent="." instance=ExtResource( 5 )]
+position = Vector2( 472, 152 )
+
+[node name="SmallBlock51" parent="." instance=ExtResource( 5 )]
+position = Vector2( 456, 168 )
+
+[node name="SmallBlock50" parent="." instance=ExtResource( 5 )]
+position = Vector2( 472, 184 )
+
+[node name="SmallBlock58" parent="." instance=ExtResource( 5 )]
+position = Vector2( 472, 216 )
+
+[node name="SmallBlock57" parent="." instance=ExtResource( 5 )]
+position = Vector2( 456, 232 )
+
+[node name="SmallBlock56" parent="." instance=ExtResource( 5 )]
+position = Vector2( 472, 248 )
+
+[node name="SmallBlock55" parent="." instance=ExtResource( 5 )]
+position = Vector2( 456, 264 )
+
+[node name="SmallBlock54" parent="." instance=ExtResource( 5 )]
+position = Vector2( 472, 280 )
+
+[node name="SmallBlock59" parent="." instance=ExtResource( 5 )]
+position = Vector2( 456, 200 )
