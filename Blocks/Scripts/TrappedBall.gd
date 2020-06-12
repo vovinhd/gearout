@@ -13,6 +13,7 @@ var BALL = preload("res://Ball.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	collision_direction = Vector2(rand_range(-1, 1), rand_range(-1, 1))
 	if (self.connect("block_destroyed", get_tree().get_root().get_node("LevelContainer"), "add_score")):
 		print("Error connecting to block_destroyed")
 
@@ -35,9 +36,11 @@ func destroy():
 		$AnimationPlayer.play("Explode")
 	
 	var ball = BALL.instance()
-	game_instance.world.add_child(ball)
-	ball.global_transform = global_transform
-	ball.direction = -collision_direction
+	game_instance.world.call_deferred("add_child",ball)
+	ball.set_deferred("global_transform", global_transform)
+	#ball.global_transform = global_transform
+	ball.set_deferred("direction", -collision_direction)
+	#ball.direction = -collision_direction
 
 	#ball.connect("ball_lost", self, "reset")
 	game_instance.paddle.connect("paddle_moved", ball, "paddle_moved")

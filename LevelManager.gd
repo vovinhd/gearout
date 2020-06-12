@@ -76,7 +76,7 @@ func _on_wave_completed():
 	load_next_wave()
 	game_instance.clear_balls()
 
-func _process(delta):
+func _physics_process(delta):
 	if stopped:
 		return
 	t = clamp(t + delta * wave_transition_speed,0 ,1)
@@ -93,6 +93,8 @@ func scroll_holders(speed):
 	pass
 
 func _on_balls_destroyed():
+	if !stopped: return
+	print("All balls lost!")
 	playerLives -= 1 
 	if(playerLives <= 0): 
 		print("you lose")

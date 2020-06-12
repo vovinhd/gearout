@@ -7,6 +7,7 @@ class_name Wave
 
 onready var blocks = [] 
 signal wave_completed
+var cleared = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +18,9 @@ func _ready():
 			node.connect("block_destroyed", self, "_on_block_destroyed")
 
 func _on_block_destroyed(block):
+	if cleared: return
 	if(self._check_completed()):
+		cleared = true
 		print("Won wave")
 		if has_node("AnimationPlayer"):
 			$AnimationPlayer.play("Out")

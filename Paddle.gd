@@ -79,7 +79,7 @@ func _fire_ball():
 
 
 var ball_offset = 0
-func _process(delta) -> void: 
+func _physics_process(delta) -> void: 
 	var current_mouse : Vector2 = get_global_mouse_position()
 	self.position = Vector2(self.position.x, clamp(current_mouse.y, Y_MIN, Y_MAX))
 	

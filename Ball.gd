@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+class_name Ball
 signal ball_lost(ball)
 const PADDLE_STATE = PaddleState.PADDLE_STATE
 
@@ -17,10 +18,9 @@ const MAX_Y_DIFF = 20
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_meta("type", "ball")
-	game_instance.balls.push_back(self)
-	id = game_instance.balls.size() - 1 
-	if (get_tree().get_root().get_node("LevelContainer/world/Bounds/KillBound").connect("ball_destroyed", self, "on_kill")):
-		print("Error connecting to LevelContainer/world/Bounds/KillBound")
+	game_instance.add_ball(self)
+#	if (get_tree().get_root().get_node("LevelContainer/world/Bounds/KillBound").connect("ball_destroyed", self, "on_kill")):
+#		print("Error connecting to LevelContainer/world/Bounds/KillBound")
 	if (get_tree().get_root().get_node("LevelContainer").connect("wave_completed", self, "phase_out")): 
 		print("Error connecting to LevelContainer")
 	if (self.connect("ball_lost", game_instance, "_on_ball_lost")): 
@@ -30,7 +30,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	if paddle.paddle_state != PADDLE_STATE.BALL_ACTIVE:
 		return
 	var velocity = direction.normalized() * speed
@@ -67,11 +67,11 @@ func on_kill(ball):
 		return
 	if paddle.paddle_state != PADDLE_STATE.BALL_ACTIVE:
 		return
-	emit_signal("ball_lost", self)
+#	emit_signal("ball_lost", self)
 	_reset_ball()
 
 func phase_out(): 
-	emit_signal("ball_lost", self)
+#	emit_signal("ball_lost", self)
 	_reset_ball()
 
 func _reset_ball(): 

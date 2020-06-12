@@ -9,6 +9,8 @@ signal ball_destroyed(ball)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if (self.connect("ball_destroyed", game_instance, "_on_ball_lost")):
+		print("Error connecting to LevelContainer/world/Bounds/KillBound")
 	pass # Replace with function body.
 
 
