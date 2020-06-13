@@ -12,7 +12,7 @@ radius = 2.0
 resource_name = "Explode"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("SmallBlock48:modulate")
+tracks/0/path = NodePath("Fragments:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -24,7 +24,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Fragments/SmallBlock48:position")
+tracks/1/path = NodePath("Fragments/FragmentLR:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -36,7 +36,7 @@ tracks/1/keys = {
 "values": [ Vector2( 4, 4 ), Vector2( 6, 9 ), Vector2( 6, 24 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Fragments/SmallBlock48:rotation_degrees")
+tracks/2/path = NodePath("Fragments/FragmentLR:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -48,7 +48,7 @@ tracks/2/keys = {
 "values": [ 0.0, 5.4, 11.5 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Fragments/SmallBlock48:position")
+tracks/3/path = NodePath("Fragments/FragmentUL:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -60,7 +60,7 @@ tracks/3/keys = {
 "values": [ Vector2( -4, -4 ), Vector2( -7, -4 ), Vector2( -10, 8 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Fragments/SmallBlock48:rotation_degrees")
+tracks/4/path = NodePath("Fragments/FragmentUL:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -72,7 +72,7 @@ tracks/4/keys = {
 "values": [ 0.0, -17.0, -124.9 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Fragments/SmallBlock48:position")
+tracks/5/path = NodePath("Fragments/FragmentLL:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -84,7 +84,7 @@ tracks/5/keys = {
 "values": [ Vector2( -4, 4 ), Vector2( -6, 9 ), Vector2( -7, 24 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Fragments/SmallBlock48:rotation_degrees")
+tracks/6/path = NodePath("Fragments/FragmentLL:rotation_degrees")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -96,7 +96,7 @@ tracks/6/keys = {
 "values": [ 0.0, -3.8, -15.1 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Fragments/SmallBlock48:position")
+tracks/7/path = NodePath("Fragments/FragmentUR:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -108,7 +108,7 @@ tracks/7/keys = {
 "values": [ Vector2( 4, -4 ), Vector2( 7, -4 ), Vector2( 8, 8 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Fragments/SmallBlock48:rotation_degrees")
+tracks/8/path = NodePath("Fragments/FragmentUR:rotation_degrees")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -120,7 +120,7 @@ tracks/8/keys = {
 "values": [ 0.0, 17.0, 124.8 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("SmallBlock48:position")
+tracks/9/path = NodePath("Fragments:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -132,7 +132,7 @@ tracks/9/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("SmallBlock48:rotation_degrees")
+tracks/10/path = NodePath("Fragments:rotation_degrees")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -144,7 +144,7 @@ tracks/10/keys = {
 "values": [ 0.0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("SmallBlock48:visible")
+tracks/11/path = NodePath("Fragments:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false

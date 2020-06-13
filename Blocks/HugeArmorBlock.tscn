@@ -343,7 +343,7 @@ tracks/12/keys = {
 "values": [ true ]
 }
 
-[node name="SmallBlock" type="KinematicBody2D"]
+[node name="HugeArmorBlock" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

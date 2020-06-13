@@ -21,17 +21,11 @@ signal scroll_speed(scrollspeed)
 signal wave_instanced
 
 export(Array, PackedScene) var wave_array = [
-#	preload("res://Waves/Wave06.tscn"),
-#	preload("res://Waves/Wave05.tscn"),
-#	preload("res://Waves/Wave04.tscn"),
-#	preload("res://Waves/Wave03.tscn"),
-	preload("res://Waves/Wave02.tscn"),
-#	preload("res://Waves/Wave01.tscn"),
 #	preload("res://Waves/Test01.tscn"),
 #	preload("res://Waves/Test02.tscn"),
-#	preload("res://Waves/Test04.tscn"),
-#	preload("res://Waves/Test03.tscn"),
-#	preload("res://Waves/Test_Reactor.tscn"),
+	preload("res://Waves/Test04.tscn"),
+	preload("res://Waves/Test03.tscn"),
+	preload("res://Waves/Test_Reactor.tscn"),
 
 ]
 
@@ -102,13 +96,13 @@ func thread_load_and_instance(packed_scene):
 func _on_wave_completed(): 
 	emit_signal("wave_completed")
 	print("Level complete")
+	game_instance.clear_balls()
 	_set_wave_stats()
 	#stats.wave_scores.push_back(wave_score)
 	#stats.wave_times.push_back(wave_time)
 	#stats.wave_balls_losts.push_back(wave_balls_lost)
 	#showing_wave_stats = true
 	animation_player.play("UIShowWaveStats")
-	game_instance.clear_balls()
 	#_on_wave_stat_dismissed()
 
 func _set_wave_stats(): 

@@ -33,9 +33,9 @@ func _input(event):
 func _on_ball_lost(ball): 
 	balls.erase(ball)
 	ball.phase_out()
-#	for i in range(balls.size()-1): 
-#		if !is_instance_valid(balls[i]):
-#			balls.remove(i)
+	for i in range(balls.size()-1): 
+		if !is_instance_valid(balls[i]):
+			balls.remove(i)
 	if balls.size() == 0: 
 		level_container._on_balls_destroyed()
 		paddle.reset(null)
