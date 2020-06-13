@@ -18,11 +18,11 @@ export(Array, PackedScene) var wave_array = [
 #	preload("res://Waves/Wave05.tscn"),
 #	preload("res://Waves/Wave04.tscn"),
 #	preload("res://Waves/Wave03.tscn"),
-#	preload("res://Waves/Wave02.tscn"),
+	preload("res://Waves/Wave02.tscn"),
 #	preload("res://Waves/Wave01.tscn"),
 #	preload("res://Waves/Test01.tscn"),
 #	preload("res://Waves/Test02.tscn"),
-	preload("res://Waves/Test03.tscn"),
+#	preload("res://Waves/Test03.tscn"),
 #	preload("res://Waves/Test_Reactor.tscn"),
 #	preload("res://Waves/Test04.tscn"),
 ]
@@ -69,8 +69,11 @@ func _input(_event):
 	
 
 func load_next_wave():
-	loader_thread = Thread.new()
-	loader_thread.start(self, "thread_load_and_instance",wave_array[wave_index])
+	if OS.get_name() == "HTML5": 
+		thread_load_and_instance(wave_array[wave_index])
+	else:
+		loader_thread = Thread.new()
+		loader_thread.start(self, "thread_load_and_instance",wave_array[wave_index])
 
 func thread_load_and_instance(packed_scene): 
 	var current_wave = packed_scene.instance()

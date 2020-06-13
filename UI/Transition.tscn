@@ -1,0 +1,166 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://UI/transition.png" type="Texture" id=1]
+[ext_resource path="res://UI/Transition.gd" type="Script" id=2]
+[ext_resource path="res://circleTransition.shader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 3 )
+shader_param/fg = Color( 0.941176, 0.741176, 0.466667, 1 )
+shader_param/bg = Color( 0, 0, 0, 0 )
+shader_param/r_inner = 0.0
+shader_param/r_outer = 0.0
+shader_param/center = Vector2( 0.5, 0.5 )
+shader_param/w = 640.0
+shader_param/h = 360.0
+
+[sub_resource type="Animation" id=4]
+resource_name = "CircleFade"
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_change_scene"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TextureRect:material:shader_param/r_outer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 0.420448, 1 ),
+"update": 0,
+"values": [ 0.0, 1.2, 1.2 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("TextureRect:material:shader_param/r_inner")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 0.466517, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.2 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "CircleFadeIn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:material:shader_param/r_inner")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect:material:shader_param/r_outer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 0.406126 ),
+"update": 0,
+"values": [ 0.0, 1.2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TextureRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "CircleFadeOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:material:shader_param/r_outer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect:material:shader_param/r_inner")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 0.258816 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TextureRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="Transition" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource( 1 )
+margin_right = 638.0
+margin_bottom = 362.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/CircleFade = SubResource( 4 )
+anims/CircleFadeIn = SubResource( 2 )
+anims/CircleFadeOut = SubResource( 3 )

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/powerup-1638.wav-eb3300c37f3e8107e5004f1d45413c14.sample"
+
+[deps]
+
+source_file="res://sfx/powerup-1638.wav"
+dest_files=[ "res://.import/powerup-1638.wav-eb3300c37f3e8107e5004f1d45413c14.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

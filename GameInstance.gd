@@ -17,6 +17,9 @@ var paddle
 var balls : Array = Array()
 const BALL_STATE = Enums.BALL_STATE
 
+func _ready():
+	print(OS.get_name())
+
 func _on_ball_lost(ball): 
 	balls.erase(ball)
 	ball.phase_out()

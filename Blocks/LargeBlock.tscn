@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://tex/BlockLarge.png" type="Texture" id=1]
 [ext_resource path="res://Blocks/Scripts/SimpleBlock.gd" type="Script" id=2]
 [ext_resource path="res://tex/BlockFragments.png" type="Texture" id=3]
+[ext_resource path="res://sfx/hit_hurt-8622.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 2.43572
@@ -250,6 +251,18 @@ tracks/19/keys = {
 "update": 0,
 "values": [ 0.0, 11.7002, 34.2751 ]
 }
+tracks/20/type = "value"
+tracks/20/path = NodePath("AudioStreamPlayer:playing")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="SmallBlock" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -337,4 +350,7 @@ frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Explode = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 [connection signal="ball_collided" from="." to="." method="_on_SimpleBlock_ball_collided"]

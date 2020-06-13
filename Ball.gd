@@ -10,6 +10,7 @@ var id = -1
 var _explosion = preload("res://PowerUps/Explosion.tscn")
 
 onready var animation_player = $AnimationPlayer
+onready var audio = $AudioStreamPlayer
 onready var direction = Vector2(1, 0)
 var paddle = null
 export(float) var speed = 400.0
@@ -54,6 +55,7 @@ func _physics_process(delta):
 	
 	if collision: 
 		var normal = collision.normal
+
 		match (collision.collider.name):
 			"Top", "Bottom":
 				update = normal.slide(update.normalized())
@@ -61,11 +63,13 @@ func _physics_process(delta):
 				direction = -direction.reflect(normal)
 				if(abs(direction.x) < 0.2):
 					direction = Vector2(sign(direction.x) * 0.2, direction.y)
+				audio.play(0.0)
 			"Paddle":
 				update = normal.slide(update.normalized())
 				var _direction = move_and_collide(update)
 				direction = Vector2(1, (position.y - paddle_y)/MAX_Y_DIFF)
 				multiplier = 1
+				audio.play(0.0)
 			_: 
 				multiplier += 1				
 				update = normal.slide(update.normalized())
@@ -125,3 +129,8 @@ func fire_ball():
 	enabled = true
 	damage = 1
 	direction = Vector2(1, (position.y - paddle_y)/MAX_Y_DIFF)
+
+
+func _on_AudioStreamPlayer_finished():
+	#audio.playing = false
+	pass # Replace with function body.

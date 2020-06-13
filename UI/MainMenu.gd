@@ -16,7 +16,8 @@ func _ready():
 #	pass
 
 func load_game(): 
-	get_tree().change_scene("res://LevelContainer.tscn")
+	Transition.transition_to("res://LevelContainer.tscn")
+
 
 func view_settings(): 
 	pass 

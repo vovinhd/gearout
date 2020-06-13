@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Blocks/Scripts/ExplosiveBlock.gd" type="Script" id=1]
 [ext_resource path="res://tex/Bomb.png" type="Texture" id=2]
+[ext_resource path="res://sfx/hit_hurt-8622.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 2.0
@@ -71,6 +72,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [ false, true, false ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 24, 24 )
@@ -111,5 +124,9 @@ monitorable = false
 
 [node name="ExplosionSensor" type="CollisionShape2D" parent="ExplosionArea"]
 shape = SubResource( 3 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+bus = "SFX"
 [connection signal="ball_collided" from="." to="." method="_on_SimpleBlock_ball_collided"]
 [connection signal="body_entered" from="ExplosionArea" to="." method="_on_ExplosionArea_body_entered"]
