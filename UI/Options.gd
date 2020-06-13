@@ -9,7 +9,7 @@ var sfx_bus
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sfx_bus = AudioServer.get_bus_index("SFX")
-	pass # Replace with function body.
+	print(sfx_bus)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

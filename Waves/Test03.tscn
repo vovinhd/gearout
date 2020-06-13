@@ -5,7 +5,7 @@
 [ext_resource path="res://Blocks/ExplosiveBlock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Blocks/SmallBlock.tscn" type="PackedScene" id=5]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Border:modulate")
 tracks/0/interp = 1
@@ -64,7 +64,7 @@ antialiased = true
 polygon = PoolVector2Array( 216, 8, 216, 32, 584, 104, 584, 240, 216, 312, 216, 352, 632, 352, 632, 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Out = SubResource( 4 )
+anims/Out = SubResource( 1 )
 
 [node name="SmallBlock6" parent="." instance=ExtResource( 2 )]
 position = Vector2( 280, 74 )

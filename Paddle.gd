@@ -72,6 +72,7 @@ func _ball_ready():
 
 func _fire_ball():
 	ball.fire_ball()
+	$AudioStreamPlayer.play()
 	paddle_state = PADDLE_STATE.BALL_ACTIVE
 
 

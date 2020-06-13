@@ -4,7 +4,7 @@ class_name Wave
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+export(float) var ball_base_speed = 400 
 var blocks : Array= Array()
 signal wave_completed
 var cleared = false
@@ -12,6 +12,8 @@ var cleared = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	connect("wave_completed", game_instance, "clear_balls")
+	print(ball_base_speed)
+	game_instance.set_ball_speed(ball_base_speed)
 	for node in get_children():
 		if("block_destroyed" in node):
 			blocks.push_back(node)

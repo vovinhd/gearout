@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ball_launched.wav-1de92c2cfacb4b640017618b6f09de01.sample"
+
+[deps]
+
+source_file="res://sfx/ball_launched.wav"
+dest_files=[ "res://.import/ball_launched.wav-1de92c2cfacb4b640017618b6f09de01.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

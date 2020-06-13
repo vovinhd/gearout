@@ -1,9 +1,16 @@
 extends Node2D
 
-var score = 0
-var score_in_wave = 0
-var wave_time = 0.0
-var balls_lost = 0
+var wave_score = 0
+var wave_time = 0.0 
+var wave_balls_lost = 0
+var stats = {
+	"score": 0,
+	"wave_scores": [],
+	"wave_times": [],
+	"wave_balls_losts": [],
+	"balls_lost": 0,
+	"total_play_time": 0.0,
+}
 
 export var playerLives = 3
 export var wave_transition_speed = .5
@@ -22,9 +29,10 @@ export(Array, PackedScene) var wave_array = [
 #	preload("res://Waves/Wave01.tscn"),
 #	preload("res://Waves/Test01.tscn"),
 #	preload("res://Waves/Test02.tscn"),
+#	preload("res://Waves/Test04.tscn"),
 #	preload("res://Waves/Test03.tscn"),
 #	preload("res://Waves/Test_Reactor.tscn"),
-#	preload("res://Waves/Test04.tscn"),
+
 ]
 
 export var wave_index = 0
@@ -41,7 +49,7 @@ onready var kill_bound = $world/Bounds/KillBound
 onready var animation_player = $AnimationPlayer
 
 onready var lives_label = $InGameUI/MarginContainer/HSplitContainer/HBoxContainer/LivesLabel
-var lives_format = "Lives: %d"
+var lives_format = "Balls lost: %d"
 onready var wave_label = $InGameUI/MarginContainer/HSplitContainer/HBoxContainer/WaveLabel
 var waves_format = "Wave: %d"
 onready var score_label = $InGameUI/MarginContainer/HSplitContainer/HBoxContainer/ScoreLabel
@@ -58,7 +66,7 @@ func _ready():
 	self.connect("can_start_next_wave", get_node("world/Paddle"), "reset")
 	self.connect("wave_completed", get_node("world/Paddle"), "wave_transition")
 	kill_bound.connect("ball_destroyed", self, "_on_ball_destroyed")
-	lives_label.text = lives_format % playerLives
+	lives_label.text = lives_format % 0
 	load_next_wave()
 	animation_player.play("UIWaveStart")
 
@@ -69,17 +77,18 @@ func _input(_event):
 	
 
 func load_next_wave():
+
 	if OS.get_name() == "HTML5": 
 		thread_load_and_instance(wave_array[wave_index])
 	else:
 		loader_thread = Thread.new()
-		loader_thread.start(self, "thread_load_and_instance",wave_array[wave_index])
+		print(loader_thread.start(self, "thread_load_and_instance",wave_array[wave_index]))
 
 func thread_load_and_instance(packed_scene): 
 	var current_wave = packed_scene.instance()
 	game_instance.current_wave = current_wave
 
-	wave_index = (wave_index + 1) % wave_array.size()
+	wave_index = (wave_index + 1) #% wave_array.size()
 	print(wave_index, current_wave.name)
 	if wave_index == 0: 
 		wave_label.text = "Final Wave!"
@@ -93,12 +102,45 @@ func thread_load_and_instance(packed_scene):
 func _on_wave_completed(): 
 	emit_signal("wave_completed")
 	print("Level complete")
-	showing_wave_stats = true
+	_set_wave_stats()
+	#stats.wave_scores.push_back(wave_score)
+	#stats.wave_times.push_back(wave_time)
+	#stats.wave_balls_losts.push_back(wave_balls_lost)
+	#showing_wave_stats = true
 	animation_player.play("UIShowWaveStats")
 	game_instance.clear_balls()
 	#_on_wave_stat_dismissed()
 
+func _set_wave_stats(): 
+	stats.wave_scores.push_back(wave_score)
+	stats.wave_times.push_back(wave_time)
+	stats.wave_balls_losts.push_back(wave_balls_lost)
+	
+	if wave_index == wave_array.size():
+		print("stats")
+		game_instance.last_stats = stats 
+		Transition.transition_to("res://UI/Stats.tscn")
+	
+	showing_wave_stats = true
+	
+	$WaveCompleted/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaveScore.text = "%07d" % wave_score
+	$WaveCompleted/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/TotalScore.text ="%07d" % stats.score
+	
+	$WaveCompleted/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaveTime.text = format_time(wave_time)
+	$WaveCompleted/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/TotalTime.text = format_time(stats.total_play_time)
+	
+	$WaveCompleted/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaveBalls.text =  "%d" % wave_balls_lost
+	$WaveCompleted/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/TotalBalls.text = "%d" %  stats.balls_lost
+
+func format_time(time: float) -> String:
+	var minutes = time / 60
+	var seconds = fmod(time, 60)
+	return "%d" % minutes + ":" +"%02d" % seconds
+	 
 func _on_wave_stat_dismissed(): 
+	wave_score = 0
+	wave_balls_lost = 0
+	wave_time = 0.0
 	showing_wave_stats = false
 	old_world_position = world.position
 	stopped = false
@@ -109,7 +151,10 @@ func _on_wave_stat_dismissed():
 
 
 func _physics_process(delta):
+	
 	if stopped:
+		wave_time += delta
+		stats.total_play_time += delta
 		return
 	t = clamp(t + delta * wave_transition_speed,0 ,1)
 	emit_signal("scroll_speed", t)
@@ -128,11 +173,14 @@ func scroll_holders(speed):
 func _on_balls_destroyed():
 	if !stopped: return
 	print("All balls lost!")
-	playerLives -= 1 
-	if(playerLives <= 0): 
-		print("you lose")
-		playerLives = 3
-	lives_label.text = lives_format % playerLives
+	wave_balls_lost += 1
+	stats.balls_lost += 1
+	$AudioStreamPlayer.play()
+	#playerLives -= 1 
+	#if(playerLives <= 0): 
+	#	print("you lose")
+#		playerLives = 3
+	lives_label.text = lives_format % stats.balls_lost
 
 func _on_ball_destroyed(_any):
 	return
@@ -141,5 +189,6 @@ func add_score(emitter):
 	# if "last_multiplier" in emitter: 
 	# 	score += emitter.score * emitter.last_multiplier;
 	# else:
-	score += emitter.score;
-	score_label.text = score_format % score
+	stats.score += emitter.score
+	wave_score += emitter.score
+	score_label.text = score_format % stats.score

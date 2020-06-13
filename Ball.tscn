@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 4.10702
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "Acid"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -35,7 +35,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "Bomb"
 length = 0.2
 loop = true
@@ -51,8 +51,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 3, 2 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("AcidParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "Default"
 length = 0.1
 tracks/0/type = "value"
@@ -67,9 +79,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("AcidParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="Animation" id=2]
-resource_name = "PhaseIn"
+[sub_resource type="Animation" id=5]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -84,8 +107,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "PhaseOut"
+[sub_resource type="Animation" id=6]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -113,6 +135,18 @@ tracks/1/keys = {
 "method": "queue_free"
 } ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("AcidParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="ParticlesMaterial" id=7]
 flag_disable_z = true
@@ -138,11 +172,11 @@ texture = ExtResource( 1 )
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Acid = SubResource( 4 )
-anims/Bomb = SubResource( 5 )
-anims/Default = SubResource( 6 )
-anims/PhaseIn = SubResource( 2 )
-anims/PhaseOut = SubResource( 3 )
+anims/Acid = SubResource( 2 )
+anims/Bomb = SubResource( 3 )
+anims/Default = SubResource( 4 )
+anims/PhaseIn = SubResource( 5 )
+anims/PhaseOut = SubResource( 6 )
 
 [node name="AcidParticles" type="Particles2D" parent="."]
 z_index = -1
@@ -154,5 +188,6 @@ texture = ExtResource( 3 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -9.123
 bus = "SFX"
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

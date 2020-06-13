@@ -7,14 +7,16 @@ enum GAME_STATE {
 }
 
 signal ball_state(ball_state)
-
+signal ball_speed(ball_speed)
 # references 
 var game_state = GAME_STATE.IN_MENU
 var level_container
+var last_stats
 var current_wave 
 var world
 var paddle 
 var balls : Array = Array()
+var ball_speed = 400
 const BALL_STATE = Enums.BALL_STATE
 
 func _ready():
@@ -63,4 +65,7 @@ func set_bomb_ball():
 func set_default_ball(): 
 	emit_signal("ball_state", BALL_STATE.DEFAULT)
 
+func set_ball_speed(speed): 
+	ball_speed = speed
+	emit_signal("ball_speed", speed)
 	

@@ -48,6 +48,7 @@ tracks/2/keys = {
 
 [node name="Wave01" type="Node2D"]
 script = ExtResource( 1 )
+ball_base_speed = 350.0
 
 [node name="Border" type="KinematicBody2D" parent="."]
 

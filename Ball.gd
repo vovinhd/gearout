@@ -23,12 +23,14 @@ const MAX_Y_DIFF = 20
 func _ready():
 	set_meta("type", "ball")
 	game_instance.add_ball(self)
+	speed = game_instance.ball_speed
 #	if (get_tree().get_root().get_node("LevelContainer/world/Bounds/KillBound").connect("ball_destroyed", self, "on_kill")):
 #		print("Error connecting to LevelContainer/world/Bounds/KillBound")
 	if (get_tree().get_root().get_node("LevelContainer").connect("wave_completed", self, "phase_out")): 
 		print("Error connecting to LevelContainer")
 	if (self.connect("ball_lost", game_instance, "_on_ball_lost")
-		|| game_instance.connect("ball_state", self, "recieve_state")): 
+		|| game_instance.connect("ball_state", self, "recieve_state")
+		|| game_instance.connect("ball_speed", self, "recieve_speed")): 
 		print("Error connecting to game_instance")
 	paddle = game_instance.paddle
 	
@@ -44,6 +46,10 @@ func recieve_state(new_ball_state):
 			animation_player.play("Acid")
 		BALL_STATE.BOMB: 
 			animation_player.play("Bomb")
+
+func recieve_speed(new_speed): 
+	print("Ball speed set to ", new_speed)
+	speed = new_speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -80,12 +86,15 @@ func _physics_process(delta):
 						# tell other collider we hit it
 						if(collision.collider.has_method("_on_ball_collided")):
 							collision.collider._on_ball_collided(self)
+						else: 				
+							audio.play(0.0)
 					BALL_STATE.ACID:
 						# tell other collider we hit it
 						if(collision.collider.has_method("_on_ball_collided")):
 							collision.collider._on_ball_collided(self)
 						else:
 							direction = -direction.reflect(normal)
+							audio.play(0.0)
 					BALL_STATE.BOMB:
 						direction = -direction.reflect(normal)
 						# tell other collider we hit it
@@ -95,6 +104,8 @@ func _physics_process(delta):
 							game_instance.world.call_deferred("add_child", explosion)
 							explosion.set_deferred("global_position", global_position)
 							game_instance.set_default_ball()
+						else:
+							audio.play(0.0)
 func on_kill(ball):
 	if ball != self:
 		return

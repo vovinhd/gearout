@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ball_lost.wav-c9ccb616befda40760ef906a220dc317.sample"
+
+[deps]
+
+source_file="res://sfx/ball_lost.wav"
+dest_files=[ "res://.import/ball_lost.wav-c9ccb616befda40760ef906a220dc317.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
