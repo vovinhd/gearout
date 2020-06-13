@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://PowerUps/PowerUpBase.gd" type="Script" id=1]
 [ext_resource path="res://tex/PowerupBase.png" type="Texture" id=2]
+[ext_resource path="res://sfx/powerup-1638.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -89,6 +90,18 @@ tracks/3/keys = {
 "method": "destroy"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("AudioStreamPlayer:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 2
@@ -113,7 +126,7 @@ shape = SubResource( 1 )
 [node name="Base" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 6
-frame = 2
+frame = 1
 region_rect = Rect2( 6.284, 1.997, 16, 16 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -122,8 +135,11 @@ anims/Bomb = SubResource( 5 )
 anims/Collect = SubResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-emitting = false
+visible = false
 amount = 200
 process_material = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 [connection signal="area_entered" from="Sensor" to="." method="_on_Sensor_area_entered"]
 [connection signal="body_entered" from="Sensor" to="." method="_on_Sensor_body_entered"]

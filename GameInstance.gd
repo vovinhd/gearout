@@ -18,7 +18,15 @@ var balls : Array = Array()
 const BALL_STATE = Enums.BALL_STATE
 
 func _ready():
-	print(OS.get_name())
+	print("Running on platform ", OS.get_name())
+
+func _input(event):
+	if event is InputEventKey:
+		if event.alt:	
+			if event.scancode == KEY_F4:
+				get_tree().quit()
+			if event.pressed and event.scancode == KEY_ENTER: 
+				OS.window_fullscreen = !OS.window_fullscreen
 
 func _on_ball_lost(ball): 
 	balls.erase(ball)

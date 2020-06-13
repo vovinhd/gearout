@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Wave.gd" type="Script" id=1]
 [ext_resource path="res://Blocks/WideBlock.tscn" type="PackedScene" id=2]
@@ -7,9 +7,10 @@
 [ext_resource path="res://Blocks/ExplosiveBlock.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Blocks/LargeBlock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Blocks/SmallBlock.tscn" type="PackedScene" id=7]
-[ext_resource path="res://PowerUps/AcidPowerup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://PowerUps/BombPowerup.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Blocks/HugeBlock.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Blocks/HugeArmorBlock.tscn" type="PackedScene" id=10]
+[ext_resource path="res://PowerUps/AcidPowerup.tscn" type="PackedScene" id=11]
 
 [node name="Wave02" type="Node2D"]
 script = ExtResource( 1 )
@@ -25,16 +26,11 @@ position = Vector2( 328, 192 )
 
 [node name="SmallBlock4" parent="." instance=ExtResource( 6 )]
 position = Vector2( 328, 112 )
-powerup = ExtResource( 8 )
-
-[node name="SmallBlock" parent="SmallBlock4" instance=ExtResource( 9 )]
-position = Vector2( 8, -48 )
-
-[node name="SmallBlock" parent="SmallBlock4/SmallBlock" instance=ExtResource( 2 )]
-position = Vector2( 0, 240 )
+powerup = ExtResource( 11 )
 
 [node name="SmallBlock5" parent="." instance=ExtResource( 7 )]
 position = Vector2( 328, 144 )
+powerup = ExtResource( 8 )
 
 [node name="SmallBlock6" parent="." instance=ExtResource( 6 )]
 position = Vector2( 360, 112 )
@@ -56,3 +52,9 @@ position = Vector2( 520, 112 )
 
 [node name="SmallBlock12" parent="." instance=ExtResource( 10 )]
 position = Vector2( 336, 264 )
+
+[node name="SmallBlock13" parent="." instance=ExtResource( 9 )]
+position = Vector2( 336, 64 )
+
+[node name="SmallBlock14" parent="." instance=ExtResource( 2 )]
+position = Vector2( 336, 304 )
