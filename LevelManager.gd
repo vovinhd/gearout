@@ -1,28 +1,33 @@
 extends Node2D
 
 var score = 0
+var score_in_wave = 0
+var wave_time = 0.0
+var balls_lost = 0
+
 export var playerLives = 3
 export var wave_transition_speed = .5
+
 signal wave_completed
 signal can_start_next_wave
 signal scroll_speed(scrollspeed)
 signal wave_instanced
+
 export(Array, PackedScene) var wave_array = [
 #	preload("res://Waves/Wave06.tscn"),
 #	preload("res://Waves/Wave05.tscn"),
 #	preload("res://Waves/Wave04.tscn"),
 #	preload("res://Waves/Wave03.tscn"),
-	preload("res://Waves/Wave02.tscn"),
+#	preload("res://Waves/Wave02.tscn"),
 #	preload("res://Waves/Wave01.tscn"),
 #	preload("res://Waves/Test01.tscn"),
 #	preload("res://Waves/Test02.tscn"),
-#	preload("res://Waves/Test03.tscn"),
+	preload("res://Waves/Test03.tscn"),
 #	preload("res://Waves/Test_Reactor.tscn"),
 #	preload("res://Waves/Test04.tscn"),
 ]
 
 export var wave_index = 0
-
 export var offset = Vector2.ZERO;
 
 var old_world_position = Vector2.ZERO
@@ -33,19 +38,21 @@ onready var track_generator = $TrackGenerator
 onready var top_holder = $world/HolderTop
 onready var bottom_holder = $world/HolderBottom
 onready var kill_bound = $world/Bounds/KillBound
+onready var animation_player = $AnimationPlayer
 
-onready var lives_label = $InGameUI/MarginContainer/HBoxContainer/LivesLabel
+onready var lives_label = $InGameUI/MarginContainer/HSplitContainer/HBoxContainer/LivesLabel
 var lives_format = "Lives: %d"
-onready var wave_label = $InGameUI/MarginContainer/HBoxContainer/WaveLabel
+onready var wave_label = $InGameUI/MarginContainer/HSplitContainer/HBoxContainer/WaveLabel
 var waves_format = "Wave: %d"
-onready var score_label = $InGameUI/MarginContainer/HBoxContainer/ScoreLabel
+onready var score_label = $InGameUI/MarginContainer/HSplitContainer/HBoxContainer/ScoreLabel
 var score_format = "Score: %07d"
 
 var loader_thread : Thread = null
 
+var showing_wave_stats = false
+
 func _ready():
 	game_instance.level_container = self
-
 	self.connect("scroll_speed", track_generator, "scroll_tracks")
 	self.connect("scroll_speed", self, "scroll_holders")
 	self.connect("can_start_next_wave", get_node("world/Paddle"), "reset")
@@ -53,6 +60,13 @@ func _ready():
 	kill_bound.connect("ball_destroyed", self, "_on_ball_destroyed")
 	lives_label.text = lives_format % playerLives
 	load_next_wave()
+	animation_player.play("UIWaveStart")
+
+
+func _input(_event):
+	if (Input.is_action_just_pressed("Fire")) && showing_wave_stats:
+		_on_wave_stat_dismissed()
+	
 
 func load_next_wave():
 	loader_thread = Thread.new()
@@ -76,12 +90,20 @@ func thread_load_and_instance(packed_scene):
 func _on_wave_completed(): 
 	emit_signal("wave_completed")
 	print("Level complete")
+	showing_wave_stats = true
+	animation_player.play("UIShowWaveStats")
+	game_instance.clear_balls()
+	#_on_wave_stat_dismissed()
+
+func _on_wave_stat_dismissed(): 
+	showing_wave_stats = false
 	old_world_position = world.position
+	stopped = false
 	t = 0 
 	offset += Vector2(600, 0)
-	stopped = false
+	animation_player.play("UIHideAll")
 	load_next_wave()
-	game_instance.clear_balls()
+
 
 func _physics_process(delta):
 	if stopped:
@@ -92,6 +114,7 @@ func _physics_process(delta):
 	world.position = old_world_position.linear_interpolate(offset, t) 
 	if t >= 1: 
 		emit_signal("can_start_next_wave")
+		animation_player.play("UIWaveStart")
 		stopped = true
 
 func scroll_holders(speed): 

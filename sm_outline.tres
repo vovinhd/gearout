@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://border.shader" type="Shader" id=1]
+
+[resource]
+render_priority = 1
+shader = ExtResource( 1 )
+shader_param/effect_color = Color( 0, 0, 0, 1 )
+shader_param/border = 3
+shader_param/border_filter = 0.01
