@@ -65,11 +65,12 @@ func _ready():
 	animation_player.play("UIWaveStart")
 
 
-func _input(_event):
+func _input(event):
 	if (Input.is_action_just_pressed("Fire")) && showing_wave_stats:
 		_on_wave_stat_dismissed()
-	
-
+	if (Input.is_action_just_pressed("Pause")):
+			_on_PauseButton_pressed()
+			
 func load_next_wave():
 
 	if OS.get_name() == "HTML5": 

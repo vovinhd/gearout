@@ -10,6 +10,9 @@ var Y_MIN = 32
 var Y_MAX = 320
 signal paddle_moved(delta_y, y)
 
+var last_mouse = Vector2.ZERO
+export var speed = 300
+export var slow_speed = 150
 # setup gear rotation
 var last_position = Vector2.ZERO
 var rot_r
@@ -78,9 +81,24 @@ func _fire_ball():
 
 var ball_offset = 0
 func _physics_process(delta) -> void: 
-	var current_mouse : Vector2 = get_global_mouse_position()
-	self.position = Vector2(self.position.x, clamp(current_mouse.y, Y_MIN, Y_MAX))
 	
+	var current_mouse : Vector2 = get_global_mouse_position()
+	
+	if(current_mouse != last_mouse):
+		self.position = Vector2(self.position.x, clamp(current_mouse.y, Y_MIN, Y_MAX))
+		last_mouse = current_mouse
+	else:
+		var input = Vector2.ZERO
+		var slow = false
+		if Input.is_action_pressed("Up"):
+			input.y -= 1 
+		if Input.is_action_pressed("Down"): 
+			input.y += 1
+		if Input.is_action_pressed("slow"):
+			slow = true
+		if input.y != 0: 
+				self.position = Vector2(self.position.x, clamp(self.position.y + input.y * delta * (slow_speed if slow else speed) , Y_MIN, Y_MAX))
+		
 	emit_signal("paddle_moved", position.y - last_position.y, position.y)
 	
 	var gear_roatation = fmod((position.y - last_position.y) * ROTATION_SPEED, 360)
