@@ -55,6 +55,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 0.0 ]
 }
+ball_base_speed = 340.0
 
 [node name="Border" type="KinematicBody2D" parent="."]
 

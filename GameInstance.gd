@@ -17,6 +17,7 @@ var world
 var paddle 
 var balls : Array = Array()
 var ball_speed = 400
+var bomb_counter = 5
 const BALL_STATE = Enums.BALL_STATE
 
 func _ready():
@@ -33,13 +34,18 @@ func _input(event):
 func _on_ball_lost(ball): 
 	balls.erase(ball)
 	ball.phase_out()
-	for i in range(balls.size()-1): 
-		if !is_instance_valid(balls[i]):
-			balls.remove(i)
+#	for i in range(balls.size()-1): 
+#		if !is_instance_valid(balls[i]):
+#			balls.remove(i)
 	if balls.size() == 0: 
 		level_container._on_balls_destroyed()
 		paddle.reset(null)
 
+func clear_balls_sync(): 
+	for ball in balls:
+		if is_instance_valid(ball):
+			ball.queue_free()
+	balls = []
 func clear_balls(): 
 	for ball in balls:
 		if is_instance_valid(ball):
@@ -60,10 +66,18 @@ func set_acid_ball():
 	emit_signal("ball_state", BALL_STATE.ACID)
 
 func set_bomb_ball(): 
+	bomb_counter = 5
 	emit_signal("ball_state", BALL_STATE.BOMB)
 
 func set_default_ball(): 
 	emit_signal("ball_state", BALL_STATE.DEFAULT)
+
+func sub_bomb(): 
+	bomb_counter -= 1
+	print(bomb_counter)
+	if bomb_counter <= 0: 
+		set_default_ball()
+
 
 func set_ball_speed(speed): 
 	ball_speed = speed

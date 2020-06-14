@@ -13,7 +13,7 @@ var cleared = false
 func _ready():
 	connect("wave_completed", game_instance, "clear_balls")
 	print(ball_base_speed)
-	game_instance.set_ball_speed(ball_base_speed)
+	#game_instance.set_ball_speed(ball_base_speed)
 	for node in get_children():
 		if("block_destroyed" in node):
 			blocks.push_back(node)
@@ -38,3 +38,6 @@ func _check_completed() -> bool:
 func remove_collision():
 	if has_node("Border"): 
 		$Border.queue_free()
+	for node in get_children(): 
+		if node.is_in_group("remove") || "Indestructable" in node.name:
+			node.queue_free()

@@ -37,4 +37,4 @@ func destroy():
 	$Sprite.visible = false
 	if has_node("AnimationPlayer"): 
 		$AnimationPlayer.play("Explode")
-	emit_signal("block_destroyed", self)
+	emit_signal("block_destroyed", score * last_multiplier)

@@ -4,12 +4,14 @@ enum POWERUP_TYPE {
 	ACID,
 	BOMB
 }
-
+signal collected(score)
 var collected = false
 onready var animation_player = $AnimationPlayer
 export var speed = 150
+export var score = 100
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.connect("collected", game_instance.level_container, "add_score")
 	pass # Replace with function body.
 
 
@@ -34,6 +36,7 @@ func _on_Sensor_body_entered(body):
 		collected = true
 		apply_effect()
 		collect()
+		emit_signal("collected", score)
 
 func apply_effect(): 
 	print("apply_effect")

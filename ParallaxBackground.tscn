@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://tex/Desert_Background_2.png" type="Texture" id=1]
-[ext_resource path="res://tex/Desert_Background_3.png" type="Texture" id=2]
-[ext_resource path="res://tex/clear_sky2.png" type="Texture" id=3]
+[ext_resource path="res://tex/Cloud.png" type="Texture" id=1]
+[ext_resource path="res://ParallaxBackground.gd" type="Script" id=2]
+[ext_resource path="res://tex/clear_sky3.png" type="Texture" id=3]
+[ext_resource path="res://MSmoothPixel.tres" type="Material" id=4]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 scroll_base_scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 2 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.1, 0.1 )
@@ -17,25 +19,107 @@ centered = false
 region_rect = Rect2( 0, 0, 100, 350 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
-visible = false
-modulate = Color( 0.486275, 0.486275, 0.486275, 1 )
 motion_scale = Vector2( 0.1, 0.1 )
 motion_mirroring = Vector2( 807.174, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxLayer2"]
-position = Vector2( -6.10352e-05, -168 )
-scale = Vector2( 1.73913, 1.69231 )
+modulate = Color( 0.454902, 0.678431, 0.733333, 1 )
+material = ExtResource( 4 )
+position = Vector2( 48, 112 )
+scale = Vector2( 1.2549, 1.43001 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite2" type="Sprite" parent="ParallaxLayer2"]
+modulate = Color( 0.454902, 0.678431, 0.733333, 1 )
+material = ExtResource( 4 )
+position = Vector2( 224, 168 )
+scale = Vector2( 0.909639, 1.03657 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite3" type="Sprite" parent="ParallaxLayer2"]
+modulate = Color( 0.454902, 0.678431, 0.733333, 1 )
+material = ExtResource( 4 )
+position = Vector2( 376, 184 )
+scale = Vector2( 0.794551, 0.905424 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite4" type="Sprite" parent="ParallaxLayer2"]
+modulate = Color( 0.454902, 0.678431, 0.733333, 1 )
+material = ExtResource( 4 )
+position = Vector2( 512, 176 )
+scale = Vector2( 0.794551, 0.905424 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite5" type="Sprite" parent="ParallaxLayer2"]
+modulate = Color( 0.454902, 0.678431, 0.733333, 1 )
+material = ExtResource( 4 )
+position = Vector2( 616, 176 )
+scale = Vector2( 0.794551, 0.905424 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite7" type="Sprite" parent="ParallaxLayer2"]
+modulate = Color( 0.454902, 0.678431, 0.733333, 1 )
+material = ExtResource( 4 )
+position = Vector2( 688, 160 )
+scale = Vector2( 0.794551, 0.905424 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite6" type="Sprite" parent="ParallaxLayer2"]
+modulate = Color( 0.454902, 0.678431, 0.733333, 1 )
+material = ExtResource( 4 )
+position = Vector2( -32, 144 )
+scale = Vector2( 0.794551, 0.905424 )
 texture = ExtResource( 1 )
 centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
-visible = false
 motion_scale = Vector2( 0.2, 0.2 )
-motion_mirroring = Vector2( 751.105, 0 )
+motion_mirroring = Vector2( 878.705, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxLayer3"]
-modulate = Color( 0.321569, 0.211765, 0.211765, 1 )
-position = Vector2( -1.81899e-12, -160 )
-scale = Vector2( 1.73913, 1.69231 )
-texture = ExtResource( 2 )
+material = ExtResource( 4 )
+position = Vector2( -16, 248 )
+scale = Vector2( 0.930474, 0.905425 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite4" type="Sprite" parent="ParallaxLayer3"]
+material = ExtResource( 4 )
+position = Vector2( 392, 240 )
+scale = Vector2( 0.930474, 0.905425 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite6" type="Sprite" parent="ParallaxLayer3"]
+material = ExtResource( 4 )
+position = Vector2( 672, 216 )
+scale = Vector2( 0.930474, 0.905425 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite7" type="Sprite" parent="ParallaxLayer3"]
+material = ExtResource( 4 )
+position = Vector2( 568, 184 )
+scale = Vector2( 0.588235, 0.577556 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite8" type="Sprite" parent="ParallaxLayer3"]
+material = ExtResource( 4 )
+position = Vector2( 200, 256 )
+scale = Vector2( 0.588235, 0.577556 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite9" type="Sprite" parent="ParallaxLayer3"]
+material = ExtResource( 4 )
+position = Vector2( 304, 176 )
+scale = Vector2( 0.588235, 0.577556 )
+texture = ExtResource( 1 )
 centered = false

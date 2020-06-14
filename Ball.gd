@@ -67,8 +67,8 @@ func _physics_process(delta):
 				update = normal.slide(update.normalized())
 				var _direction = move_and_collide(update)
 				direction = -direction.reflect(normal)
-				if(abs(direction.x) < 0.2):
-					direction = Vector2(sign(direction.x) * 0.2, direction.y)
+				#if(abs(direction.x) < 0.2):
+				#	direction = Vector2(sign(direction.x) * 0.2, direction.y)
 				audio.play(0.0)
 			"Paddle":
 				update = normal.slide(update.normalized())
@@ -103,7 +103,7 @@ func _physics_process(delta):
 							var explosion = _explosion.instance()
 							game_instance.world.call_deferred("add_child", explosion)
 							explosion.set_deferred("global_position", global_position)
-							game_instance.set_default_ball()
+							game_instance.sub_bomb()
 						else:
 							audio.play(0.0)
 func on_kill(ball):

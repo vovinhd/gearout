@@ -23,9 +23,9 @@ signal wave_instanced
 export(Array, PackedScene) var wave_array = [
 #	preload("res://Waves/Test01.tscn"),
 #	preload("res://Waves/Test02.tscn"),
-	preload("res://Waves/Test04.tscn"),
-	preload("res://Waves/Test03.tscn"),
-	preload("res://Waves/Test_Reactor.tscn"),
+#	preload("res://Waves/Test04.tscn"),
+#	preload("res://Waves/Test03.tscn"),
+#	preload("res://Waves/Test_Reactor.tscn"),
 
 ]
 
@@ -52,7 +52,7 @@ var score_format = "Score: %07d"
 var loader_thread : Thread = null
 
 var showing_wave_stats = false
-
+var current_wave
 func _ready():
 	game_instance.level_container = self
 	self.connect("scroll_speed", track_generator, "scroll_tracks")
@@ -77,12 +77,13 @@ func load_next_wave():
 	else:
 		loader_thread = Thread.new()
 		print(loader_thread.start(self, "thread_load_and_instance",wave_array[wave_index]))
+	game_instance.set_ball_speed(wave_index * 10 + 250)
 
 func thread_load_and_instance(packed_scene): 
-	var current_wave = packed_scene.instance()
+	current_wave = packed_scene.instance()
 	game_instance.current_wave = current_wave
 
-	wave_index = (wave_index + 1) #% wave_array.size()
+	#% wave_array.size()
 	print(wave_index, current_wave.name)
 	if wave_index == 0: 
 		wave_label.text = "Final Wave!"
@@ -97,6 +98,7 @@ func _on_wave_completed():
 	emit_signal("wave_completed")
 	print("Level complete")
 	game_instance.clear_balls()
+	wave_index = (wave_index + 1) 
 	_set_wave_stats()
 	#stats.wave_scores.push_back(wave_score)
 	#stats.wave_times.push_back(wave_time)
@@ -155,6 +157,7 @@ func _physics_process(delta):
 	#track_generator.scroll_tracks(t)
 	world.position = old_world_position.linear_interpolate(offset, t) 
 	if t >= 1: 
+		game_instance.clear_balls()
 		emit_signal("can_start_next_wave")
 		animation_player.play("UIWaveStart")
 		stopped = true
@@ -179,10 +182,27 @@ func _on_balls_destroyed():
 func _on_ball_destroyed(_any):
 	return
 
-func add_score(emitter): 
+func add_score(score): 
 	# if "last_multiplier" in emitter: 
 	# 	score += emitter.score * emitter.last_multiplier;
 	# else:
-	stats.score += emitter.score
-	wave_score += emitter.score
+	stats.score += score
+	wave_score += score
 	score_label.text = score_format % stats.score
+
+
+func _on_PauseButton_pressed():
+	animation_player.play("Pause")
+	self.get_tree().paused = true
+
+
+func _on_UnpauseButton_pressed():
+	self.get_tree().paused = false
+	animation_player.play("Unpause")
+
+
+func _on_RestartWaveButton_pressed():
+	current_wave.free()
+	game_instance.clear_balls_sync()
+	thread_load_and_instance(wave_array[wave_index])
+	game_instance.paddle.paddle_state = Enums.PADDLE_STATE.BALL_LOST

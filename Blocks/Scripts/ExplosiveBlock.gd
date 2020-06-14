@@ -10,7 +10,7 @@ export var shake_amount = .1
 export var hitPoints = 1
 export var score = 200
 var block_destroyed = false 
-
+var last_multiplier = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,7 +34,7 @@ func destroy():
 	$Sprite.visible = false
 	if $AnimationPlayer: 
 		$AnimationPlayer.play("Explode")
-	emit_signal("block_destroyed", self)
+	emit_signal("block_destroyed", score * last_multiplier)
 	emit_signal("shake_camera", shake_amount)
 
 func apply_radial_damage():

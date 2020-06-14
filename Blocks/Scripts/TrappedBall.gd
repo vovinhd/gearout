@@ -45,4 +45,4 @@ func destroy():
 	#ball.connect("ball_lost", self, "reset")
 	game_instance.paddle.connect("paddle_moved", ball, "paddle_moved")
 	
-	emit_signal("block_destroyed", self)
+	emit_signal("block_destroyed", score)
