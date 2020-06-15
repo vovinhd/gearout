@@ -7,6 +7,9 @@ extends Node2D
 var options_offset = 640
 
 
+func _ready():
+	$Menu/MainMenu/VBoxContainer/StartButton.grab_focus()
+
 func load_game(): 
 	Transition.transition_to("res://LevelContainer.tscn")
 

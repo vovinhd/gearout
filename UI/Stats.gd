@@ -13,6 +13,7 @@ func _ready():
 		$Menu/MainMenu/HBoxContainer/Stats/TotalScore.text ="%07d" % stats.score
 		$Menu/MainMenu/HBoxContainer/Stats/TotalTime.text = format_time(stats.total_play_time)
 		$Menu/MainMenu/HBoxContainer/Stats/TotalRestarts.text = "%d" %  stats.balls_lost
+	$Menu/Backbutton.grab_focus()
 
 
 func format_time(time: float) -> String:

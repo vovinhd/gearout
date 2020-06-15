@@ -53,7 +53,7 @@ func clear_balls():
 			if ball is Ball:
 				 ball.phase_out()
 			else: 
-				print(ball.name)
+				print("Found non ball entity in balls array ", ball.name)
 
 
 #	balls = []
@@ -74,12 +74,13 @@ func set_default_ball():
 
 func sub_bomb(): 
 	bomb_counter -= 1
-	print(bomb_counter)
+	print("Blasts remaining ", bomb_counter)
 	if bomb_counter <= 0: 
 		set_default_ball()
 
 
 func set_ball_speed(speed): 
 	ball_speed = speed
+	print("Ballspeed set to ", ball_speed)
 	emit_signal("ball_speed", speed)
 	

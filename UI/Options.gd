@@ -9,7 +9,6 @@ var sfx_bus
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sfx_bus = AudioServer.get_bus_index("SFX")
-	print(sfx_bus)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,5 +22,5 @@ func _on_CheckFullscreen_toggled(button_pressed):
 
 func _on_SFXVolumeSlider_value_changed(value):
 	var new_vol = log(value) * 20
-	print(new_vol)
+	print("Set SFX vol: ", new_vol)
 	AudioServer.set_bus_volume_db(sfx_bus, new_vol)

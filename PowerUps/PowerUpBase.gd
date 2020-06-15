@@ -39,7 +39,6 @@ func _on_Sensor_body_entered(body):
 		emit_signal("collected", score)
 
 func apply_effect(): 
-	print("apply_effect")
 	var effector = find_node("Effector") 
 	if effector:
 		effector.apply_effect()

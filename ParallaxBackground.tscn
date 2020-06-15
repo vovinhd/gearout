@@ -19,7 +19,7 @@ centered = false
 region_rect = Rect2( 0, 0, 100, 350 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
-motion_scale = Vector2( 0.1, 0.1 )
+motion_scale = Vector2( 0.13, 0.1 )
 motion_mirroring = Vector2( 807.174, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxLayer2"]
@@ -119,7 +119,7 @@ centered = false
 
 [node name="Sprite9" type="Sprite" parent="ParallaxLayer3"]
 material = ExtResource( 4 )
-position = Vector2( 304, 176 )
+position = Vector2( 296, 168 )
 scale = Vector2( 0.588235, 0.577556 )
 texture = ExtResource( 1 )
 centered = false

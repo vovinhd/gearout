@@ -12,7 +12,7 @@ var cleared = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	connect("wave_completed", game_instance, "clear_balls")
-	print(ball_base_speed)
+	#print(ball_base_speed)
 	#game_instance.set_ball_speed(ball_base_speed)
 	for node in get_children():
 		if("block_destroyed" in node):

@@ -21,11 +21,17 @@ signal scroll_speed(scrollspeed)
 signal wave_instanced
 
 export(Array, PackedScene) var wave_array = [
-#	preload("res://Waves/Test01.tscn"),
-#	preload("res://Waves/Test02.tscn"),
-#	preload("res://Waves/Test04.tscn"),
-#	preload("res://Waves/Test03.tscn"),
-#	preload("res://Waves/Test_Reactor.tscn"),
+	preload("res://Waves/Demo/Demo01.tscn"),
+	preload("res://Waves/Demo/Demo02.tscn"),
+	preload("res://Waves/Demo/Demo10.tscn"),
+	preload("res://Waves/Demo/Demo09.tscn"),
+	preload("res://Waves/Demo/Demo05.tscn"),
+	preload("res://Waves/Demo/Demo03.tscn"),
+	preload("res://Waves/Demo/Demo06.tscn"),
+	preload("res://Waves/Demo/Demo04.tscn"),
+	preload("res://Waves/Demo/Demo07.tscn"),
+	preload("res://Waves/Demo/Demo08.tscn"),
+	preload("res://Waves/Test_Reactor.tscn"),
 
 ]
 
@@ -85,7 +91,7 @@ func thread_load_and_instance(packed_scene):
 	game_instance.current_wave = current_wave
 
 	#% wave_array.size()
-	print(wave_index, current_wave.name)
+	print("At wave:", wave_index, " name: ", current_wave.name)
 	if wave_index == 0: 
 		wave_label.text = "Final Wave!"
 	else:
@@ -94,6 +100,10 @@ func thread_load_and_instance(packed_scene):
 	current_wave.set_deferred("position", offset)
 	current_wave.connect("wave_completed", self, "_on_wave_completed")
 	emit_signal("wave_instanced")
+	if OS.get_name() == "HTML5": 
+		return
+	elif loader_thread.is_active(): 
+		loader_thread.wait_to_finish()
 
 func _on_wave_completed(): 
 	emit_signal("wave_completed")
@@ -114,7 +124,6 @@ func _set_wave_stats():
 	stats.wave_balls_losts.push_back(wave_balls_lost)
 	
 	if wave_index == wave_array.size():
-		print("stats")
 		game_instance.last_stats = stats 
 		Transition.transition_to("res://UI/Stats.tscn")
 	
@@ -194,6 +203,7 @@ func add_score(score):
 
 func _on_PauseButton_pressed():
 	animation_player.play("Pause")
+	$PauseMenu/Control/MarginContainer/VBoxContainer/Button.grab_focus()
 	self.get_tree().paused = true
 
 
@@ -202,8 +212,12 @@ func _on_UnpauseButton_pressed():
 	animation_player.play("Unpause")
 
 
+
 func _on_RestartWaveButton_pressed():
 	current_wave.free()
 	game_instance.clear_balls_sync()
 	thread_load_and_instance(wave_array[wave_index])
 	game_instance.paddle.paddle_state = Enums.PADDLE_STATE.BALL_LOST
+	
+	
+
