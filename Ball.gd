@@ -67,8 +67,8 @@ func _physics_process(delta):
 				update = normal.slide(update.normalized())
 				var _direction = move_and_collide(update)
 				direction = -direction.reflect(normal)
-				#if(abs(direction.x) < 0.2):
-				#	direction = Vector2(sign(direction.x) * 0.2, direction.y)
+#				if(abs(direction.x) < 0.2):
+#					direction = Vector2(sign(direction.x) * 0.2, direction.y)
 				audio.play(0.0)
 			"Paddle":
 				update = normal.slide(update.normalized())

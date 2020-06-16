@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/Abaddon_Bold_Large.tres" type="DynamicFont" id=1]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 148.0
+margin_top = 164.0
+margin_right = 444.0
+margin_bottom = 262.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Labels" type="VBoxContainer" parent="."]
+margin_right = 201.0
+margin_bottom = 98.0
+
+[node name="Label" type="Label" parent="Labels"]
+margin_right = 201.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 1 )
+text = "Total Score:"
+align = 2
+
+[node name="Label2" type="Label" parent="Labels"]
+margin_top = 34.0
+margin_right = 201.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 1 )
+text = "Total Time:"
+align = 2
+
+[node name="Label3" type="Label" parent="Labels"]
+margin_top = 68.0
+margin_right = 201.0
+margin_bottom = 98.0
+custom_fonts/font = ExtResource( 1 )
+text = "Total Restarts:"
+align = 2
+
+[node name="Stats" type="VBoxContainer" parent="."]
+margin_left = 205.0
+margin_right = 296.0
+margin_bottom = 98.0
+
+[node name="TotalScore" type="Label" parent="Stats"]
+margin_right = 91.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 1 )
+text = "0000000"
+
+[node name="TotalTime" type="Label" parent="Stats"]
+margin_top = 34.0
+margin_right = 91.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 1 )
+text = "00:00"
+
+[node name="TotalRestarts" type="Label" parent="Stats"]
+margin_top = 68.0
+margin_right = 91.0
+margin_bottom = 98.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"

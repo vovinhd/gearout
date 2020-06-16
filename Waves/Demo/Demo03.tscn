@@ -50,7 +50,7 @@ tracks/2/keys = {
 } ]
 }
 
-[node name="Demo02" type="Node2D"]
+[node name="Demo02 test " type="Node2D"]
 script = ExtResource( 1 )
 ball_base_speed = 280.0
 
@@ -478,19 +478,16 @@ position = Vector2( 472, 220 )
 position = Vector2( 440, 220 )
 powerup = ExtResource( 8 )
 
-[node name="LargeBlock" parent="." instance=ExtResource( 9 )]
-position = Vector2( 440, 180 )
-
 [node name="LargeBlock2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 440, 148 )
 
-[node name="LargeBlock3" parent="." instance=ExtResource( 9 )]
-position = Vector2( 440, 116 )
+[node name="LargeBlock4" parent="." instance=ExtResource( 9 )]
+position = Vector2( 440, 180 )
 
 [node name="LargeBlock5" parent="." instance=ExtResource( 9 )]
-position = Vector2( 440, 148 )
+position = Vector2( 456, 180 )
 
-[node name="LargeBlock4" parent="." instance=ExtResource( 9 )]
+[node name="LargeBlock3" parent="." instance=ExtResource( 9 )]
 position = Vector2( 440, 116 )
 
 [node name="LargeBlock9" parent="." instance=ExtResource( 9 )]
@@ -499,43 +496,17 @@ position = Vector2( 440, 84 )
 [node name="LargeBlock8" parent="." instance=ExtResource( 9 )]
 position = Vector2( 440, 52 )
 
-[node name="LargeBlock7" parent="." instance=ExtResource( 9 )]
-position = Vector2( 440, 84 )
-
-[node name="LargeBlock6" parent="." instance=ExtResource( 9 )]
-position = Vector2( 440, 52 )
-
-[node name="LargeBlock18" parent="." instance=ExtResource( 9 )]
-position = Vector2( 456, 180 )
-powerup = ExtResource( 8 )
-
 [node name="LargeBlock17" parent="." instance=ExtResource( 9 )]
 position = Vector2( 456, 148 )
 
 [node name="LargeBlock16" parent="." instance=ExtResource( 9 )]
 position = Vector2( 456, 116 )
 
-[node name="LargeBlock15" parent="." instance=ExtResource( 9 )]
-position = Vector2( 456, 148 )
-powerup = ExtResource( 8 )
-
-[node name="LargeBlock14" parent="." instance=ExtResource( 9 )]
-position = Vector2( 456, 116 )
-powerup = ExtResource( 8 )
-
 [node name="LargeBlock13" parent="." instance=ExtResource( 9 )]
 position = Vector2( 456, 84 )
 
 [node name="LargeBlock12" parent="." instance=ExtResource( 9 )]
 position = Vector2( 456, 52 )
-
-[node name="LargeBlock11" parent="." instance=ExtResource( 9 )]
-position = Vector2( 456, 84 )
-powerup = ExtResource( 8 )
-
-[node name="LargeBlock10" parent="." instance=ExtResource( 9 )]
-position = Vector2( 456, 52 )
-powerup = ExtResource( 8 )
 
 [node name="LargeBlock27" parent="." instance=ExtResource( 9 )]
 position = Vector2( 472, 180 )
@@ -546,22 +517,10 @@ position = Vector2( 472, 148 )
 [node name="LargeBlock25" parent="." instance=ExtResource( 9 )]
 position = Vector2( 472, 116 )
 
-[node name="LargeBlock24" parent="." instance=ExtResource( 9 )]
-position = Vector2( 472, 148 )
-
-[node name="LargeBlock23" parent="." instance=ExtResource( 9 )]
-position = Vector2( 472, 116 )
-
 [node name="LargeBlock22" parent="." instance=ExtResource( 9 )]
 position = Vector2( 472, 84 )
 
 [node name="LargeBlock21" parent="." instance=ExtResource( 9 )]
-position = Vector2( 472, 52 )
-
-[node name="LargeBlock20" parent="." instance=ExtResource( 9 )]
-position = Vector2( 472, 84 )
-
-[node name="LargeBlock19" parent="." instance=ExtResource( 9 )]
 position = Vector2( 472, 52 )
 
 [node name="LargeBlock54" parent="." instance=ExtResource( 9 )]
@@ -573,17 +532,11 @@ position = Vector2( 512, 148 )
 [node name="LargeBlock52" parent="." instance=ExtResource( 9 )]
 position = Vector2( 512, 116 )
 
-[node name="LargeBlock51" parent="." instance=ExtResource( 9 )]
-position = Vector2( 512, 148 )
-
-[node name="LargeBlock50" parent="." instance=ExtResource( 9 )]
-position = Vector2( 512, 116 )
-
-[node name="LargeBlock69" parent="." instance=ExtResource( 9 )]
-position = Vector2( 512, 276 )
-
 [node name="LargeBlock72" parent="." instance=ExtResource( 9 )]
 position = Vector2( 512, 308 )
+
+[node name="LargeBlock74" parent="." instance=ExtResource( 9 )]
+position = Vector2( 512, 276 )
 
 [node name="LargeBlock68" parent="." instance=ExtResource( 9 )]
 position = Vector2( 512, 244 )
@@ -591,22 +544,10 @@ position = Vector2( 512, 244 )
 [node name="LargeBlock67" parent="." instance=ExtResource( 9 )]
 position = Vector2( 512, 212 )
 
-[node name="LargeBlock66" parent="." instance=ExtResource( 9 )]
-position = Vector2( 512, 244 )
-
-[node name="LargeBlock65" parent="." instance=ExtResource( 9 )]
-position = Vector2( 512, 212 )
-
 [node name="LargeBlock49" parent="." instance=ExtResource( 9 )]
 position = Vector2( 512, 84 )
 
 [node name="LargeBlock48" parent="." instance=ExtResource( 9 )]
-position = Vector2( 512, 52 )
-
-[node name="LargeBlock47" parent="." instance=ExtResource( 9 )]
-position = Vector2( 512, 84 )
-
-[node name="LargeBlock46" parent="." instance=ExtResource( 9 )]
 position = Vector2( 512, 52 )
 
 [node name="LargeBlock45" parent="." instance=ExtResource( 9 )]
@@ -621,14 +562,11 @@ position = Vector2( 528, 116 )
 [node name="LargeBlock42" parent="." instance=ExtResource( 9 )]
 position = Vector2( 528, 148 )
 
-[node name="LargeBlock41" parent="." instance=ExtResource( 9 )]
-position = Vector2( 528, 116 )
-
-[node name="LargeBlock64" parent="." instance=ExtResource( 9 )]
-position = Vector2( 528, 276 )
-
 [node name="LargeBlock71" parent="." instance=ExtResource( 9 )]
 position = Vector2( 528, 308 )
+
+[node name="LargeBlock73" parent="." instance=ExtResource( 9 )]
+position = Vector2( 528, 276 )
 
 [node name="LargeBlock63" parent="." instance=ExtResource( 9 )]
 position = Vector2( 528, 244 )
@@ -636,22 +574,10 @@ position = Vector2( 528, 244 )
 [node name="LargeBlock62" parent="." instance=ExtResource( 9 )]
 position = Vector2( 528, 212 )
 
-[node name="LargeBlock61" parent="." instance=ExtResource( 9 )]
-position = Vector2( 528, 244 )
-
-[node name="LargeBlock60" parent="." instance=ExtResource( 9 )]
-position = Vector2( 528, 212 )
-
 [node name="LargeBlock40" parent="." instance=ExtResource( 9 )]
 position = Vector2( 528, 84 )
 
 [node name="LargeBlock39" parent="." instance=ExtResource( 9 )]
-position = Vector2( 528, 52 )
-
-[node name="LargeBlock38" parent="." instance=ExtResource( 9 )]
-position = Vector2( 528, 84 )
-
-[node name="LargeBlock37" parent="." instance=ExtResource( 9 )]
 position = Vector2( 528, 52 )
 
 [node name="LargeBlock36" parent="." instance=ExtResource( 9 )]
@@ -661,12 +587,6 @@ position = Vector2( 544, 180 )
 position = Vector2( 544, 148 )
 
 [node name="LargeBlock34" parent="." instance=ExtResource( 9 )]
-position = Vector2( 544, 116 )
-
-[node name="LargeBlock33" parent="." instance=ExtResource( 9 )]
-position = Vector2( 544, 148 )
-
-[node name="LargeBlock32" parent="." instance=ExtResource( 9 )]
 position = Vector2( 544, 116 )
 
 [node name="LargeBlock59" parent="." instance=ExtResource( 9 )]
@@ -681,20 +601,8 @@ position = Vector2( 544, 244 )
 [node name="LargeBlock57" parent="." instance=ExtResource( 9 )]
 position = Vector2( 544, 212 )
 
-[node name="LargeBlock56" parent="." instance=ExtResource( 9 )]
-position = Vector2( 544, 244 )
-
-[node name="LargeBlock55" parent="." instance=ExtResource( 9 )]
-position = Vector2( 544, 212 )
-
 [node name="LargeBlock31" parent="." instance=ExtResource( 9 )]
 position = Vector2( 544, 84 )
 
 [node name="LargeBlock30" parent="." instance=ExtResource( 9 )]
-position = Vector2( 544, 52 )
-
-[node name="LargeBlock29" parent="." instance=ExtResource( 9 )]
-position = Vector2( 544, 84 )
-
-[node name="LargeBlock28" parent="." instance=ExtResource( 9 )]
 position = Vector2( 544, 52 )

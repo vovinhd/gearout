@@ -138,6 +138,15 @@ func _set_wave_stats():
 	$WaveCompleted/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaveBalls.text =  "%d" % wave_balls_lost
 	$WaveCompleted/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/TotalBalls.text = "%d" %  stats.balls_lost
 
+	persistent_progress.add_wave_stat(
+		wave_index,
+		current_wave.name,
+		"Demo", 
+		wave_score,
+		wave_time,
+		wave_balls_lost
+	)
+
 func format_time(time: float) -> String:
 	var minutes = time / 60
 	var seconds = fmod(time, 60)
