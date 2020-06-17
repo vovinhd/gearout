@@ -45,6 +45,7 @@ PaddleState="*res://Enums.gd"
 game_instance="*res://GameInstance.gd"
 Transition="*res://UI/Transition.tscn"
 persistent_progress="*res://PersistentProgress.gd"
+episode_manager="*res://EpisodeManager.gd"
 
 [display]
 

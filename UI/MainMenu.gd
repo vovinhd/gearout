@@ -10,12 +10,19 @@ var options_offset = 640
 func _ready():
 	$Menu/MainMenu/VBoxContainer/StartButton.grab_focus()
 
-func load_game(): 
-	Transition.transition_to("res://LevelContainer.tscn")
+func _input(event):
+	if event.is_action("ui_cancel"):
+		_on_Backbutton_pressed()
 
+func load_game(): 
+	if persistent_progress.has_progress(): 
+		Transition.transition_to("res://UI/LevelSelect.tscn")
+	else:
+		episode_manager.start_episode("Demo")
 
 func view_settings(): 
 	$AnimationPlayer.play("ViewSettings")
+	$Menu/Backbutton.grab_focus()
 
 func quit_game(): 
 	get_tree().quit()
@@ -32,3 +39,8 @@ func _on_ExitButton_pressed():
 
 func _on_Backbutton_pressed():
 	$AnimationPlayer.play("ViewMain")
+	$Menu/MainMenu/VBoxContainer/StartButton.grab_focus()
+
+
+func _on_URLButton_pressed():
+	OS.shell_open("https://vovin.itch.io")

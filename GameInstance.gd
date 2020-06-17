@@ -8,6 +8,7 @@ enum GAME_STATE {
 
 signal ball_state(ball_state)
 signal ball_speed(ball_speed)
+
 # references 
 var game_state = GAME_STATE.IN_MENU
 var level_container

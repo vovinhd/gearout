@@ -32,7 +32,6 @@ export(Array, PackedScene) var wave_array = [
 	preload("res://Waves/Demo/Demo07.tscn"),
 	preload("res://Waves/Demo/Demo08.tscn"),
 	preload("res://Waves/Test_Reactor.tscn"),
-
 ]
 
 export var wave_index = 0
@@ -60,6 +59,9 @@ var loader_thread : Thread = null
 var showing_wave_stats = false
 var current_wave
 func _ready():
+	if not episode_manager.standalone: 
+		wave_array = episode_manager.get_current_episode()
+		wave_index = int(episode_manager.wave_index)-1
 	game_instance.level_container = self
 	self.connect("scroll_speed", track_generator, "scroll_tracks")
 	self.connect("scroll_speed", self, "scroll_holders")
