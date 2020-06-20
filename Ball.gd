@@ -52,10 +52,20 @@ func recieve_speed(new_speed):
 	print("Ball speed set to ", new_speed)
 	speed = new_speed
 
+func magetic_attraction(direction_x, direction_y, paddle_y, position_y) -> Vector2:
+	var distance = position_y - paddle_y
+	var force = direction_y - distance
+	var sum = abs(direction_x) + abs(force)
+	var direction  = Vector2(direction_x, force/(sum * 5)).normalized()
+	print("dir_x: ", direction_x, " position_y: ", position_y, " paddle_y: ", paddle_y, " force: ", force, " direction: ", direction)
+	return direction
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if paddle.paddle_state != PADDLE_STATE.BALL_ACTIVE:
 		return
+	if paddle.paddle_power == Enums.PADDLE_POWER.MAGNET:
+		direction = magetic_attraction(direction.x, direction.y, paddle.position.y, position.y)
 	var velocity = direction.normalized() * speed
 	var update = velocity * delta
 	var collision = move_and_collide(update)

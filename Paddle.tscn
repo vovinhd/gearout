@@ -1,10 +1,54 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://tex/paddle.png" type="Texture" id=1]
 [ext_resource path="res://Paddle.gd" type="Script" id=2]
 [ext_resource path="res://tex/LargeGear.png" type="Texture" id=3]
 [ext_resource path="res://tex/SmallGear.png" type="Texture" id=4]
 [ext_resource path="res://sfx/ball_launched.wav" type="AudioStream" id=5]
+[ext_resource path="res://tex/how_do_they_work.png" type="Texture" id=6]
+
+[sub_resource type="Shader" id=12]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+
+uniform float u_speed = 1; 
+
+
+// Texture must have 'Filter'-flag enabled!
+
+// Automatic smoothing
+// independent of geometry and perspective
+vec4 texturePointSmooth(sampler2D smp, vec2 uv, vec2 pixel_size)
+{
+	vec2 ddx = dFdx(uv);
+	vec2 ddy = dFdy(uv);
+	vec2 lxy = sqrt(ddx * ddx + ddy * ddy);
+	
+	vec2 uv_pixels = uv / pixel_size;
+	
+	vec2 uv_pixels_floor = round(uv_pixels) - vec2(0.5f);
+	vec2 uv_dxy_pixels = uv_pixels - uv_pixels_floor;
+	
+	uv_dxy_pixels = clamp((uv_dxy_pixels - vec2(0.5f)) * pixel_size / lxy + vec2(0.5f), 0.0f, 1.0f);
+	
+	uv = uv_pixels_floor * pixel_size;
+	
+	return textureGrad(smp, uv + uv_dxy_pixels * pixel_size, ddx, ddy);
+}
+
+void fragment()
+{
+	COLOR = texturePointSmooth(TEXTURE, vec2(UV.x + u_speed * TIME, UV.y), TEXTURE_PIXEL_SIZE);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = SubResource( 12 )
+shader_param/u_speed = 0.1
+
+[sub_resource type="Animation" id=11]
+resource_name = "pulse"
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.0
@@ -120,6 +164,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 19, 18, 17, 16, 15, 14, 6 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("MagnetWave:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Extend"
@@ -228,6 +284,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 15, 16, 19 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("MagnetWave:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [sub_resource type="Animation" id=8]
 tracks/0/type = "value"
@@ -271,16 +339,64 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 6, 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("ExtendTop:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ExtendBottom:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MagnetWave:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [node name="Paddle" type="KinematicBody2D"]
 script = ExtResource( 2 )
 can_fire_gun = true
+
+[node name="MagnetWave" type="Sprite" parent="."]
+material = SubResource( 13 )
+texture = ExtResource( 6 )
+centered = false
+offset = Vector2( 12.028, -8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 640, 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MagnetWave"]
+anims/pulse = SubResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 10, 0 )
 texture = ExtResource( 1 )
 vframes = 5
 hframes = 7
+frame = 19
 
 [node name="LargeGear" type="Sprite" parent="Sprite"]
 position = Vector2( -10, -10 )
@@ -325,11 +441,13 @@ shape = SubResource( 1 )
 [node name="ExtendTop" type="CollisionShape2D" parent="."]
 position = Vector2( 6, -39 )
 shape = SubResource( 10 )
+disabled = true
 
 [node name="ExtendBottom" type="CollisionShape2D" parent="."]
 position = Vector2( 6, 39 )
 scale = Vector2( 1, -1 )
 shape = SubResource( 10 )
+disabled = true
 
 [node name="BallSpawnPosition" type="Node2D" parent="."]
 position = Vector2( 5, 0 )
