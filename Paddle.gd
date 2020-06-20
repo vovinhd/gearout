@@ -26,22 +26,24 @@ onready var sg_bottom = $Sprite/SmallGear4
 onready var sg_bottom_back = $Sprite/SmallGear2
 
 var BALL = preload("res://Ball.tscn")
+var projectile = preload("res://PowerUps/PlayerProjectile.tscn")
 onready var ball
-
 onready var animation_player = $AnimationPlayer
 
-const PADDLE_STATE = Enums.PADDLE_STATE
+export var can_fire_gun = false
 
+const PADDLE_STATE = Enums.PADDLE_STATE
 var paddle_state = PADDLE_STATE.BALL_LOST
+
+const PADDLE_POWER = Enums.PADDLE_POWER
+var paddle_power = PADDLE_POWER.DEFAULT setget set_power
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	game_instance.paddle = self
-
 	rot_r = [lg_top,sg_bottom,sg_bottom_back]
 	rot_l = [lg_bottom, sg_top_back, sg_top]
-
-
+	
 func _input(_event):
 	if (Input.is_action_just_pressed("Fire")):
 		match paddle_state: 
@@ -52,7 +54,8 @@ func _input(_event):
 			PADDLE_STATE.BALL_WAITING:
 				_fire_ball()
 			PADDLE_STATE.BALL_ACTIVE:
-				pass
+				if(paddle_power == PADDLE_POWER.GUN): 
+					_fire_gun()
 
 
 func _prepare_ball(): 
@@ -61,7 +64,7 @@ func _prepare_ball():
 	game_instance.world.add_child(ball)
 	#ball.connect("ball_lost", self, "reset")
 	self.connect("paddle_moved", ball, "paddle_moved")
-
+	game_instance.connect("paddle_power", self, "set_power")
 	ball.global_transform = $BallSpawnPosition.global_transform
 	animation_player.play("PrepareBall")
 	ball.phase_in()
@@ -113,9 +116,48 @@ func _physics_process(delta) -> void:
 	last_position = self.position
 #	pass
 
+func set_power(power): 
+	_disable_current_power()
+	yield(animation_player, "animation_finished")
+	paddle_power = power
+	_enable_power()
+			
+func _disable_current_power(): 
+	match paddle_power:
+		PADDLE_POWER.DEFAULT:
+			animation_player.play("Reset")
+		PADDLE_POWER.EXTEND:
+			animation_player.play("DisableExtend")
+		PADDLE_POWER.MAGNET:
+			animation_player.play("DisableMagnet")
+		PADDLE_POWER.GUN:
+			animation_player.play("DisableGun")
+			
+func _enable_power(): 
+	match paddle_power:
+		PADDLE_POWER.DEFAULT:
+			animation_player.play("Reset")
+		PADDLE_POWER.EXTEND:
+			animation_player.play("Extend")
+		PADDLE_POWER.MAGNET:
+			animation_player.play("Magent")
+		PADDLE_POWER.GUN:
+			animation_player.play("Gun")
+
+func _fire_gun(): 
+	print("Pew pew!")
+	var new_projectile = projectile.instance()
+	game_instance.world.add_child(new_projectile)
+	new_projectile.global_transform = $ShotSpawnPosition.global_transform
+	
+func _enable_magnet(): 
+	pass
+func _enable_gun(): 
+	pass
+
 
 func reset(_any = null):
-	animation_player.play("Reset")
+	set_power(PADDLE_POWER.DEFAULT)
 	paddle_state = PADDLE_STATE.BALL_LOST
 	ball_offset = 0
 

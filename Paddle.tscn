@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://tex/paddle.png" type="Texture" id=1]
 [ext_resource path="res://Paddle.gd" type="Script" id=2]
@@ -10,8 +10,226 @@
 radius = 7.0
 height = 24.0
 
+[sub_resource type="ConvexPolygonShape2D" id=10]
+points = PoolVector2Array( -2.988, 15.973, 1.273, 20.294, 4.998, 23.444, 5.126, -3.885, -1.071, -20.174, -2.94, -20.146 )
+
 [sub_resource type="Animation" id=2]
-resource_name = "PrepareBall"
+resource_name = "DisableExtend"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 9, 8, 7, 6 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ExtendTop:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ExtendBottom:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ExtendBottom:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 6, 39 ), Vector2( 6, 27 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ExtendTop:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 6, -39 ), Vector2( 6, -27 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "DisableGun"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 25, 24, 23, 22, 21, 6 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:can_fire_gun")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "DisableMagnet"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 19, 18, 17, 16, 15, 14, 6 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Extend"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 7, 8, 9, 10 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ExtendTop:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 6, -28 ), Vector2( 6, -39 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ExtendBottom:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 6, 27 ), Vector2( 6, 39 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ExtendTop:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ExtendBottom:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Gun"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 21, 22, 23, 24, 25 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:can_fire_gun")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Magent"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 15, 16, 19 ]
+}
+
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -22,7 +240,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 0, 1, 2, 3, 3, 2, 1, 5 ]
+"values": [ 0, 0, 1, 2, 3, 3, 2, 1, 6 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -39,9 +257,8 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Reset"
-length = 0.1
+[sub_resource type="Animation" id=9]
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -52,48 +269,51 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 5, 0 ]
+"values": [ 6, 0 ]
 }
 
 [node name="Paddle" type="KinematicBody2D"]
 script = ExtResource( 2 )
+can_fire_gun = true
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 10, 0 )
 texture = ExtResource( 1 )
-hframes = 6
+vframes = 5
+hframes = 7
 
 [node name="LargeGear" type="Sprite" parent="Sprite"]
-position = Vector2( -4, -10 )
+position = Vector2( -10, -10 )
 z_index = -1
 texture = ExtResource( 3 )
 hframes = 3
 
 [node name="LargeGear2" type="Sprite" parent="Sprite"]
-position = Vector2( -4, 10 )
+position = Vector2( -10, 10 )
 z_index = -1
 texture = ExtResource( 3 )
 hframes = 3
 
 [node name="SmallGear" type="Sprite" parent="Sprite"]
-position = Vector2( -5, -8 )
+position = Vector2( -17, -7 )
 z_index = -2
 texture = ExtResource( 4 )
 hframes = 3
 
 [node name="SmallGear2" type="Sprite" parent="Sprite"]
-position = Vector2( -5, 12 )
+position = Vector2( -18, 10 )
 z_index = -2
 texture = ExtResource( 4 )
 hframes = 3
 
 [node name="SmallGear3" type="Sprite" parent="Sprite"]
-position = Vector2( 1, -19 )
+position = Vector2( -5, -19 )
 z_index = -2
 texture = ExtResource( 4 )
 hframes = 3
 
 [node name="SmallGear4" type="Sprite" parent="Sprite"]
-position = Vector2( 1, 20 )
+position = Vector2( -5, 20 )
 z_index = -2
 texture = ExtResource( 4 )
 hframes = 3
@@ -102,15 +322,34 @@ hframes = 3
 position = Vector2( 5, 0 )
 shape = SubResource( 1 )
 
+[node name="ExtendTop" type="CollisionShape2D" parent="."]
+position = Vector2( 6, -39 )
+shape = SubResource( 10 )
+
+[node name="ExtendBottom" type="CollisionShape2D" parent="."]
+position = Vector2( 6, 39 )
+scale = Vector2( 1, -1 )
+shape = SubResource( 10 )
+
 [node name="BallSpawnPosition" type="Node2D" parent="."]
 position = Vector2( 5, 0 )
+
+[node name="ShotSpawnPosition" type="Node2D" parent="."]
+position = Vector2( 16, -1 )
 
 [node name="BallFirePosition" type="Node2D" parent="."]
 position = Vector2( 16, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/PrepareBall = SubResource( 2 )
-anims/Reset = SubResource( 3 )
+autoplay = "Reset"
+anims/DisableExtend = SubResource( 2 )
+anims/DisableGun = SubResource( 3 )
+anims/DisableMagnet = SubResource( 4 )
+anims/Extend = SubResource( 5 )
+anims/Gun = SubResource( 6 )
+anims/Magent = SubResource( 7 )
+anims/PrepareBall = SubResource( 8 )
+anims/Reset = SubResource( 9 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )

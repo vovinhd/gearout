@@ -15,3 +15,10 @@ enum BALL_STATE {
 	ACID,
 	BOMB
 }
+
+enum PADDLE_POWER {
+	DEFAULT,
+	EXTEND,
+	MAGNET,
+	GUN
+}

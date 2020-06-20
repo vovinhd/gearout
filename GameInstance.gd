@@ -8,6 +8,7 @@ enum GAME_STATE {
 
 signal ball_state(ball_state)
 signal ball_speed(ball_speed)
+signal paddle_power(paddle_power)
 
 # references 
 var game_state = GAME_STATE.IN_MENU
@@ -20,7 +21,7 @@ var balls : Array = Array()
 var ball_speed = 400
 var bomb_counter = 5
 const BALL_STATE = Enums.BALL_STATE
-
+const PADDLE_POWER = Enums.PADDLE_POWER
 func _ready():
 	print("Running on platform ", OS.get_name())
 
@@ -31,6 +32,10 @@ func _input(event):
 				get_tree().quit()
 			if event.pressed and event.scancode == KEY_ENTER: 
 				OS.window_fullscreen = !OS.window_fullscreen
+
+#------------------------
+#	balls
+#------------------------
 
 func _on_ball_lost(ball): 
 	balls.erase(ball)
@@ -56,9 +61,6 @@ func clear_balls():
 			else: 
 				print("Found non ball entity in balls array ", ball.name)
 
-
-#	balls = []
-
 func add_ball(ball): 
 	balls.push_back(ball)
 	return balls.size() - 1
@@ -79,9 +81,23 @@ func sub_bomb():
 	if bomb_counter <= 0: 
 		set_default_ball()
 
-
 func set_ball_speed(speed): 
 	ball_speed = speed
 	print("Ballspeed set to ", ball_speed)
 	emit_signal("ball_speed", speed)
 	
+#------------------------
+#	paddle
+#------------------------
+
+func set_extended_paddle(): 
+	emit_signal("paddle_power", PADDLE_POWER.EXTEND)
+
+func set_magnetic_paddle(): 
+	emit_signal("paddle_power", PADDLE_POWER.MAGNET)
+	
+func set_gun_paddle(): 
+	emit_signal("paddle_power", PADDLE_POWER.GUN)
+	
+func set_default_paddle(): 
+	emit_signal("paddle_power", PADDLE_POWER.DEFAULT)

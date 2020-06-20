@@ -19,6 +19,7 @@ var damage = 1
 var paddle_y = 0
 var multiplier = 1
 const MAX_Y_DIFF = 20
+const EXTEND_DEFLECTION_FACTOR = 3
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_meta("type", "ball")
@@ -73,7 +74,10 @@ func _physics_process(delta):
 			"Paddle":
 				update = normal.slide(update.normalized())
 				var _direction = move_and_collide(update)
-				direction = Vector2(1, (position.y - paddle_y)/MAX_Y_DIFF)
+				if(game_instance.paddle.paddle_power == Enums.PADDLE_POWER.EXTEND):
+					direction = Vector2(1, (position.y - paddle_y)/(MAX_Y_DIFF * EXTEND_DEFLECTION_FACTOR))
+				else:
+					direction = Vector2(1, (position.y - paddle_y)/MAX_Y_DIFF)
 				multiplier = 1
 				audio.play(0.0)
 			_: 
