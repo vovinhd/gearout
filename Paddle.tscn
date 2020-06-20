@@ -7,7 +7,7 @@
 [ext_resource path="res://sfx/ball_launched.wav" type="AudioStream" id=5]
 [ext_resource path="res://tex/how_do_they_work.png" type="Texture" id=6]
 
-[sub_resource type="Shader" id=12]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -43,22 +43,35 @@ void fragment()
 }
 "
 
-[sub_resource type="ShaderMaterial" id=13]
-shader = SubResource( 12 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/u_speed = 0.1
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=3]
 resource_name = "pulse"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=4]
 radius = 7.0
 height = 24.0
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( -2.988, 15.973, 1.273, 20.294, 4.998, 23.444, 5.126, -3.885, -1.071, -20.174, -2.94, -20.146 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "DisableExtend"
+[sub_resource type="Animation" id=6]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -121,8 +134,7 @@ tracks/4/keys = {
 "values": [ Vector2( 6, -39 ), Vector2( 6, -27 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "DisableGun"
+[sub_resource type="Animation" id=7]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -149,8 +161,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "DisableMagnet"
+[sub_resource type="Animation" id=8]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -177,8 +188,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Extend"
+[sub_resource type="Animation" id=9]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -241,8 +251,7 @@ tracks/4/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Gun"
+[sub_resource type="Animation" id=10]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -269,8 +278,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "Magent"
+[sub_resource type="Animation" id=11]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -297,7 +305,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=12]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -325,7 +333,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=13]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -381,15 +389,17 @@ script = ExtResource( 2 )
 can_fire_gun = true
 
 [node name="MagnetWave" type="Sprite" parent="."]
-material = SubResource( 13 )
+material = SubResource( 2 )
+position = Vector2( 13, -9 )
 texture = ExtResource( 6 )
 centered = false
-offset = Vector2( 12.028, -8 )
+vframes = 4
+frame = 3
 region_enabled = true
-region_rect = Rect2( 0, 0, 640, 16 )
+region_rect = Rect2( 0, 0, 640, 64 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MagnetWave"]
-anims/pulse = SubResource( 11 )
+anims/pulse = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 10, 0 )
@@ -436,17 +446,17 @@ hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 5, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="ExtendTop" type="CollisionShape2D" parent="."]
 position = Vector2( 6, -39 )
-shape = SubResource( 10 )
+shape = SubResource( 5 )
 disabled = true
 
 [node name="ExtendBottom" type="CollisionShape2D" parent="."]
 position = Vector2( 6, 39 )
 scale = Vector2( 1, -1 )
-shape = SubResource( 10 )
+shape = SubResource( 5 )
 disabled = true
 
 [node name="BallSpawnPosition" type="Node2D" parent="."]
@@ -460,14 +470,14 @@ position = Vector2( 16, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Reset"
-anims/DisableExtend = SubResource( 2 )
-anims/DisableGun = SubResource( 3 )
-anims/DisableMagnet = SubResource( 4 )
-anims/Extend = SubResource( 5 )
-anims/Gun = SubResource( 6 )
-anims/Magent = SubResource( 7 )
-anims/PrepareBall = SubResource( 8 )
-anims/Reset = SubResource( 9 )
+anims/DisableExtend = SubResource( 6 )
+anims/DisableGun = SubResource( 7 )
+anims/DisableMagnet = SubResource( 8 )
+anims/Extend = SubResource( 9 )
+anims/Gun = SubResource( 10 )
+anims/Magent = SubResource( 11 )
+anims/PrepareBall = SubResource( 12 )
+anims/Reset = SubResource( 13 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
