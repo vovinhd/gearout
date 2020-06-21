@@ -18,8 +18,14 @@ var current_wave
 var world
 var paddle 
 var balls : Array = Array()
+
 var ball_speed = 400
 var bomb_counter = 5
+var arcade_mode = false
+var lifes = 3
+const POWERUP_BONUS = 5000
+const MIN_BALL_SPEED = 150
+const BALL_SAVER_DURATION = 10
 const BALL_STATE = Enums.BALL_STATE
 const PADDLE_POWER = Enums.PADDLE_POWER
 func _ready():
@@ -101,3 +107,30 @@ func set_gun_paddle():
 	
 func set_default_paddle(): 
 	emit_signal("paddle_power", PADDLE_POWER.DEFAULT)
+	
+#------------------------
+#	Level
+#------------------------
+
+func set_ball_saver(): 
+	print("set ballsaver")
+	world.enable_ball_saver(BALL_SAVER_DURATION)
+	
+func slow_ball(): 
+	print("slow ball")
+	set_ball_speed(max(ball_speed - 50, MIN_BALL_SPEED))
+	if(ball_speed == 100):
+		add_bonus()
+
+func add_bonus(): 
+	print("add bonus")
+	level_container.add_score(POWERUP_BONUS)
+
+func add_life(): 
+	print("add life")
+	if arcade_mode: 
+		lifes += 1
+	else:
+		add_bonus()
+
+	

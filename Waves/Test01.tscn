@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Wave.gd" type="Script" id=1]
 [ext_resource path="res://Blocks/LargeBlock.tscn" type="PackedScene" id=2]
 [ext_resource path="res://tex/BlockSmall.png" type="Texture" id=3]
-[ext_resource path="res://PowerUps/ExtendPowerup.tscn" type="PackedScene" id=4]
-[ext_resource path="res://PowerUps/MagnetPowerup.tscn" type="PackedScene" id=5]
-[ext_resource path="res://PowerUps/GunPowerup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://PowerUps/SlowPowerup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://PowerUps/BallSaverPowerup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://PowerUps/ScorePowerup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://PowerUps/OneUpPowerup.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Out"
@@ -69,66 +70,84 @@ anims/Out = SubResource( 1 )
 
 [node name="SmallBlock" parent="." instance=ExtResource( 2 )]
 position = Vector2( 264, 79 )
-powerup = ExtResource( 4 )
+powerup = ExtResource( 7 )
 
 [node name="SmallBlock2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 304, 79 )
+powerup = ExtResource( 6 )
 
 [node name="SmallBlock3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 344, 79 )
+powerup = ExtResource( 9 )
 
 [node name="SmallBlock6" parent="." instance=ExtResource( 2 )]
 position = Vector2( 264, 111 )
+powerup = ExtResource( 7 )
 
 [node name="SmallBlock5" parent="." instance=ExtResource( 2 )]
 position = Vector2( 304, 111 )
+powerup = ExtResource( 6 )
 
 [node name="SmallBlock4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 344, 111 )
+powerup = ExtResource( 9 )
 
 [node name="SmallBlock12" parent="." instance=ExtResource( 2 )]
 position = Vector2( 264, 144 )
-powerup = ExtResource( 5 )
+powerup = ExtResource( 7 )
 
 [node name="SmallBlock11" parent="." instance=ExtResource( 2 )]
 position = Vector2( 304, 143 )
+powerup = ExtResource( 6 )
 
 [node name="SmallBlock10" parent="." instance=ExtResource( 2 )]
 position = Vector2( 344, 143 )
+powerup = ExtResource( 9 )
 
 [node name="SmallBlock9" parent="." instance=ExtResource( 2 )]
 position = Vector2( 264, 175 )
+powerup = ExtResource( 7 )
 
 [node name="SmallBlock8" parent="." instance=ExtResource( 2 )]
 position = Vector2( 304, 175 )
+powerup = ExtResource( 6 )
 
 [node name="SmallBlock7" parent="." instance=ExtResource( 2 )]
 position = Vector2( 344, 175 )
+powerup = ExtResource( 9 )
 
 [node name="SmallBlock24" parent="." instance=ExtResource( 2 )]
 position = Vector2( 264, 207 )
-powerup = ExtResource( 6 )
+powerup = ExtResource( 8 )
 
 [node name="SmallBlock23" parent="." instance=ExtResource( 2 )]
 position = Vector2( 304, 207 )
+powerup = ExtResource( 6 )
 
 [node name="SmallBlock22" parent="." instance=ExtResource( 2 )]
 position = Vector2( 344, 207 )
+powerup = ExtResource( 9 )
 
 [node name="SmallBlock21" parent="." instance=ExtResource( 2 )]
-position = Vector2( 264, 239 )
+position = Vector2( 264, 240 )
+powerup = ExtResource( 8 )
 
 [node name="SmallBlock20" parent="." instance=ExtResource( 2 )]
 position = Vector2( 304, 239 )
+powerup = ExtResource( 6 )
 
 [node name="SmallBlock19" parent="." instance=ExtResource( 2 )]
 position = Vector2( 344, 239 )
+powerup = ExtResource( 9 )
 
 [node name="SmallBlock18" parent="." instance=ExtResource( 2 )]
 position = Vector2( 264, 271 )
+powerup = ExtResource( 8 )
 
 [node name="SmallBlock17" parent="." instance=ExtResource( 2 )]
 position = Vector2( 304, 271 )
+powerup = ExtResource( 6 )
 
 [node name="SmallBlock16" parent="." instance=ExtResource( 2 )]
 position = Vector2( 344, 271 )
+powerup = ExtResource( 9 )

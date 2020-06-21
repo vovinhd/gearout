@@ -1,0 +1,223 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Wave.gd" type="Script" id=1]
+[ext_resource path="res://Blocks/HugeBlock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tex/BlockSmall.png" type="Texture" id=3]
+[ext_resource path="res://PowerUps/BombPowerup.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Border:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Border:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "remove_collision"
+} ]
+}
+
+[node name="1-1" type="Node2D"]
+script = ExtResource( 1 )
+ball_base_speed = 240.0
+
+[node name="Border" type="KinematicBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Border"]
+polygon = PoolVector2Array( 576, 360, 576, 320, 576, 320, 576, 40, 576, 40, 576, 0, 640, 0, 640, 360 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Border/CollisionPolygon2D"]
+antialiased = true
+texture = ExtResource( 3 )
+polygon = PoolVector2Array( 576, 0, 576, 24, 576, 40, 576, 320, 576, 336, 576, 360, 640, 360, 640, 0 )
+uv = PoolVector2Array( 4.52962, 3.48432, 4.87805, 7.6655, 6.03447, 11.2069, 9.05172, 10.3448, 11.6279, 8.13953, 10.8527, 6.20155, 8.91476, 6.97675, 9.91379, 3.87931 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Out = SubResource( 1 )
+
+[node name="HugeBlock" parent="." instance=ExtResource( 2 )]
+position = Vector2( 184, 64 )
+
+[node name="HugeBlock2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 184, 96 )
+
+[node name="HugeBlock4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 184, 128 )
+
+[node name="HugeBlock3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 184, 160 )
+
+[node name="HugeBlock8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 184, 192 )
+
+[node name="HugeBlock7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 184, 224 )
+
+[node name="HugeBlock6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 184, 256 )
+
+[node name="HugeBlock5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 184, 288 )
+
+[node name="HugeBlock16" parent="." instance=ExtResource( 2 )]
+position = Vector2( 216, 64 )
+
+[node name="HugeBlock15" parent="." instance=ExtResource( 2 )]
+position = Vector2( 216, 96 )
+powerup = ExtResource( 4 )
+
+[node name="HugeBlock14" parent="." instance=ExtResource( 2 )]
+position = Vector2( 216, 128 )
+
+[node name="HugeBlock13" parent="." instance=ExtResource( 2 )]
+position = Vector2( 216, 160 )
+
+[node name="HugeBlock12" parent="." instance=ExtResource( 2 )]
+position = Vector2( 216, 192 )
+
+[node name="HugeBlock11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 216, 224 )
+
+[node name="HugeBlock10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 216, 256 )
+powerup = ExtResource( 4 )
+
+[node name="HugeBlock9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 216, 288 )
+
+[node name="HugeBlock24" parent="." instance=ExtResource( 2 )]
+position = Vector2( 248, 64 )
+
+[node name="HugeBlock23" parent="." instance=ExtResource( 2 )]
+position = Vector2( 248, 96 )
+
+[node name="HugeBlock22" parent="." instance=ExtResource( 2 )]
+position = Vector2( 248, 128 )
+
+[node name="HugeBlock21" parent="." instance=ExtResource( 2 )]
+position = Vector2( 248, 160 )
+
+[node name="HugeBlock20" parent="." instance=ExtResource( 2 )]
+position = Vector2( 248, 192 )
+
+[node name="HugeBlock19" parent="." instance=ExtResource( 2 )]
+position = Vector2( 248, 224 )
+
+[node name="HugeBlock18" parent="." instance=ExtResource( 2 )]
+position = Vector2( 248, 256 )
+
+[node name="HugeBlock17" parent="." instance=ExtResource( 2 )]
+position = Vector2( 248, 288 )
+
+[node name="HugeBlock32" parent="." instance=ExtResource( 2 )]
+position = Vector2( 280, 64 )
+
+[node name="HugeBlock51" parent="." instance=ExtResource( 2 )]
+position = Vector2( 392, 64 )
+
+[node name="HugeBlock50" parent="." instance=ExtResource( 2 )]
+position = Vector2( 392, 96 )
+
+[node name="HugeBlock49" parent="." instance=ExtResource( 2 )]
+position = Vector2( 392, 128 )
+
+[node name="HugeBlock48" parent="." instance=ExtResource( 2 )]
+position = Vector2( 392, 160 )
+
+[node name="HugeBlock47" parent="." instance=ExtResource( 2 )]
+position = Vector2( 392, 192 )
+
+[node name="HugeBlock46" parent="." instance=ExtResource( 2 )]
+position = Vector2( 392, 224 )
+
+[node name="HugeBlock45" parent="." instance=ExtResource( 2 )]
+position = Vector2( 392, 256 )
+
+[node name="HugeBlock44" parent="." instance=ExtResource( 2 )]
+position = Vector2( 392, 288 )
+
+[node name="HugeBlock43" parent="." instance=ExtResource( 2 )]
+position = Vector2( 424, 64 )
+
+[node name="HugeBlock33" parent="." instance=ExtResource( 2 )]
+position = Vector2( 336, 112 )
+powerup = ExtResource( 4 )
+
+[node name="HugeBlock34" parent="." instance=ExtResource( 2 )]
+position = Vector2( 336, 176 )
+powerup = ExtResource( 4 )
+
+[node name="HugeBlock35" parent="." instance=ExtResource( 2 )]
+position = Vector2( 336, 240 )
+powerup = ExtResource( 4 )
+
+[node name="HugeBlock31" parent="." instance=ExtResource( 2 )]
+position = Vector2( 280, 96 )
+
+[node name="HugeBlock30" parent="." instance=ExtResource( 2 )]
+position = Vector2( 280, 128 )
+
+[node name="HugeBlock29" parent="." instance=ExtResource( 2 )]
+position = Vector2( 280, 160 )
+
+[node name="HugeBlock28" parent="." instance=ExtResource( 2 )]
+position = Vector2( 280, 192 )
+
+[node name="HugeBlock27" parent="." instance=ExtResource( 2 )]
+position = Vector2( 280, 224 )
+
+[node name="HugeBlock26" parent="." instance=ExtResource( 2 )]
+position = Vector2( 280, 256 )
+
+[node name="HugeBlock25" parent="." instance=ExtResource( 2 )]
+position = Vector2( 280, 288 )
+
+[node name="HugeBlock42" parent="." instance=ExtResource( 2 )]
+position = Vector2( 424, 96 )
+
+[node name="HugeBlock41" parent="." instance=ExtResource( 2 )]
+position = Vector2( 424, 128 )
+
+[node name="HugeBlock40" parent="." instance=ExtResource( 2 )]
+position = Vector2( 424, 160 )
+
+[node name="HugeBlock39" parent="." instance=ExtResource( 2 )]
+position = Vector2( 424, 192 )
+
+[node name="HugeBlock38" parent="." instance=ExtResource( 2 )]
+position = Vector2( 424, 224 )
+
+[node name="HugeBlock37" parent="." instance=ExtResource( 2 )]
+position = Vector2( 424, 256 )
+
+[node name="HugeBlock36" parent="." instance=ExtResource( 2 )]
+position = Vector2( 424, 288 )

@@ -26,3 +26,8 @@ func animate_chains(amount, _y):
 	offset += amount * scroll_speed
 	mat_f.set_shader_param("v_offset", offset)
 	mat_b.set_shader_param("v_offset", offset)
+
+func enable_ball_saver(duration):
+	$AnimationPlayer.play("EnableBallSaver")
+	yield(get_tree().create_timer(duration), "timeout")
+	$AnimationPlayer.play_backwards("EnableBallSaver")
