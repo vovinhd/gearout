@@ -194,10 +194,7 @@ func _on_balls_destroyed():
 	wave_balls_lost += 1
 	stats.balls_lost += 1
 	$AudioStreamPlayer.play()
-	#playerLives -= 1 
-	#if(playerLives <= 0): 
-	#	print("you lose")
-#		playerLives = 3
+	game_instance.balls_lost()
 	lives_label.text = lives_format % stats.balls_lost
 
 func _on_ball_destroyed(_any):

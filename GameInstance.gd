@@ -21,7 +21,7 @@ var balls : Array = Array()
 
 var ball_speed = 400
 var bomb_counter = 5
-var arcade_mode = false
+var arcade_mode = false setget set_arcade_mode
 var lifes = 3
 const POWERUP_BONUS = 5000
 const MIN_BALL_SPEED = 150
@@ -133,4 +133,19 @@ func add_life():
 	else:
 		add_bonus()
 
+#------------------------
+#	mode
+#------------------------ 
+
+func set_arcade_mode(mode):
+	arcade_mode = mode
+	
+func balls_lost():
+	if arcade_mode:
+		lifes -= 1 
+		if (lifes <= 0):
+			Transition.transition_to("res://UI/Stats.tscn")
+	else:
+		pass
+	
 	

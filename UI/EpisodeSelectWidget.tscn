@@ -66,4 +66,11 @@ margin_right = 150.0
 margin_bottom = 132.0
 rect_min_size = Vector2( 140.805, 110 )
 columns = 10
+
+[node name="ArcadeModeButton" type="Button" parent="."]
+margin_top = 242.0
+margin_right = 176.0
+margin_bottom = 260.0
+text = "Arcade Mode"
 [connection signal="pressed" from="Panel/MarginContainer/StartEpisodeButton" to="." method="_on_StartEpisodeButton_pressed"]
+[connection signal="pressed" from="ArcadeModeButton" to="." method="_on_ArcadeModeButton_pressed"]

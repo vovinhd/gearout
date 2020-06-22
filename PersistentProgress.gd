@@ -167,7 +167,10 @@ func add_wave_stat(wave_index, wave_name, episode_name, wave_score, wave_time, w
 	on_save()
 	
 func get_episode_stats(episode_name): 
-	return progress.highscore[episode_name]
+	if (progress.highscore.has(episode_name)):
+		return progress.highscore[episode_name]
+	else: 
+		null
 
 func has_progress() -> bool: 
 	return not progress["highscore"].empty()

@@ -67,6 +67,12 @@ __meta__ = {
 [node name="EpisodeSelect" parent="Menu/SelectMenu" instance=ExtResource( 1 )]
 focus_neighbour_top = NodePath("../BackButton")
 
+[node name="EpisodeSelect2" parent="Menu/SelectMenu" instance=ExtResource( 1 )]
+margin_left = 232.0
+margin_right = 408.0
+focus_neighbour_top = NodePath("../BackButton")
+episode = "Episode1"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/ViewMain = SubResource( 1 )
 anims/ViewSettings = SubResource( 2 )

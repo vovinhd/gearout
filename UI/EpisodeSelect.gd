@@ -32,4 +32,10 @@ func _ready():
 
 
 func _on_StartEpisodeButton_pressed():
+	game_instance.set_arcade_mode(false)
+	episode_manager.start_episode(episode)
+
+
+func _on_ArcadeModeButton_pressed():
+	game_instance.set_arcade_mode(true)
 	episode_manager.start_episode(episode)
