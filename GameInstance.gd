@@ -49,7 +49,7 @@ func _on_ball_lost(ball):
 	balls.erase(ball)
 	ball.phase_out()
 	for ball in balls: 
-		if !is_instance_valid(ball):
+		if !is_instance_valid(ball) || ball == null:
 			balls.erase(ball)
 	if balls.size() == 0: 
 		level_container._on_balls_destroyed()

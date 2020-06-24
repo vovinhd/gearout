@@ -193,8 +193,8 @@ func _physics_process(delta):
 		emit_signal("can_start_next_wave")
 		animation_player.play("UIWaveStart")
 		stopped = true
-#		if is_instance_valid(last_wave): 
-#			last_wave.queue_free() 
+		if is_instance_valid(last_wave): 
+			last_wave.queue_free() 
 
 func scroll_holders(speed): 
 	top_holder.animate(speed)
