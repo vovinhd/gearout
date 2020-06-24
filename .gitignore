@@ -11,3 +11,7 @@ export_presets.cfg
 .mono/
 data_*/
 build/
+
+# VSCode sync 
+.db
+.db-*

@@ -450,5 +450,5 @@ anims/Explode = SubResource( 2 )
 anims/TakeDamage = SubResource( 3 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 6 )
 [connection signal="ball_collided" from="." to="." method="_on_SimpleBlock_ball_collided"]

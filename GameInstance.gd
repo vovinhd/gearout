@@ -22,12 +22,14 @@ var balls : Array = Array()
 var ball_speed = 400
 var bomb_counter = 5
 var arcade_mode = false setget set_arcade_mode
-var lifes = 3
+export var arcade_mode_lives  = 3
+var lives = 3
 const POWERUP_BONUS = 5000
 const MIN_BALL_SPEED = 150
 const BALL_SAVER_DURATION = 10
 const BALL_STATE = Enums.BALL_STATE
 const PADDLE_POWER = Enums.PADDLE_POWER
+
 func _ready():
 	print("Running on platform ", OS.get_name())
 
@@ -129,7 +131,7 @@ func add_bonus():
 func add_life(): 
 	print("add life")
 	if arcade_mode: 
-		lifes += 1
+		lives += 1
 	else:
 		add_bonus()
 
@@ -139,13 +141,17 @@ func add_life():
 
 func set_arcade_mode(mode):
 	arcade_mode = mode
+	if (mode): 
+		 lives = arcade_mode_lives
 	
 func balls_lost():
 	if arcade_mode:
-		lifes -= 1 
-		if (lifes <= 0):
+		lives -= 1 
+		if (lives <= 0):
 			Transition.transition_to("res://UI/Stats.tscn")
 	else:
 		pass
+func add_ball_speed(delta): 
+	set_ball_speed(min(ball_speed + delta, 500))
 	
 	

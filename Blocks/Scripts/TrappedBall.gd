@@ -27,11 +27,12 @@ func _on_ball_collided(ball):
 func destroy(): 
 	if block_destroyed: return 
 	self.block_destroyed = true
-
+	emit_signal("block_destroyed", score)
 	for node in get_children():
 		if(node.get_class() == "CollisionShape2D" || node.get_class() == "CollisionPolygon2D"):
-			node.set_deferred("disabled", true)
-	$Sprite.visible = false
+			node.queue_free()
+			#node.set_deferred("disabled", true)
+	$Sprite.set_deferred("visible", false)
 	if has_node("AnimationPlayer"): 
 		$AnimationPlayer.play("Explode")
 	
@@ -45,4 +46,4 @@ func destroy():
 	#ball.connect("ball_lost", self, "reset")
 	game_instance.paddle.connect("paddle_moved", ball, "paddle_moved")
 	
-	emit_signal("block_destroyed", score)
+

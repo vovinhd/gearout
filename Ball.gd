@@ -18,8 +18,10 @@ var enabled = false
 var damage = 1
 var paddle_y = 0
 var multiplier = 1
+var last_collision_with_paddle = false
 const MAX_Y_DIFF = 20
 const EXTEND_DEFLECTION_FACTOR = 3
+const ARCADE_MODE_SPEED_INCREASE = 3
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_meta("type", "ball")
@@ -39,7 +41,6 @@ func _ready():
 
 func recieve_state(new_ball_state): 
 	ball_state = new_ball_state
-	print("Ball set to ", BALL_STATE.keys()[ball_state])
 	match ball_state: 
 		BALL_STATE.DEFAULT: 
 			animation_player.play("Default")
@@ -49,7 +50,6 @@ func recieve_state(new_ball_state):
 			animation_player.play("Bomb")
 
 func recieve_speed(new_speed): 
-	print("Ball speed set to ", new_speed)
 	speed = new_speed
 
 func magetic_attraction(direction_x, direction_y, paddle_y, position_y) -> Vector2:
@@ -57,7 +57,7 @@ func magetic_attraction(direction_x, direction_y, paddle_y, position_y) -> Vecto
 	var force = direction_y - distance
 	var sum = abs(direction_x) + abs(force)
 	var direction  = Vector2(direction_x, force/(sum * 5)).normalized()
-	print("dir_x: ", direction_x, " position_y: ", position_y, " paddle_y: ", paddle_y, " force: ", force, " direction: ", direction)
+	#print("dir_x: ", direction_x, " position_y: ", position_y, " paddle_y: ", paddle_y, " force: ", force, " direction: ", direction)
 	return direction
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -75,6 +75,7 @@ func _physics_process(delta):
 
 		match (collision.collider.name):
 			"Top", "Bottom":
+				last_collision_with_paddle = false
 				update = normal.slide(update.normalized())
 				var _direction = move_and_collide(update)
 				direction = -direction.reflect(normal)
@@ -90,7 +91,11 @@ func _physics_process(delta):
 					direction = Vector2(1, (position.y - paddle_y)/MAX_Y_DIFF)
 				multiplier = 1
 				audio.play(0.0)
+				if (game_instance.arcade_mode && !last_collision_with_paddle): 
+					last_collision_with_paddle = true
+					game_instance.add_ball_speed(ARCADE_MODE_SPEED_INCREASE)
 			_: 
+				last_collision_with_paddle = false
 				multiplier += 1				
 				update = normal.slide(update.normalized())
 				var _direction = move_and_collide(update)

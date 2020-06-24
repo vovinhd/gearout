@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Wave.gd" type="Script" id=1]
 [ext_resource path="res://Blocks/HugeArmorBlock.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Blocks/LargeBlock.tscn" type="PackedScene" id=5]
 [ext_resource path="res://PowerUps/BombPowerup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Blocks/SmallBlock.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Blocks/IndestructableBlock.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Blocks/SmallArmorBlock.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
@@ -68,18 +67,6 @@ uv = PoolVector2Array( 4.52962, 3.48432, 4.87805, 7.6655, 6.03447, 11.2069, 9.05
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Out = SubResource( 1 )
-
-[node name="IndestructableBlock" parent="." instance=ExtResource( 8 )]
-position = Vector2( 120, 36 )
-
-[node name="IndestructableBlock64" parent="." instance=ExtResource( 8 )]
-position = Vector2( 432, 36 )
-
-[node name="IndestructableBlock2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 120, 324 )
-
-[node name="IndestructableBlock49" parent="." instance=ExtResource( 8 )]
-position = Vector2( 432, 324 )
 
 [node name="SmallArmorBlock" parent="." instance=ExtResource( 9 )]
 position = Vector2( 232, 124 )

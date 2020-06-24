@@ -66,6 +66,7 @@ __meta__ = {
 
 [node name="EpisodeSelect" parent="Menu/SelectMenu" instance=ExtResource( 1 )]
 focus_neighbour_top = NodePath("../BackButton")
+episode = "Demo"
 
 [node name="EpisodeSelect2" parent="Menu/SelectMenu" instance=ExtResource( 1 )]
 margin_left = 232.0

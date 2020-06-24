@@ -64,10 +64,12 @@ func _on_ball_collided(ball):
 func destroy(): 	
 	if block_destroyed: return 
 	self.block_destroyed = true
+	emit_signal("block_destroyed", score * last_multiplier)
 	for node in get_children():
 		if(node.get_class() == "CollisionShape2D" || node.get_class() == "CollisionPolygon2D"):
-			node.set_deferred("disabled", true)
-	$Sprite.visible = false
+			node.queue_free()
+			#node.set_deferred("disabled", true)
+	$Sprite.set_deferred("visible", false)
 	if has_node("AnimationPlayer"): 
 		$AnimationPlayer.play("Explode")
 	if powerup:
@@ -77,7 +79,7 @@ func destroy():
 		print(powerup)
 		if(powerup != null):
 			spawn_powerup()
-	emit_signal("block_destroyed", score * last_multiplier)
+
 
 
 func spawn_powerup(): 
@@ -88,6 +90,6 @@ func spawn_powerup():
 func random_powerup() -> PackedScene: 
 	var _p = powerups[randi() % powerups.size()]
 	var _r = randf()
-	print("random powerup: ", _p, _r)
+	#print("random powerup: ", _p, _r)
 	return _p.get("scene") if _r <= _p.get("chance") else null
 	

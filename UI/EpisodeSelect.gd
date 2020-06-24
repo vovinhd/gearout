@@ -8,7 +8,7 @@ extends VBoxContainer
 onready var wave_select_buttons : GridContainer = $Panel/MarginContainer/WaveSelectButtons
 onready var episode_title_label = $EpisodeTitle
 var select_button = preload("res://UI/WaveSelectButton.tscn")
-export var episode = "Demo"
+export(String) var episode
 export(Texture) var preview: Texture = preload("res://UI/demo_preview.png")
 # Called when the node enters the scene tree for the first time.
 func _ready():

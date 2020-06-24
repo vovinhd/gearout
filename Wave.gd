@@ -36,8 +36,8 @@ func _check_completed() -> bool:
 
 
 func remove_collision():
-	if has_node("Border"): 
-		$Border.queue_free()
+#	if has_node("Border"): 
+#		$Border.queue_free()
 	for node in get_children(): 
 		if node.is_in_group("remove") || "Indestructable" in node.name:
 			node.queue_free()

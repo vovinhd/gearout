@@ -96,10 +96,6 @@ slow={
  ]
 }
 
-[physics]
-
-2d/thread_model=2
-
 [rendering]
 
 quality/2d/use_pixel_snap=true

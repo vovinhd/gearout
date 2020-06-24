@@ -49,6 +49,7 @@ onready var animation_player = $AnimationPlayer
 
 onready var lives_label = $InGameUI/MarginContainer/HSplitContainer/HBoxContainer/LivesLabel
 var lives_format = "Balls lost: %d"
+var lives_format_arcade = "Lives remaining: %d"
 onready var wave_label = $InGameUI/MarginContainer/HSplitContainer/HBoxContainer/WaveLabel
 var waves_format = "Wave: %d"
 onready var score_label = $InGameUI/MarginContainer/HSplitContainer/HBoxContainer/ScoreLabel
@@ -58,6 +59,8 @@ var loader_thread : Thread = null
 
 var showing_wave_stats = false
 var current_wave
+var last_wave
+
 func _ready():
 	if not episode_manager.standalone: 
 		wave_array = episode_manager.get_current_episode()
@@ -68,7 +71,10 @@ func _ready():
 	self.connect("can_start_next_wave", get_node("world/Paddle"), "reset")
 	self.connect("wave_completed", get_node("world/Paddle"), "wave_transition")
 	kill_bound.connect("ball_destroyed", self, "_on_ball_destroyed")
-	lives_label.text = lives_format % 0
+	if game_instance.arcade_mode: 
+		lives_label.text = lives_format_arcade % game_instance.lives
+	else:
+		lives_label.text = lives_format % 0
 	load_next_wave()
 	animation_player.play("UIWaveStart")
 
@@ -86,18 +92,23 @@ func load_next_wave():
 	else:
 		loader_thread = Thread.new()
 		print(loader_thread.start(self, "thread_load_and_instance",wave_array[wave_index]))
-	game_instance.set_ball_speed(wave_index * 10 + 250)
+	if game_instance.arcade_mode:
+		game_instance.set_ball_speed(min(wave_index * 10 + 250, 400))
+	else: 
+		game_instance.set_ball_speed(min(wave_index * 5 + 200, 350))
+
 
 func thread_load_and_instance(packed_scene): 
+	last_wave = current_wave
 	current_wave = packed_scene.instance()
 	game_instance.current_wave = current_wave
 
 	#% wave_array.size()
 	print("At wave:", wave_index, " name: ", current_wave.name)
-	if wave_index == 0: 
-		wave_label.text = "Final Wave!"
-	else:
-		wave_label.text = waves_format % (wave_index)
+#	if wave_index == 0: 
+#		wave_label.text = "Final Wave!"
+#	else:
+	wave_label.text = waves_format % (wave_index +1)
 	self.call_deferred("add_child", current_wave)
 	current_wave.set_deferred("position", offset)
 	current_wave.connect("wave_completed", self, "_on_wave_completed")
@@ -125,7 +136,7 @@ func _set_wave_stats():
 	stats.wave_times.push_back(wave_time)
 	stats.wave_balls_losts.push_back(wave_balls_lost)
 	
-	if wave_index == wave_array.size():
+	if wave_index >= wave_array.size():
 		game_instance.last_stats = stats 
 		Transition.transition_to("res://UI/Stats.tscn")
 	
@@ -143,7 +154,7 @@ func _set_wave_stats():
 	persistent_progress.add_wave_stat(
 		wave_index,
 		current_wave.name,
-		"Demo", 
+		episode_manager.current_episode, 
 		wave_score,
 		wave_time,
 		wave_balls_lost
@@ -182,6 +193,8 @@ func _physics_process(delta):
 		emit_signal("can_start_next_wave")
 		animation_player.play("UIWaveStart")
 		stopped = true
+#		if is_instance_valid(last_wave): 
+#			last_wave.queue_free() 
 
 func scroll_holders(speed): 
 	top_holder.animate(speed)
@@ -195,7 +208,11 @@ func _on_balls_destroyed():
 	stats.balls_lost += 1
 	$AudioStreamPlayer.play()
 	game_instance.balls_lost()
-	lives_label.text = lives_format % stats.balls_lost
+	if game_instance.arcade_mode: 
+		lives_label.text = lives_format_arcade % game_instance.lives
+	else:
+		lives_label.text = lives_format % stats.balls_lost
+
 
 func _on_ball_destroyed(_any):
 	return
@@ -222,7 +239,7 @@ func _on_UnpauseButton_pressed():
 
 
 func _on_RestartWaveButton_pressed():
-	current_wave.free()
+	current_wave.queue_free()
 	game_instance.clear_balls_sync()
 	thread_load_and_instance(wave_array[wave_index])
 	game_instance.paddle.paddle_state = Enums.PADDLE_STATE.BALL_LOST

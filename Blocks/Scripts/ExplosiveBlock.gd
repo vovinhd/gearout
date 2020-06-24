@@ -28,13 +28,14 @@ func _on_ball_collided(ball):
 func destroy(): 
 	if block_destroyed: return 
 	self.block_destroyed = true
+	emit_signal("block_destroyed", score * last_multiplier)
 	for node in get_children():
 		if(node.get_class() == "CollisionShape2D" || node.get_class() == "CollisionPolygon2D"):
-			node.set_deferred("disabled", true)
-	$Sprite.visible = false
+			node.queue_free()
+			#node.set_deferred("disabled", true)
+	$Sprite.set_deferred("visible", false)
 	if $AnimationPlayer: 
 		$AnimationPlayer.play("Explode")
-	emit_signal("block_destroyed", score * last_multiplier)
 	emit_signal("shake_camera", shake_amount)
 
 func apply_radial_damage():
