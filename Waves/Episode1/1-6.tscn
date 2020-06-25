@@ -94,9 +94,6 @@ powerup = ExtResource( 5 )
 [node name="LargeBlock2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 272, 80 )
 
-[node name="LargeBlock3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 272, 80 )
-
 [node name="WideBlock4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 312, 56 )
 
@@ -109,10 +106,6 @@ position = Vector2( 288, 80 )
 [node name="LargeBlock5" parent="." instance=ExtResource( 2 )]
 position = Vector2( 336, 80 )
 
-[node name="LargeBlock4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 336, 80 )
-powerup = ExtResource( 5 )
-
 [node name="WideBlock6" parent="." instance=ExtResource( 4 )]
 position = Vector2( 376, 56 )
 
@@ -123,9 +116,6 @@ position = Vector2( 376, 104 )
 position = Vector2( 352, 80 )
 
 [node name="LargeBlock8" parent="." instance=ExtResource( 2 )]
-position = Vector2( 400, 80 )
-
-[node name="LargeBlock7" parent="." instance=ExtResource( 2 )]
 position = Vector2( 400, 80 )
 
 [node name="WideBlock8" parent="." instance=ExtResource( 4 )]
@@ -140,9 +130,6 @@ position = Vector2( 416, 80 )
 [node name="LargeBlock11" parent="." instance=ExtResource( 2 )]
 position = Vector2( 464, 80 )
 
-[node name="LargeBlock10" parent="." instance=ExtResource( 2 )]
-position = Vector2( 464, 80 )
-
 [node name="SmallBlock" parent="." instance=ExtResource( 6 )]
 position = Vector2( 304, 72 )
 
@@ -153,9 +140,6 @@ position = Vector2( 320, 72 )
 position = Vector2( 304, 88 )
 
 [node name="SmallBlock4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 320, 88 )
-
-[node name="SmallBlock5" parent="." instance=ExtResource( 6 )]
 position = Vector2( 320, 88 )
 
 [node name="SmallBlock6" parent="." instance=ExtResource( 6 )]
@@ -170,9 +154,6 @@ position = Vector2( 368, 88 )
 [node name="SmallBlock9" parent="." instance=ExtResource( 6 )]
 position = Vector2( 384, 88 )
 
-[node name="SmallBlock10" parent="." instance=ExtResource( 6 )]
-position = Vector2( 384, 88 )
-
 [node name="SmallBlock11" parent="." instance=ExtResource( 6 )]
 position = Vector2( 432, 72 )
 
@@ -185,9 +166,6 @@ position = Vector2( 432, 88 )
 [node name="SmallBlock14" parent="." instance=ExtResource( 6 )]
 position = Vector2( 448, 88 )
 
-[node name="SmallBlock15" parent="." instance=ExtResource( 6 )]
-position = Vector2( 448, 88 )
-
 [node name="SmallBlock17" parent="." instance=ExtResource( 6 )]
 position = Vector2( 256, 72 )
 
@@ -195,9 +173,6 @@ position = Vector2( 256, 72 )
 position = Vector2( 240, 88 )
 
 [node name="SmallBlock19" parent="." instance=ExtResource( 6 )]
-position = Vector2( 256, 88 )
-
-[node name="SmallBlock20" parent="." instance=ExtResource( 6 )]
 position = Vector2( 256, 88 )
 
 [node name="SmallArmorBlock" parent="." instance=ExtResource( 7 )]
@@ -262,9 +237,6 @@ powerup = ExtResource( 5 )
 [node name="LargeBlock23" parent="." instance=ExtResource( 2 )]
 position = Vector2( 272, 144 )
 
-[node name="LargeBlock22" parent="." instance=ExtResource( 2 )]
-position = Vector2( 272, 144 )
-
 [node name="WideBlock14" parent="." instance=ExtResource( 4 )]
 position = Vector2( 312, 120 )
 
@@ -277,10 +249,6 @@ position = Vector2( 288, 144 )
 [node name="LargeBlock20" parent="." instance=ExtResource( 2 )]
 position = Vector2( 336, 144 )
 
-[node name="LargeBlock19" parent="." instance=ExtResource( 2 )]
-position = Vector2( 336, 144 )
-powerup = ExtResource( 5 )
-
 [node name="WideBlock12" parent="." instance=ExtResource( 4 )]
 position = Vector2( 376, 120 )
 
@@ -291,9 +259,6 @@ position = Vector2( 376, 168 )
 position = Vector2( 352, 144 )
 
 [node name="LargeBlock17" parent="." instance=ExtResource( 2 )]
-position = Vector2( 400, 144 )
-
-[node name="LargeBlock16" parent="." instance=ExtResource( 2 )]
 position = Vector2( 400, 144 )
 
 [node name="WideBlock10" parent="." instance=ExtResource( 4 )]
@@ -308,9 +273,6 @@ position = Vector2( 416, 144 )
 [node name="LargeBlock14" parent="." instance=ExtResource( 2 )]
 position = Vector2( 464, 144 )
 
-[node name="LargeBlock13" parent="." instance=ExtResource( 2 )]
-position = Vector2( 464, 144 )
-
 [node name="SmallBlock39" parent="." instance=ExtResource( 6 )]
 position = Vector2( 304, 136 )
 
@@ -321,9 +283,6 @@ position = Vector2( 320, 136 )
 position = Vector2( 304, 152 )
 
 [node name="SmallBlock36" parent="." instance=ExtResource( 6 )]
-position = Vector2( 320, 152 )
-
-[node name="SmallBlock35" parent="." instance=ExtResource( 6 )]
 position = Vector2( 320, 152 )
 
 [node name="SmallBlock34" parent="." instance=ExtResource( 6 )]
@@ -338,9 +297,6 @@ position = Vector2( 368, 152 )
 [node name="SmallBlock31" parent="." instance=ExtResource( 6 )]
 position = Vector2( 384, 152 )
 
-[node name="SmallBlock30" parent="." instance=ExtResource( 6 )]
-position = Vector2( 384, 152 )
-
 [node name="SmallBlock29" parent="." instance=ExtResource( 6 )]
 position = Vector2( 432, 136 )
 
@@ -353,9 +309,6 @@ position = Vector2( 432, 152 )
 [node name="SmallBlock26" parent="." instance=ExtResource( 6 )]
 position = Vector2( 448, 152 )
 
-[node name="SmallBlock25" parent="." instance=ExtResource( 6 )]
-position = Vector2( 448, 152 )
-
 [node name="SmallBlock24" parent="." instance=ExtResource( 6 )]
 position = Vector2( 256, 136 )
 
@@ -363,9 +316,6 @@ position = Vector2( 256, 136 )
 position = Vector2( 240, 152 )
 
 [node name="SmallBlock22" parent="." instance=ExtResource( 6 )]
-position = Vector2( 256, 152 )
-
-[node name="SmallBlock21" parent="." instance=ExtResource( 6 )]
 position = Vector2( 256, 152 )
 
 [node name="SmallArmorBlock32" parent="." instance=ExtResource( 7 )]
@@ -430,9 +380,6 @@ powerup = ExtResource( 5 )
 [node name="LargeBlock35" parent="." instance=ExtResource( 2 )]
 position = Vector2( 272, 208 )
 
-[node name="LargeBlock34" parent="." instance=ExtResource( 2 )]
-position = Vector2( 272, 208 )
-
 [node name="WideBlock22" parent="." instance=ExtResource( 4 )]
 position = Vector2( 312, 184 )
 
@@ -445,10 +392,6 @@ position = Vector2( 288, 208 )
 [node name="LargeBlock32" parent="." instance=ExtResource( 2 )]
 position = Vector2( 336, 208 )
 
-[node name="LargeBlock31" parent="." instance=ExtResource( 2 )]
-position = Vector2( 336, 208 )
-powerup = ExtResource( 5 )
-
 [node name="WideBlock20" parent="." instance=ExtResource( 4 )]
 position = Vector2( 376, 184 )
 
@@ -459,9 +402,6 @@ position = Vector2( 376, 232 )
 position = Vector2( 352, 208 )
 
 [node name="LargeBlock29" parent="." instance=ExtResource( 2 )]
-position = Vector2( 400, 208 )
-
-[node name="LargeBlock28" parent="." instance=ExtResource( 2 )]
 position = Vector2( 400, 208 )
 
 [node name="WideBlock18" parent="." instance=ExtResource( 4 )]
@@ -476,9 +416,6 @@ position = Vector2( 416, 208 )
 [node name="LargeBlock26" parent="." instance=ExtResource( 2 )]
 position = Vector2( 464, 208 )
 
-[node name="LargeBlock25" parent="." instance=ExtResource( 2 )]
-position = Vector2( 464, 208 )
-
 [node name="SmallBlock59" parent="." instance=ExtResource( 6 )]
 position = Vector2( 304, 200 )
 
@@ -489,9 +426,6 @@ position = Vector2( 320, 200 )
 position = Vector2( 304, 216 )
 
 [node name="SmallBlock56" parent="." instance=ExtResource( 6 )]
-position = Vector2( 320, 216 )
-
-[node name="SmallBlock55" parent="." instance=ExtResource( 6 )]
 position = Vector2( 320, 216 )
 
 [node name="SmallBlock54" parent="." instance=ExtResource( 6 )]
@@ -506,9 +440,6 @@ position = Vector2( 368, 216 )
 [node name="SmallBlock51" parent="." instance=ExtResource( 6 )]
 position = Vector2( 384, 216 )
 
-[node name="SmallBlock50" parent="." instance=ExtResource( 6 )]
-position = Vector2( 384, 216 )
-
 [node name="SmallBlock49" parent="." instance=ExtResource( 6 )]
 position = Vector2( 432, 200 )
 
@@ -521,9 +452,6 @@ position = Vector2( 432, 216 )
 [node name="SmallBlock46" parent="." instance=ExtResource( 6 )]
 position = Vector2( 448, 216 )
 
-[node name="SmallBlock45" parent="." instance=ExtResource( 6 )]
-position = Vector2( 448, 216 )
-
 [node name="SmallBlock44" parent="." instance=ExtResource( 6 )]
 position = Vector2( 256, 200 )
 
@@ -531,9 +459,6 @@ position = Vector2( 256, 200 )
 position = Vector2( 240, 216 )
 
 [node name="SmallBlock42" parent="." instance=ExtResource( 6 )]
-position = Vector2( 256, 216 )
-
-[node name="SmallBlock41" parent="." instance=ExtResource( 6 )]
 position = Vector2( 256, 216 )
 
 [node name="SmallArmorBlock48" parent="." instance=ExtResource( 7 )]
@@ -599,9 +524,6 @@ powerup = ExtResource( 5 )
 [node name="LargeBlock47" parent="." instance=ExtResource( 2 )]
 position = Vector2( 272, 272 )
 
-[node name="LargeBlock46" parent="." instance=ExtResource( 2 )]
-position = Vector2( 272, 272 )
-
 [node name="WideBlock30" parent="." instance=ExtResource( 4 )]
 position = Vector2( 312, 248 )
 
@@ -614,10 +536,6 @@ position = Vector2( 288, 272 )
 [node name="LargeBlock44" parent="." instance=ExtResource( 2 )]
 position = Vector2( 336, 272 )
 
-[node name="LargeBlock43" parent="." instance=ExtResource( 2 )]
-position = Vector2( 336, 272 )
-powerup = ExtResource( 5 )
-
 [node name="WideBlock28" parent="." instance=ExtResource( 4 )]
 position = Vector2( 376, 248 )
 
@@ -628,9 +546,6 @@ position = Vector2( 376, 296 )
 position = Vector2( 352, 272 )
 
 [node name="LargeBlock41" parent="." instance=ExtResource( 2 )]
-position = Vector2( 400, 272 )
-
-[node name="LargeBlock40" parent="." instance=ExtResource( 2 )]
 position = Vector2( 400, 272 )
 
 [node name="WideBlock26" parent="." instance=ExtResource( 4 )]
@@ -645,9 +560,6 @@ position = Vector2( 416, 272 )
 [node name="LargeBlock38" parent="." instance=ExtResource( 2 )]
 position = Vector2( 464, 272 )
 
-[node name="LargeBlock37" parent="." instance=ExtResource( 2 )]
-position = Vector2( 464, 272 )
-
 [node name="SmallBlock79" parent="." instance=ExtResource( 6 )]
 position = Vector2( 304, 264 )
 
@@ -658,9 +570,6 @@ position = Vector2( 320, 264 )
 position = Vector2( 304, 280 )
 
 [node name="SmallBlock76" parent="." instance=ExtResource( 6 )]
-position = Vector2( 320, 280 )
-
-[node name="SmallBlock75" parent="." instance=ExtResource( 6 )]
 position = Vector2( 320, 280 )
 
 [node name="SmallBlock74" parent="." instance=ExtResource( 6 )]
@@ -675,9 +584,6 @@ position = Vector2( 368, 280 )
 [node name="SmallBlock71" parent="." instance=ExtResource( 6 )]
 position = Vector2( 384, 280 )
 
-[node name="SmallBlock70" parent="." instance=ExtResource( 6 )]
-position = Vector2( 384, 280 )
-
 [node name="SmallBlock69" parent="." instance=ExtResource( 6 )]
 position = Vector2( 432, 264 )
 
@@ -690,9 +596,6 @@ position = Vector2( 432, 280 )
 [node name="SmallBlock66" parent="." instance=ExtResource( 6 )]
 position = Vector2( 448, 280 )
 
-[node name="SmallBlock65" parent="." instance=ExtResource( 6 )]
-position = Vector2( 448, 280 )
-
 [node name="SmallBlock64" parent="." instance=ExtResource( 6 )]
 position = Vector2( 256, 264 )
 
@@ -700,9 +603,6 @@ position = Vector2( 256, 264 )
 position = Vector2( 240, 280 )
 
 [node name="SmallBlock62" parent="." instance=ExtResource( 6 )]
-position = Vector2( 256, 280 )
-
-[node name="SmallBlock61" parent="." instance=ExtResource( 6 )]
 position = Vector2( 256, 280 )
 
 [node name="SmallArmorBlock64" parent="." instance=ExtResource( 7 )]

@@ -65,7 +65,7 @@ margin_top = 22.0
 margin_right = 150.0
 margin_bottom = 132.0
 rect_min_size = Vector2( 140.805, 110 )
-columns = 10
+columns = 8
 
 [node name="ArcadeModeButton" type="Button" parent="."]
 margin_top = 242.0

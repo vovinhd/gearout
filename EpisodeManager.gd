@@ -40,7 +40,15 @@ var episodes = {
 			preload("res://Waves/Episode1/1-14.tscn"),
 			preload("res://Waves/Episode1/1-15.tscn"),
 			preload("res://Waves/Episode1/1-16.tscn"),
-			]
+			preload("res://Waves/Episode1/1-17.tscn"),
+			preload("res://Waves/Episode1/1-18.tscn"),
+			preload("res://Waves/Episode1/1-19.tscn"),
+			preload("res://Waves/Episode1/1-20.tscn"),
+			preload("res://Waves/Episode1/1-21.tscn"),
+			preload("res://Waves/Episode1/1-22.tscn"),
+			preload("res://Waves/Episode1/1-23.tscn"),
+			preload("res://Waves/Episode1/1-24.tscn"),
+		]
 	}
 
 

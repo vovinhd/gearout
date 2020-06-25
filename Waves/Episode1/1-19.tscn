@@ -1,0 +1,358 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Wave.gd" type="Script" id=1]
+[ext_resource path="res://Blocks/LargeBlock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tex/BlockSmall.png" type="Texture" id=3]
+[ext_resource path="res://Blocks/HugeBlock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Blocks/TrappedBall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Blocks/HugeArmorBlock.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Blocks/WideBlock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://PowerUps/BombPowerup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Blocks/SmallBlock.tscn" type="PackedScene" id=9]
+[ext_resource path="res://PowerUps/BallSaverPowerup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://PowerUps/ExtendPowerup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://PowerUps/ScorePowerup.tscn" type="PackedScene" id=12]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Border:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Border:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "remove_collision"
+} ]
+}
+
+[node name="1-19" type="Node2D"]
+script = ExtResource( 1 )
+ball_base_speed = 240.0
+
+[node name="Border" type="KinematicBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Border"]
+polygon = PoolVector2Array( 576, 360, 576, 320, 576, 320, 576, 40, 576, 40, 576, 0, 640, 0, 640, 360 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Border/CollisionPolygon2D"]
+antialiased = true
+texture = ExtResource( 3 )
+polygon = PoolVector2Array( 576, 0, 576, 24, 576, 40, 576, 320, 576, 336, 576, 360, 640, 360, 640, 0 )
+uv = PoolVector2Array( 4.52962, 3.48432, 4.87805, 7.6655, 6.03447, 11.2069, 9.05172, 10.3448, 11.6279, 8.13953, 10.8527, 6.20155, 8.91476, 6.97675, 9.91379, 3.87931 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Out = SubResource( 1 )
+
+[node name="WideBlock2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 276 )
+
+[node name="WideBlock4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 260 )
+
+[node name="WideBlock3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 244 )
+powerup = ExtResource( 12 )
+
+[node name="WideBlock8" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 228 )
+
+[node name="WideBlock7" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 212 )
+
+[node name="WideBlock6" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 196 )
+powerup = ExtResource( 8 )
+
+[node name="WideBlock5" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 180 )
+
+[node name="WideBlock16" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 164 )
+
+[node name="WideBlock15" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 148 )
+
+[node name="WideBlock14" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 132 )
+
+[node name="WideBlock13" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 116 )
+
+[node name="WideBlock12" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 100 )
+
+[node name="WideBlock11" parent="." instance=ExtResource( 7 )]
+position = Vector2( 272, 84 )
+
+[node name="WideBlock32" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512, 276 )
+
+[node name="WideBlock31" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512, 260 )
+
+[node name="WideBlock30" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512, 244 )
+
+[node name="WideBlock29" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512, 228 )
+
+[node name="WideBlock28" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512, 212 )
+
+[node name="WideBlock27" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512, 196 )
+
+[node name="WideBlock26" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512, 180 )
+
+[node name="WideBlock25" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512, 164 )
+
+[node name="WideBlock24" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512, 148 )
+
+[node name="WideBlock23" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512, 132 )
+
+[node name="WideBlock22" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512, 116 )
+powerup = ExtResource( 12 )
+
+[node name="WideBlock21" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512, 100 )
+
+[node name="WideBlock20" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512, 84 )
+powerup = ExtResource( 8 )
+
+[node name="LargeBlock" parent="." instance=ExtResource( 2 )]
+position = Vector2( 296, 300 )
+
+[node name="LargeBlock2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 312, 300 )
+
+[node name="LargeBlock4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 328, 300 )
+powerup = ExtResource( 10 )
+
+[node name="LargeBlock3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 344, 300 )
+
+[node name="LargeBlock8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 360, 300 )
+
+[node name="LargeBlock7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 376, 300 )
+
+[node name="LargeBlock12" parent="." instance=ExtResource( 2 )]
+position = Vector2( 408, 300 )
+
+[node name="LargeBlock21" parent="." instance=ExtResource( 2 )]
+position = Vector2( 392, 300 )
+
+[node name="LargeBlock22" parent="." instance=ExtResource( 2 )]
+position = Vector2( 392, 60 )
+
+[node name="TrappedBall" parent="LargeBlock22" instance=ExtResource( 5 )]
+position = Vector2( 0, 120 )
+
+[node name="LargeBlock11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 424, 300 )
+
+[node name="LargeBlock10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 440, 300 )
+
+[node name="LargeBlock9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 456, 300 )
+powerup = ExtResource( 12 )
+
+[node name="LargeBlock14" parent="." instance=ExtResource( 2 )]
+position = Vector2( 472, 300 )
+
+[node name="LargeBlock13" parent="." instance=ExtResource( 2 )]
+position = Vector2( 488, 300 )
+
+[node name="LargeBlock28" parent="." instance=ExtResource( 2 )]
+position = Vector2( 296, 60 )
+
+[node name="LargeBlock27" parent="." instance=ExtResource( 2 )]
+position = Vector2( 312, 60 )
+
+[node name="LargeBlock26" parent="." instance=ExtResource( 2 )]
+position = Vector2( 328, 60 )
+powerup = ExtResource( 12 )
+
+[node name="LargeBlock25" parent="." instance=ExtResource( 2 )]
+position = Vector2( 344, 60 )
+
+[node name="LargeBlock24" parent="." instance=ExtResource( 2 )]
+position = Vector2( 360, 60 )
+
+[node name="LargeBlock23" parent="." instance=ExtResource( 2 )]
+position = Vector2( 376, 60 )
+
+[node name="LargeBlock20" parent="." instance=ExtResource( 2 )]
+position = Vector2( 408, 60 )
+
+[node name="LargeBlock19" parent="." instance=ExtResource( 2 )]
+position = Vector2( 424, 60 )
+
+[node name="LargeBlock18" parent="." instance=ExtResource( 2 )]
+position = Vector2( 440, 60 )
+
+[node name="LargeBlock17" parent="." instance=ExtResource( 2 )]
+position = Vector2( 456, 60 )
+powerup = ExtResource( 10 )
+
+[node name="LargeBlock16" parent="." instance=ExtResource( 2 )]
+position = Vector2( 472, 60 )
+powerup = ExtResource( 8 )
+
+[node name="LargeBlock15" parent="." instance=ExtResource( 2 )]
+position = Vector2( 488, 60 )
+
+[node name="HugeArmorBlock" parent="." instance=ExtResource( 6 )]
+position = Vector2( 272, 300 )
+
+[node name="HugeArmorBlock2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 272, 60 )
+
+[node name="HugeArmorBlock3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 512, 60 )
+
+[node name="HugeArmorBlock4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 512, 300 )
+
+[node name="HugeBlock" parent="." instance=ExtResource( 4 )]
+position = Vector2( 304, 268 )
+
+[node name="HugeBlock2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 336, 236 )
+
+[node name="HugeBlock3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 368, 204 )
+
+[node name="HugeBlock7" parent="." instance=ExtResource( 4 )]
+position = Vector2( 368, 156 )
+powerup = ExtResource( 11 )
+
+[node name="HugeBlock8" parent="." instance=ExtResource( 4 )]
+position = Vector2( 336, 124 )
+
+[node name="HugeBlock9" parent="." instance=ExtResource( 4 )]
+position = Vector2( 304, 92 )
+powerup = ExtResource( 10 )
+
+[node name="HugeBlock10" parent="." instance=ExtResource( 4 )]
+position = Vector2( 416, 204 )
+
+[node name="HugeBlock11" parent="." instance=ExtResource( 4 )]
+position = Vector2( 448, 236 )
+
+[node name="HugeBlock12" parent="." instance=ExtResource( 4 )]
+position = Vector2( 480, 268 )
+
+[node name="HugeBlock6" parent="." instance=ExtResource( 4 )]
+position = Vector2( 416, 156 )
+
+[node name="HugeBlock5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 448, 124 )
+
+[node name="HugeBlock4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 480, 92 )
+
+[node name="SmallBlock" parent="." instance=ExtResource( 9 )]
+position = Vector2( 328, 212 )
+
+[node name="SmallBlock2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 328, 196 )
+powerup = ExtResource( 12 )
+
+[node name="SmallBlock3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 328, 180 )
+
+[node name="SmallBlock4" parent="." instance=ExtResource( 9 )]
+position = Vector2( 328, 164 )
+powerup = ExtResource( 8 )
+
+[node name="SmallBlock5" parent="." instance=ExtResource( 9 )]
+position = Vector2( 328, 148 )
+
+[node name="SmallBlock10" parent="." instance=ExtResource( 9 )]
+position = Vector2( 456, 212 )
+
+[node name="SmallBlock9" parent="." instance=ExtResource( 9 )]
+position = Vector2( 456, 196 )
+
+[node name="SmallBlock8" parent="." instance=ExtResource( 9 )]
+position = Vector2( 456, 180 )
+
+[node name="SmallBlock7" parent="." instance=ExtResource( 9 )]
+position = Vector2( 456, 164 )
+powerup = ExtResource( 12 )
+
+[node name="SmallBlock6" parent="." instance=ExtResource( 9 )]
+position = Vector2( 456, 148 )
+
+[node name="SmallBlock11" parent="." instance=ExtResource( 9 )]
+position = Vector2( 424, 116 )
+
+[node name="SmallBlock12" parent="." instance=ExtResource( 9 )]
+position = Vector2( 408, 116 )
+powerup = ExtResource( 8 )
+
+[node name="SmallBlock13" parent="." instance=ExtResource( 9 )]
+position = Vector2( 392, 116 )
+
+[node name="SmallBlock14" parent="." instance=ExtResource( 9 )]
+position = Vector2( 376, 116 )
+powerup = ExtResource( 12 )
+
+[node name="SmallBlock15" parent="." instance=ExtResource( 9 )]
+position = Vector2( 360, 116 )
+
+[node name="SmallBlock20" parent="." instance=ExtResource( 9 )]
+position = Vector2( 424, 244 )
+
+[node name="SmallBlock19" parent="." instance=ExtResource( 9 )]
+position = Vector2( 408, 244 )
+powerup = ExtResource( 12 )
+
+[node name="SmallBlock18" parent="." instance=ExtResource( 9 )]
+position = Vector2( 392, 244 )
+powerup = ExtResource( 11 )
+
+[node name="SmallBlock17" parent="." instance=ExtResource( 9 )]
+position = Vector2( 376, 244 )
+
+[node name="SmallBlock16" parent="." instance=ExtResource( 9 )]
+position = Vector2( 360, 244 )

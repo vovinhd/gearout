@@ -353,4 +353,5 @@ anims/Explode = SubResource( 2 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
+bus = "SFX"
 [connection signal="ball_collided" from="." to="." method="_on_SimpleBlock_ball_collided"]
