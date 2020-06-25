@@ -117,11 +117,7 @@ position = Vector2( 280, 196 )
 position = Vector2( 280, 164 )
 
 [node name="HugeBlock" parent="." instance=ExtResource( 4 )]
-position = Vector2( 208, 52 )
-powerup = ExtResource( 2 )
-
-[node name="HugeBlock2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 208, 308 )
+position = Vector2( 240, 180 )
 powerup = ExtResource( 2 )
 
 [node name="IndestructableBlock19" parent="." instance=ExtResource( 8 )]

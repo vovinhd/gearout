@@ -372,18 +372,22 @@ polygon = PoolVector2Array( -24, 29.5384, 24, 29.5384, 29.5384, 24, 29.5384, -24
 [node name="CornerUL" type="CollisionShape2D" parent="."]
 position = Vector2( -14, -14 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="CornerUR" type="CollisionShape2D" parent="."]
 position = Vector2( 14, -14 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="CornerLL" type="CollisionShape2D" parent="."]
 position = Vector2( -14, 14 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="CornerLR" type="CollisionShape2D" parent="."]
 position = Vector2( 14, 14 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="Fragments" type="Node2D" parent="."]
 visible = false

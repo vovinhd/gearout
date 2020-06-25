@@ -12,7 +12,7 @@ radius = 2.0
 resource_name = "Explode"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Fragments:modulate")
+tracks/0/path = NodePath("../HugeBlock/Fragments:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -24,7 +24,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Fragments/FragmentLR:position")
+tracks/1/path = NodePath("../HugeBlock/Fragments/FragmentLR:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -36,7 +36,7 @@ tracks/1/keys = {
 "values": [ Vector2( 10, 6 ), Vector2( 9, 13 ), Vector2( 9, 28 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Fragments/FragmentLR:rotation_degrees")
+tracks/2/path = NodePath("../HugeBlock/Fragments/FragmentLR:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -48,7 +48,7 @@ tracks/2/keys = {
 "values": [ 0.0, 5.4, 11.5 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Fragments/FragmentUL:position")
+tracks/3/path = NodePath("../HugeBlock/Fragments/FragmentUL:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -60,7 +60,7 @@ tracks/3/keys = {
 "values": [ Vector2( -12, -5 ), Vector2( -18, 5 ), Vector2( -19, 19 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Fragments/FragmentUL:rotation_degrees")
+tracks/4/path = NodePath("../HugeBlock/Fragments/FragmentUL:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -72,7 +72,7 @@ tracks/4/keys = {
 "values": [ 0.0, -17.0, -124.9 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Fragments/FragmentLL:position")
+tracks/5/path = NodePath("../HugeBlock/Fragments/FragmentLL:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -84,7 +84,7 @@ tracks/5/keys = {
 "values": [ Vector2( -11, 6 ), Vector2( -15, 12 ), Vector2( -9, 25 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Fragments/FragmentLL:rotation_degrees")
+tracks/6/path = NodePath("../HugeBlock/Fragments/FragmentLL:rotation_degrees")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -96,7 +96,7 @@ tracks/6/keys = {
 "values": [ 0.0, -3.8, -15.1 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Fragments/FragmentUR:position")
+tracks/7/path = NodePath("../HugeBlock/Fragments/FragmentUR:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -108,7 +108,7 @@ tracks/7/keys = {
 "values": [ Vector2( 11, -4 ), Vector2( 17, 4 ), Vector2( 18, 23 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Fragments/FragmentUR:rotation_degrees")
+tracks/8/path = NodePath("../HugeBlock/Fragments/FragmentUR:rotation_degrees")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -120,7 +120,7 @@ tracks/8/keys = {
 "values": [ 0.0, 17.0, 124.8 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Fragments:position")
+tracks/9/path = NodePath("../HugeBlock/Fragments:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -132,7 +132,7 @@ tracks/9/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Fragments:rotation_degrees")
+tracks/10/path = NodePath("../HugeBlock/Fragments:rotation_degrees")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -144,7 +144,7 @@ tracks/10/keys = {
 "values": [ 0.0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Fragments:visible")
+tracks/11/path = NodePath("../HugeBlock/Fragments:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -156,7 +156,7 @@ tracks/11/keys = {
 "values": [ true, false ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Fragments/FragmentUL2:position")
+tracks/12/path = NodePath("../HugeBlock/Fragments/FragmentUL2:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -168,7 +168,7 @@ tracks/12/keys = {
 "values": [ Vector2( -5, -12 ), Vector2( -9, -4 ), Vector2( -21, 8 ) ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("Fragments/FragmentUL2:rotation_degrees")
+tracks/13/path = NodePath("../HugeBlock/Fragments/FragmentUL2:rotation_degrees")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
@@ -180,7 +180,7 @@ tracks/13/keys = {
 "values": [ 0.0, -24.9846, -60.7187 ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("Fragments/FragmentLL2:position")
+tracks/14/path = NodePath("../HugeBlock/Fragments/FragmentLL2:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
@@ -192,7 +192,7 @@ tracks/14/keys = {
 "values": [ Vector2( -4, 12 ), Vector2( -5, 21 ), Vector2( -12, 40 ) ]
 }
 tracks/15/type = "value"
-tracks/15/path = NodePath("Fragments/FragmentLL2:rotation_degrees")
+tracks/15/path = NodePath("../HugeBlock/Fragments/FragmentLL2:rotation_degrees")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/imported = false
@@ -204,7 +204,7 @@ tracks/15/keys = {
 "values": [ 0.0, -24.1554, -23.9188 ]
 }
 tracks/16/type = "value"
-tracks/16/path = NodePath("Fragments/FragmentLR2:position")
+tracks/16/path = NodePath("../HugeBlock/Fragments/FragmentLR2:position")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/imported = false
@@ -216,7 +216,7 @@ tracks/16/keys = {
 "values": [ Vector2( 4, 12 ), Vector2( 6, 21 ), Vector2( 9, 41 ) ]
 }
 tracks/17/type = "value"
-tracks/17/path = NodePath("Fragments/FragmentLR2:rotation_degrees")
+tracks/17/path = NodePath("../HugeBlock/Fragments/FragmentLR2:rotation_degrees")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/imported = false
@@ -228,7 +228,7 @@ tracks/17/keys = {
 "values": [ 0.0, 15.9837 ]
 }
 tracks/18/type = "value"
-tracks/18/path = NodePath("Fragments/FragmentUR2:position")
+tracks/18/path = NodePath("../HugeBlock/Fragments/FragmentUR2:position")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/imported = false
@@ -240,7 +240,7 @@ tracks/18/keys = {
 "values": [ Vector2( 6, -12 ), Vector2( 17, -7 ), Vector2( 22, 10 ) ]
 }
 tracks/19/type = "value"
-tracks/19/path = NodePath("Fragments/FragmentUR2:rotation_degrees")
+tracks/19/path = NodePath("../HugeBlock/Fragments/FragmentUR2:rotation_degrees")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/imported = false
@@ -252,7 +252,7 @@ tracks/19/keys = {
 "values": [ 0.0, 11.7002, 34.2751 ]
 }
 tracks/20/type = "value"
-tracks/20/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/20/path = NodePath("../HugeBlock/AudioStreamPlayer2D:playing")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/imported = false
@@ -278,18 +278,22 @@ polygon = PoolVector2Array( -24, 19.5349, 24, 19.5349, 29.5384, 16.1861, 29.5384
 [node name="CornerUL" type="CollisionShape2D" parent="."]
 position = Vector2( -14, -14 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="CornerUR" type="CollisionShape2D" parent="."]
 position = Vector2( 14, -14 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="CornerLL" type="CollisionShape2D" parent="."]
 position = Vector2( -14, 14 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="CornerLR" type="CollisionShape2D" parent="."]
 position = Vector2( 14, 14 )
 shape = SubResource( 1 )
+disabled = true
 
 [node name="Fragments" type="Node2D" parent="."]
 visible = false
